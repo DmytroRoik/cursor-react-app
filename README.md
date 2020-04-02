@@ -1,4 +1,10 @@
-# Developer Guide
+---
+---
+Basic Developer instructions IMPORTANT!!!
+---
+---
+
+# Developer Guide:
 1) Each task - new branch
 2) DON'T push code into `develop` branch (use PR flow instead)
 3) each task should be completed with Pull Request
@@ -30,8 +36,8 @@ Basic git flow below (creating new branch from latest develop):
  ```
   git push
  ```
-4) Create PR (see create PR flow instructions below)
-5) Add at least one Reviewer from your team (see How to add reviewer to PR section)
+4) Create PR (see How to create PR flow instructions below)
+5) go to step 1;
 
 
 # - Commit name convention
@@ -45,9 +51,19 @@ Basic git flow below (creating new branch from latest develop):
 2) select source and target branches
 source (branch with your latest commits) right selector
 target (general branch) in our case `develop` - left selector
-3)
+3) `Create pull request` big green button in the bottom part
+4) DON'T merge PR
+5) if PR has conflicts -- you should fix all conflicts for your PR
+6) add reviewers (at least on from your team)
+
+# - How to add reviewers for new PR
+1) select at least one dev from your team and me.
+2) ![review section here](https://prnt.sc/rrwppk)
+
 
 ---
+---
+Basic react instruction (just for overview)
 ---
 ---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
