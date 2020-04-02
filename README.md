@@ -1,3 +1,55 @@
+# Developer Guide
+1) Each task - new branch
+2) DON'T push code into `develop` branch (use PR flow instead)
+3) each task should be completed with Pull Request
+
+
+# - Branch naming convention
+Branch name should include task name
+1) for new features --- `feature/feature-name` 
+(for example `feature/add-profile-page`)
+
+2) for fixing issue --- `bugfix/bug-name`
+(for example `bugfix/update-profile-data`)
+
+# - Starting New Task flow
+1) go to develop branch.
+
+Basic git flow below (creating new branch from latest develop):
+ ```
+ git checkout develop
+ git pull
+ git checkout -b feature/feature-name
+ ```
+ 2) Make a few commits
+ ```
+ git commit -m 'added table header for charges tab'
+ git commit -m 'added table body for charges tab'
+ ```
+ 3) Push latest commits to github
+ ```
+  git push
+ ```
+4) Create PR (see create PR flow instructions below)
+5) Add at least one Reviewer from your team (see How to add reviewer to PR section)
+
+
+# - Commit name convention
+1) name should describe latest changes
+2) `asd`, `blablabla`, `fix` -- bad solution for commit name
+3) `added add more button for table` -- good commit name
+
+
+# - How to create PR
+1) `New pull request` button
+2) select source and target branches
+source (branch with your latest commits) right selector
+target (general branch) in our case `develop` - left selector
+3)
+
+---
+---
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
