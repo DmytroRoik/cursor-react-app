@@ -58,7 +58,7 @@ target (general branch) in our case `develop` - left selector
 
 # - How to add reviewers for new PR
 1) select at least one dev from your team and me.
-2) ![review section here](https://prnt.sc/rrwppk)
+2) review section here -> https://prnt.sc/rrwppk
 
 
 ---
