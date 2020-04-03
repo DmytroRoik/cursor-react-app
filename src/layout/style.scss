@@ -1,0 +1,17 @@
+@import "./../variables";
+
+.layout{
+  &__sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: $sidebar-bg;
+    border: 1px solid $sidebar-border-bg;
+  }
+
+  &__pages{
+    margin-left: 260px;
+  }
+}
