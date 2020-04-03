@@ -14,16 +14,12 @@ import Pets from '@material-ui/icons/Pets';
 import Restaurant from '@material-ui/icons/Restaurant';
 import Store from '@material-ui/icons/Store';
 import MoreVert from '@material-ui/icons/MoreVert';
-// import RestaurantMenu from '@material-ui/icons/RestaurantMenu';
-
-
-
 
 const TableCategories = () => {
 
     const useStyles = makeStyles({
         table: {
-            minWidth: 100,
+            minWidth: 600,
         },
     });
 

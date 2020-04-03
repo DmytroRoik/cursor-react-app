@@ -1,2 +1,2 @@
-import BtnAddMore from './btnAddMore';
+import BtnAddMore from './BtnAddMore';
 export default BtnAddMore;
