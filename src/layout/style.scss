@@ -1,3 +1,5 @@
+@import "./../variables";
+
 .layout{
   &__sidebar{
     position: fixed;
@@ -5,6 +7,8 @@
     left: 0;
     width: 260px;
     height: 100vh;
+    background: $sidebar-bg;
+    border: 1px solid $sidebar-border-bg;
   }
 
   &__pages{
