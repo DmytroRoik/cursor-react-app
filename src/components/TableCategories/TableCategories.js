@@ -7,13 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
-import RestaurantMenu from '@material-ui/icons/RestaurantMenu';
-import BeachAccess from '@material-ui/icons/BeachAccess';
-import Pets from '@material-ui/icons/Pets';
-import Restaurant from '@material-ui/icons/Restaurant';
-import Store from '@material-ui/icons/Store';
-import MoreVert from '@material-ui/icons/MoreVert';
+import Icon from '@material-ui/core/Icon';
 import './TableCategories.scss';
 
 const TableCategories = () => {
@@ -29,34 +23,49 @@ const TableCategories = () => {
 
   const rows = [
     createData(
-      <span><RestaurantMenu />  Cook</span>,
+      <span>
+        <Icon style={{ width: '30px' }}className="fa fa-hamburger" />
+        Food
+      </span>,
       'For all my food',
       '26/12/2019',
-      <MoreVert />,
+      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
-      <span><BeachAccess />  Clothes</span>,
+      <span>
+        <Icon style={{ width: '30px' }}className="fa fa-tshirt" />
+        Clothes
+      </span>,
       '',
       '23/12/2019',
-      <MoreVert />,
+      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
-      <span><Restaurant /> Restouraunts </span>,
+      <span>
+        <Icon style={{ width: '30px' }}className="fa fa-utensils" />
+        Restouraunts
+      </span>,
       '',
       '22/12/2019',
-      <MoreVert />,
+      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
-      <span><Store /> Utility bills</span>,
+      <span>
+        <Icon style={{ width: '30px' }}className="fa fa-store-alt" />
+        Utility bills
+      </span>,
       '',
       '21/12/2019',
-      <MoreVert />,
+      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
-      <span><Pets /> Pets</span>,
+      <span>
+        <Icon style={{ width: '30px' }}className="fa fa-paw" />
+        Pets
+      </span>,
       '',
       '21/12/2019',
-      <MoreVert />,
+      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
   ];
 
