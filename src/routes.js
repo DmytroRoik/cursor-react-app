@@ -3,6 +3,7 @@ import React from 'react';
 import Home from './pages/Home/';
 import Charts from './pages/Charts';
 import Categories from './pages/Categories';
+import NewCategories from './pages/New-сategories';
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
   {
     path: '/categories',
     component: <Categories />,
+  },
+  {
+    path: '/new-categories',
+    component: <NewCategories />,
   },
 ];
 
