@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import './TableCategories.scss';
+import Dropdown from "../Dropdown/Dropdown";
+
 
 const TableCategories = () => {
   const useStyles = makeStyles({
@@ -29,7 +31,8 @@ const TableCategories = () => {
       </span>,
       'For all my food',
       '26/12/2019',
-      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>,
+      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
       <span>
@@ -38,7 +41,8 @@ const TableCategories = () => {
       </span>,
       '',
       '23/12/2019',
-      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>,
+      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
       <span>
@@ -47,7 +51,8 @@ const TableCategories = () => {
       </span>,
       '',
       '22/12/2019',
-      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>,
+      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
       <span>
@@ -56,7 +61,8 @@ const TableCategories = () => {
       </span>,
       '',
       '21/12/2019',
-      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>,
+      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
     createData(
       <span>
@@ -65,7 +71,8 @@ const TableCategories = () => {
       </span>,
       '',
       '21/12/2019',
-      <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>,
+      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
     ),
   ];
 
