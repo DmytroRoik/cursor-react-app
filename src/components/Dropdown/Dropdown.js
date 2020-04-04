@@ -1,51 +1,49 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import MoreVert from '@material-ui/icons/MoreVert';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-
-const BtnEdit = () => (
-  <div className="btnEdit">
-    <Button variant="contained" color="primary">Edit</Button>
-  </div>
-);
-
-const BtnDelete = () => (
-  <div className="btnDelete">
-    <Button variant="contained" color="primary">Delete</Button>
-  </div>
-);
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-const Dropdown = () => {
-  const [age, setAge] = React.useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
+export default function Dropdown() {
+  const BtnEdit = () => (
+    <div className="btnEdit">
+      <Button variant="contained" color="primary">Edit</Button>
+    </div>
+  );
+  const BtnDelete = () => (
+    <div className="btnDelete">
+      <Button variant="contained" color="primary">Delete</Button>
+    </div>
+  );
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
   return (
-    <div className="btnMain">
-    <Button variant="contained" color="">  
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={age}
-        onChange={handleChange}
+    <div>
+      <IconButton
+        aria-label="more"
+        aria-controls="long-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
       >
-        <MenuItem value={BtnEdit}> <BtnEdit/> </MenuItem>
-        <MenuItem value={BtnDelete}> <BtnDelete/> </MenuItem>
-     </Select>
-     </Button>
+        <MoreVertIcon />
+      </IconButton>
+      <Menu
+        id="long-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem value={BtnEdit}> <BtnEdit /> </MenuItem>
+        <MenuItem value={BtnDelete}> <BtnDelete /> </MenuItem>
+      </Menu>
     </div>
   );
 }
-export default Dropdown;

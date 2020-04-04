@@ -31,8 +31,7 @@ const TableCategories = () => {
       </span>,
       'For all my food',
       '26/12/2019',
-      <Dropdown/>,
-      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>
     ),
     createData(
       <span>
@@ -41,8 +40,7 @@ const TableCategories = () => {
       </span>,
       '',
       '23/12/2019',
-      <Dropdown/>,
-      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>
     ),
     createData(
       <span>
@@ -51,8 +49,7 @@ const TableCategories = () => {
       </span>,
       '',
       '22/12/2019',
-      <Dropdown/>,
-      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>
     ),
     createData(
       <span>
@@ -61,8 +58,7 @@ const TableCategories = () => {
       </span>,
       '',
       '21/12/2019',
-      <Dropdown/>,
-      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>
     ),
     createData(
       <span>
@@ -71,8 +67,7 @@ const TableCategories = () => {
       </span>,
       '',
       '21/12/2019',
-      <Dropdown/>,
-      // <Icon style={{ width: '30px' }}className="fa fa-ellipsis-v" />,
+      <Dropdown/>
     ),
   ];
 
