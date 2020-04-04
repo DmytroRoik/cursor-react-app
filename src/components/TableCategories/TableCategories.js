@@ -28,11 +28,36 @@ const TableCategories = () => {
   });
 
   const rows = [
-    createData(<span><RestaurantMenu />  Cook</span>, 'For all my food', '26/12/2019', <MoreVert />),
-    createData(<span><BeachAccess />  Clothes</span>, '', '23/12/2019', <MoreVert />),
-    createData(<span><Restaurant /> Restouraunts </span>, '', '22/12/2019', <MoreVert />),
-    createData(<span><Store /> Utility bills</span>, '', '21/12/2019', <MoreVert />),
-    createData(<span><Pets /> Pets</span>, '', '21/12/2019', <MoreVert />),
+    createData(
+      <span><RestaurantMenu />  Cook</span>,
+      'For all my food',
+      '26/12/2019',
+      <MoreVert />,
+    ),
+    createData(
+      <span><BeachAccess />  Clothes</span>,
+      '',
+      '23/12/2019',
+      <MoreVert />,
+    ),
+    createData(
+      <span><Restaurant /> Restouraunts </span>,
+      '',
+      '22/12/2019',
+      <MoreVert />,
+    ),
+    createData(
+      <span><Store /> Utility bills</span>,
+      '',
+      '21/12/2019',
+      <MoreVert />,
+    ),
+    createData(
+      <span><Pets /> Pets</span>,
+      '',
+      '21/12/2019',
+      <MoreVert />,
+    ),
   ];
 
 
