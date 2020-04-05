@@ -12,9 +12,6 @@ import './TableCategories.scss';
 import Dropdown from "../Dropdown/Dropdown";
 
 
-
-
-
 const TableCategories = () => {
   const useStyles = makeStyles({
     table: {
@@ -22,13 +19,10 @@ const TableCategories = () => {
     },
   });
 
-  function createData (category, description, date, action) {
-    return {category, description, date, action}
-  };
-  
+
   const categories = [{
     icon: "fa fa-hamburger",
-    name: "Cook",
+    name: "Food",
     description: "For all my food",
     date: "26/12/2019",
   },
