@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Bar, Line, Doughnut } from 'react-chartjs-2';
 
 const Chart = ({
   type,
@@ -18,9 +18,9 @@ const Chart = ({
         />
       );
       break;
-    case 'Pie':
+    case 'Doughnut':
       chart = (
-        <Pie
+        <Doughnut
           height={height}
           data={chartData}
           options={chartOptions}
