@@ -4,16 +4,44 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import EditIcon from '@material-ui/icons/Edit';
+
+import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function Dropdown() {
+  const useStyles = makeStyles((theme) => ({
+    button: {
+      margin: theme.spacing(1),
+    },
+  }));
+  
+  const classes = useStyles();
+  
   const BtnEdit = () => (
     <div className="btnEdit">
-      <Button variant="contained" color="primary">Edit</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        startIcon={<EditIcon />}
+      >
+        Edit
+      </Button>
     </div>
   );
+  
   const BtnDelete = () => (
     <div className="btnDelete">
-      <Button variant="contained" color="primary">Delete</Button>
+      <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+      >
+        Delete
+      </Button>
+     
     </div>
   );
   const [anchorEl, setAnchorEl] = React.useState(null);

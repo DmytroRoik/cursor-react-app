@@ -12,6 +12,9 @@ import './TableCategories.scss';
 import Dropdown from "../Dropdown/Dropdown";
 
 
+
+
+
 const TableCategories = () => {
   const useStyles = makeStyles({
     table: {
@@ -19,59 +22,42 @@ const TableCategories = () => {
     },
   });
 
-  const createData = (category, description, date, action) => ({
-    category, description, date, action,
-  });
-
-  const rows = [
-    createData(
-      <span>
-        <Icon style={{ width: '30px' }}className="fa fa-hamburger" />
-        Food
-      </span>,
-      'For all my food',
-      '26/12/2019',
-      <Dropdown/>
-    ),
-    createData(
-      <span>
-        <Icon style={{ width: '30px' }}className="fa fa-tshirt" />
-        Clothes
-      </span>,
-      '',
-      '23/12/2019',
-      <Dropdown/>
-    ),
-    createData(
-      <span>
-        <Icon style={{ width: '30px' }}className="fa fa-utensils" />
-        Restouraunts
-      </span>,
-      '',
-      '22/12/2019',
-      <Dropdown/>
-    ),
-    createData(
-      <span>
-        <Icon style={{ width: '30px' }}className="fa fa-store-alt" />
-        Utility bills
-      </span>,
-      '',
-      '21/12/2019',
-      <Dropdown/>
-    ),
-    createData(
-      <span>
-        <Icon style={{ width: '30px' }}className="fa fa-paw" />
-        Pets
-      </span>,
-      '',
-      '21/12/2019',
-      <Dropdown/>
-    ),
+  function createData (category, description, date, action) {
+    return {category, description, date, action}
+  };
+  
+  const categories = [{
+    icon: "fa fa-hamburger",
+    name: "Cook",
+    description: "For all my food",
+    date: "26/12/2019",
+  },
+    {
+      icon: "fa fa-tshirt",
+      name: "Clothes",
+      description: "",
+      date: "23/12/2019",
+  },
+    {
+      icon: "fa fa-utensils",
+      name: "Restouraunts",
+      description: "",
+      date: "22/12/2019",
+    },
+    {
+      icon: "fa fa-store-alt",
+      name: "Utility bills",
+      description: "",
+      date: "21/12/2019",
+    },
+    {
+      icon: "fa fa-paw",
+      name: "Pets",
+      description: "",
+      date: "21/12/2019",
+    },
   ];
-
-
+ 
   const classes = useStyles();
 
   return (
@@ -83,19 +69,17 @@ const TableCategories = () => {
             <TableCell>Description</TableCell>
             <TableCell>Date</TableCell>
             <TableCell align="right">Action</TableCell>
-
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.category}>
-              <TableCell component="th" scope="row">
-                {row.category}
+          {categories.map(categories => (
+            <TableRow key={categories.category}>
+              <TableCell component="th" scope="row" >
+                <Icon style={{ width: '30px' }} className={categories.icon} /> {categories.name}
               </TableCell>
-              <TableCell >{row.description}</TableCell>
-              <TableCell >{row.date}</TableCell>
-              <TableCell align="right">{row.action}</TableCell>
-
+              <TableCell >{categories.description}</TableCell>
+              <TableCell >{categories.date}</TableCell>
+              <TableCell align="right"> {categories.action} <Dropdown/> </TableCell>
             </TableRow>
                 ))}
         </TableBody>
