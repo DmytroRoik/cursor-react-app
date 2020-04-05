@@ -1,5 +1,6 @@
 import React from 'react';
+import Balance from '../../components/Balance';
 
-const Categories = () => <div> Categories </div>;
+const Categories = () => <div><Balance /> </div>;
 
 export default Categories;
