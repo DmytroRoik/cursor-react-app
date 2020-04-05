@@ -14,21 +14,21 @@ $inputs-border_color: #65656550;
 }
 .main-forms__item {
   padding-bottom: 20px;
+  .form__input {
+    border-radius: 5px;
+    border: 1px solid $inputs-border_color;
+    width: 325px;
+    font-size: 18px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .form__text {
+    font-size: 18px;
+    color: $text_color;
+    padding-bottom: 5px;
+  }
 }
 
-.form__input {
-  border-radius: 5px;
-  border: 1px solid $inputs-border_color;
-  width: 325px;
-  font-size: 18px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.form__text {
-  font-size: 18px;
-  color: $text_color;
-  padding-bottom: 5px;
-}
 
 
 
