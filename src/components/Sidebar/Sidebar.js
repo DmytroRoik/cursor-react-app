@@ -10,15 +10,15 @@ const Sidebar = () => (
       <h2>MoneyTracker</h2>
     </div>
     <div className="list">
-    <Link to="/" href="/">
-      Home
-    </Link>
-    <Link to="/charts" href="/charts">
-      Charts
-    </Link>
-    <Link to="/categories" href="/categories">
-      Categories
-    </Link>
+      <Link to="/" href="/">
+        Home
+      </Link>
+      <Link to="/charts" href="/charts">
+        Charts
+      </Link>
+      <Link to="/categories" href="/categories">
+        Categories
+      </Link>
     </div>
   </div>
 );
