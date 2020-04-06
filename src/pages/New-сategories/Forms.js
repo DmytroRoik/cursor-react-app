@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './NewCategories.scss';
+import SimpleSelect from './select';
+
 
 const FormsInput = () => {
   const [name, changeName] = useState('');
@@ -23,6 +25,8 @@ const FormsInput = () => {
         <label>
           <input type="text" name="description" className="form__input" value={description} onChange={onChangeDescription} />
         </label>
+        <SimpleSelect/> 
+        <button className="form__button" type="submit">Add new category</button>
       </form>
     </div>
   );
