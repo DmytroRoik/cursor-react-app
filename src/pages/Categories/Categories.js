@@ -4,11 +4,11 @@ import BtnAddMore from '../../components/BtnAddMore';
 import TableCategories from '../../components/TableCategories';
 
 const Categories = () => (
-    <div> 
-        <Balance suma={0}/>
-        <BtnAddMore/>
-        <TableCategories/> 
-    </div>
+  <div>
+    <Balance suma={0} />
+    <BtnAddMore />
+    <TableCategories />
+  </div>
 );
 
 export default Categories;
