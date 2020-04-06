@@ -193,6 +193,56 @@ const user = {
       price: 685,
     },
   ],
+  income: [
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585985295, // Sat
+      price: 312,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585812495, // Thu
+      price: 534,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585294095, // Fri
+      price: 745,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585726095, // Wed
+      price: 235,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585466895, // Sun
+      price: 645,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585380495, // Sat
+      price: 432,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585207695,
+      price: 375,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585294095,
+      price: 893,
+    },
+  ],
 };
 
 export default user;

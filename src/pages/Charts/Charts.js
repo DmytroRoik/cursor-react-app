@@ -6,7 +6,7 @@ import ChartsData from './ChartsData';
 import User from './User';
 import './Charts.scss';
 
-const createDate = (user) => {
+const changeData = (user) => {
   const Week = true;
   const dataChart = {
     dataLine: {
@@ -19,26 +19,24 @@ const createDate = (user) => {
           borderColor: 'rgba(122,169,243,1)',
           borderWidth: 3,
         },
-      ],
-    },
-    dataCharges: {
-      labels: [],
-      datasets: [
         {
-          backgroundColor: ['#008cd9', '#ff422f', '#ff9600', '#cfdd01'],
+          label: 'Income',
           data: [],
+          backgroundColor: 'rgba(255,255,255,0)', //  background - fro chart data
+          borderColor: 'rgba(173,173,173,0.51)', //  border settings
+          borderDash: [5, 5],
+          borderWidth: 2,
         },
       ],
     },
+    dataCharges: createData(user.charges),
+    dataIncome: createData(user.income, true),
   };
 
   // dataLine
-  const dateArr = [];
-
-  user.charges.forEach((item) => {
-    dateArr.push(item.date);
-    dateArr.sort((a, b) => a - b);
-  });
+  const dateArr = user.charges
+    .map(it => it.date)
+    .sort((a, b) => a - b);
 
   for (let i = 0; i <= dateArr.length; i += 1) {
     user.charges.forEach((item) => {
@@ -54,6 +52,18 @@ const createDate = (user) => {
         }
       }
     });
+    user.income.forEach((item) => {
+      if (item.date === dateArr[i]) {
+        if (dataChart.dataLine.labels[dataChart.dataLine.labels.length - 1] !== dateArr[i]) {
+          dataChart.dataLine.datasets[1].data.push(item.price);
+        } else {
+          const idx = dataChart.dataLine.datasets[1].data.length - 1;
+          const prevItem = dataChart.dataLine.datasets[1].data[idx];
+          dataChart.dataLine.datasets[1].data[idx] = prevItem + item.price;
+          i += 1;
+        }
+      }
+    });
   }
 
   dataChart.dataLine.labels = dataChart.dataLine.labels.map(item => moment.unix(item).utc().format('ddd'));
@@ -61,31 +71,50 @@ const createDate = (user) => {
   if (Week) {
     dataChart.dataLine.labels = dataChart.dataLine.labels.slice(-7);
     dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(-7);
+    dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(-7);
+  } else {
+    dataChart.dataLine.labels = dataChart.dataLine.labels.slice(-30);
+    dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(-30);
+    dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(-30);
   }
 
-  // dataCharges
-  user.charges.forEach((item) => {
-    if (!dataChart.dataCharges.labels.includes(item.category)) {
-      dataChart.dataCharges.labels.push(item.category);
-      dataChart.dataCharges.datasets[0].data.push(0);
-    }
-  });
+  function createData(userData, bgBlue = false) {
+    const result = {
+      labels: [],
+      datasets: [
+        {
+          backgroundColor: bgBlue ?
+            'rgba(148, 195, 239, 1)'
+            :
+            ['#008cd9', '#ff422f', '#ff9600', '#cfdd01'],
 
-  for (let i = 0; i <= dataChart.dataCharges.labels.length; i += 1) {
-    user.charges.forEach((item) => {
-      if (dataChart.dataCharges.labels[i] === item.category) {
-        dataChart.dataCharges.datasets[0].data[i] += item.price;
+          data: [],
+        },
+      ],
+    };
+    userData.forEach((item) => {
+      if (!result.labels.includes(item.category)) {
+        result.labels.push(item.category);
+        result.datasets[0].data.push(0);
       }
     });
-  }
 
-  console.log(dataChart)
+    for (let i = 0; i <= result.labels.length; i += 1) {
+      userData.forEach((item) => {
+        if (result.labels[i] === item.category) {
+          result.datasets[0].data[i] += item.price;
+        }
+      });
+    }
+
+    return result;
+  }
 
   return dataChart;
 };
 
 const Charts = () => {
-  createDate(User);
+  changeData(User);
   return (
     <React.Fragment>
       <div className="charts__header">
@@ -99,7 +128,7 @@ const Charts = () => {
         <Chart
           type="Line"
           chartName="Summary"
-          chartData={createDate(User).dataLine}
+          chartData={changeData(User).dataLine}
           chartOptions={ChartsData.optionsLine}
           height={250}
         />
@@ -111,7 +140,7 @@ const Charts = () => {
             type="Bar"
             chartName="Asass"
             height={300}
-            chartData={ChartsData.incomeData}
+            chartData={changeData(User).dataIncome}
             chartOptions={ChartsData.optionsBar}
           />
         </div>
@@ -120,7 +149,7 @@ const Charts = () => {
           <Chart
             type="Doughnut"
             chartName="Circle"
-            chartData={createDate(User).dataCharges}
+            chartData={changeData(User).dataCharges}
             chartOptions={ChartsData.optionsPie}
           />
         </div>
