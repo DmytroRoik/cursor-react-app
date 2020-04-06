@@ -24,27 +24,27 @@ export default function SimpleSelect() {
   };
   return (
     <div>
-      <FormControl className={classes.formControl} style={{marginTop: 22}}>
+      <FormControl className={classes.formControl} style={{marginTop: 22, marginLeft:0}}>
         <InputLabel id="demo-simple-select-label" style={{fontSize: 18}}>Select icon</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           value={age}
           onChange={handleChange}
-          style={{width: 320, border: '1 solid #65656550',}}
+          style={{width: 330, border: "1px solid #65656550", borderRadius: 5, padding: 5}}
         >
           <MenuItem value={10}> 
-          <Icon style={{ width: '30px' }} className="fa fa-hamburger" /> 
+          <Icon style={{ width: '25px' }} className="fa fa-hamburger" /> 
           </MenuItem>
-          <MenuItem value={20}><Icon style={{ width: '30px' }} className="fas fa-utensils" /> </MenuItem>
-          <MenuItem value={30}><Icon style={{ width: '30px' }} className="fas fa-dumbbell" /> </MenuItem>
-          <MenuItem value={40}><Icon style={{ width: '30px' }} className="fas fa-train" /> </MenuItem>
-          <MenuItem value={50}><Icon style={{ width: '30px' }} className="fas fa-briefcase-medical" /> </MenuItem>
-          <MenuItem value={60}><Icon style={{ width: '30px' }} className="fas fa-paint-roller" /> </MenuItem>
-          <MenuItem value={70}><Icon style={{ width: '30px' }} className="fas fa-theater-masks" /> </MenuItem>
-          <MenuItem value={80}><Icon style={{ width: '30px' }} className="fas fa-wine-glass" /> </MenuItem>
-          <MenuItem value={90}><Icon style={{ width: '30px' }} className="fas fa-smoking" /> </MenuItem>
-          <MenuItem value={100}><Icon style={{ width: '30px' }} className="fas fa-paw" /> </MenuItem>
-          <MenuItem value={110}><Icon style={{ width: '30px' }} className="fas fa-tshirt" /> </MenuItem>
+          <MenuItem value={20}><Icon style={{ fontSize: 20 }} className="fas fa-utensils" /> </MenuItem>
+          <MenuItem value={30}><Icon style={{ fontSize: 20 }} className="fas fa-dumbbell" /> </MenuItem>
+          <MenuItem value={40}><Icon style={{ fontSize: 20 }} className="fas fa-train" /> </MenuItem>
+          <MenuItem value={50}><Icon style={{ fontSize: 20 }} className="fas fa-briefcase-medical" /> </MenuItem>
+          <MenuItem value={60}><Icon style={{ fontSize: 20 }} className="fas fa-paint-roller" /> </MenuItem>
+          <MenuItem value={70}><Icon style={{ fontSize: 20 }} className="fas fa-theater-masks" /> </MenuItem>
+          <MenuItem value={80}><Icon style={{ fontSize: 20 }} className="fas fa-wine-glass" /> </MenuItem>
+          <MenuItem value={90}><Icon style={{ fontSize: 20 }} className="fas fa-smoking" /> </MenuItem>
+          <MenuItem value={100}><Icon style={{ fontSize: 20 }} className="fas fa-paw" /> </MenuItem>
+          <MenuItem value={110}><Icon style={{ fontSize: 20 }} className="fas fa-tshirt" /> </MenuItem>
           </Select>
       </FormControl>
     </div>
