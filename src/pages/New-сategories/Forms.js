@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './NewCategories.scss';
 
 const FormsInput = () => {
-  const [name, changeName] = useState();
-  const [description, changeDescription] = useState();
+  const [name, changeName] = useState('');
+  const [description, changeDescription] = useState('');
   function onChangeName(e) {
     changeName(e.target.value);
   }
