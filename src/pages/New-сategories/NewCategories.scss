@@ -1,6 +1,7 @@
-$headings_color: #58738e;
+$headings_color: #58738e ;
 $text_color: #656565;
 $inputs-border_color: #65656550;
+$button_color: #80aaff;
 
 .wrapper {
   margin-left: 100px;
@@ -27,7 +28,25 @@ $inputs-border_color: #65656550;
     color: $text_color;
     padding-bottom: 5px;
   }
+  .form__button {
+    text-align: center;
+    width: 330px;
+    margin-top: 40px;
+    padding: 12px;
+    font-size: 16px;  
+    border-radius: 5px;
+    background-color: $button_color;
+    border: none;
+    color: #fff;
+    &:hover {
+      background-color: #729df3;
+      transform: scale(1.05);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+  }
 }
+
 
 
 
