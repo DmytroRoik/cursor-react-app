@@ -1,26 +1,3 @@
-const user = {
-  charges: [
-    {
-      category: 'foot',
-      desc: '',
-      date: '12/03/19',
-      price: 123,
-    },
-    {
-      category: 'foot',
-      desc: '',
-      date: '12/03/19',
-      price: 123,
-    },
-    {
-      category: 'foot',
-      desc: '',
-      date: '12/03/19',
-      price: 123,
-    },
-  ],
-};
-
 const chartsData = {
   summaryData: {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], //  X-axis
