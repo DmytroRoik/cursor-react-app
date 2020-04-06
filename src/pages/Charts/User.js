@@ -242,6 +242,151 @@ const user = {
       date: 1585294095,
       price: 893,
     },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585985295, // Sat
+      price: 423,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585812495, // Thu
+      price: 457,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585294095, // Fri
+      price: 876,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585726095, // Wed
+      price: 432,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585466895, // Sun
+      price: 123,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585380495, // Sat
+      price: 432,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585207695,
+      price: 876,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585294095,
+      price: 945,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585985295, // Sat
+      price: 312,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585812495, // Thu
+      price: 534,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585294095, // Fri
+      price: 745,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585726095, // Wed
+      price: 235,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585466895, // Sun
+      price: 645,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585380495, // Sat
+      price: 432,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585207695,
+      price: 375,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585294095,
+      price: 893,
+    },
+
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585985295, // Sat
+      price: 876,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585812495, // Thu
+      price: 754,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585294095, // Fri
+      price: 156,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585726095, // Wed
+      price: 278,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585466895, // Sun
+      price: 654,
+    },
+    {
+      category: 'Sale book',
+      desc: '',
+      date: 1585380495, // Sat
+      price: 156,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1585207695,
+      price: 954,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1585294095,
+      price: 457,
+    },
   ],
 };
 
