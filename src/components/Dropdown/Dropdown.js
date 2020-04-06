@@ -9,15 +9,17 @@ import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+
 export default function Dropdown() {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
+      width: '105px',
+      margin: theme.spacing(-0.5),
     },
   }));
-  
+
   const classes = useStyles();
-  
+
   const BtnEdit = () => (
     <div className="btnEdit">
       <Button
@@ -30,7 +32,7 @@ export default function Dropdown() {
       </Button>
     </div>
   );
-  
+
   const BtnDelete = () => (
     <div className="btnDelete">
       <Button
@@ -41,7 +43,7 @@ export default function Dropdown() {
       >
         Delete
       </Button>
-     
+
     </div>
   );
   const [anchorEl, setAnchorEl] = React.useState(null);

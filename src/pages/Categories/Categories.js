@@ -5,7 +5,7 @@ import TableCategories from '../../components/TableCategories';
 
 const Categories = () => (
   <div>
-    <Balance suma={0} />
+    <Balance total={10000000} />
     <BtnAddMore />
     <TableCategories />
   </div>
