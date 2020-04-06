@@ -4,20 +4,28 @@
   &__box{
    font-family: 'Martel Sans', sans-serif;
    display: flex;
-   flex-direction: column;
+   justify-content: space-between;
+  
    margin-top: 50px;
-   float: right;
    }
+   
    &__text{
      font-size: 20px;
-     margin-left: 70px;
+     width: 120px;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: flex-end;
      color: $balance_text;
+     margin-bottom: 35px;
+     margin-right: 14px;
+    
    }
    &__sum{
      font-weight: 400;
      font-size: 30px;
      color:$balance__sum;
      margin-top: 24px;
-     margin-right: 42px;
+     text-align: right;
+    
    }
      }

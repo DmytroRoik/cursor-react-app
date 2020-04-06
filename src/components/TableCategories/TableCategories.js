@@ -47,7 +47,8 @@ const TableCategories = () => {
     name: 'Pets',
     description: '',
     date: '21/12/2019',
-  }];
+  },
+  ];
 
   const classes = useStyles();
 
@@ -71,7 +72,8 @@ const TableCategories = () => {
               </TableCell>
               <TableCell >{category.description}</TableCell>
               <TableCell >{category.date}</TableCell>
-              <TableCell align="right"> {category.action} <Dropdown />
+              <TableCell align="right"> {category.action}
+                <Dropdown />
               </TableCell>
             </TableRow>
                 ))}
