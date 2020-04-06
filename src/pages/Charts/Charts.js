@@ -1,6 +1,6 @@
 import React from 'react';
-import Balance from '../../components/Balance';
 
-const Charts = () => <div> <Balance /> </div>;
+
+const Charts = () => <div> Charts </div>;
 
 export default Charts;

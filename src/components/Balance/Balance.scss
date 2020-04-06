@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.balance{
+  &__box{
+   font-family: 'Martel Sans', sans-serif;
+   display: flex;
+   flex-direction: column;
+   margin-top: 50px;
+   float: right;
+   }
+   &__text{
+     font-size: 20px;
+     margin-left: 70px;
+     color: $balance_text;
+   }
+   &__sum{
+     font-weight: 400;
+     font-size: 30px;
+     color:$balance__sum;
+     margin-top: 24px;
+     margin-right: 42px;
+   }
+     }
