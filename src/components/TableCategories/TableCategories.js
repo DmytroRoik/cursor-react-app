@@ -11,7 +11,6 @@ import Icon from '@material-ui/core/Icon';
 import './TableCategories.scss';
 import Dropdown from '../Dropdown/Dropdown';
 
-
 const TableCategories = () => {
   const useStyles = makeStyles({
     table: {
@@ -48,8 +47,7 @@ const TableCategories = () => {
     name: 'Pets',
     description: '',
     date: '21/12/2019',
-  },
-  ];
+  }];
 
   const classes = useStyles();
 
