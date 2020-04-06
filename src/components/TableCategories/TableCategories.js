@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import './TableCategories.scss';
-import Dropdown from "../Dropdown/Dropdown";
+import Dropdown from '../Dropdown/Dropdown';
 
 
 const TableCategories = () => {
@@ -21,37 +21,37 @@ const TableCategories = () => {
 
 
   const categories = [{
-    icon: "fa fa-hamburger",
-    name: "Food",
-    description: "For all my food",
-    date: "26/12/2019",
+    icon: 'fa fa-hamburger',
+    name: 'Food',
+    description: 'For all my food',
+    date: '26/12/2019',
   },
-    {
-      icon: "fa fa-tshirt",
-      name: "Clothes",
-      description: "",
-      date: "23/12/2019",
+  {
+    icon: 'fa fa-tshirt',
+    name: 'Clothes',
+    description: '',
+    date: '23/12/2019',
   },
-    {
-      icon: "fa fa-utensils",
-      name: "Restouraunts",
-      description: "",
-      date: "22/12/2019",
-    },
-    {
-      icon: "fa fa-store-alt",
-      name: "Utility bills",
-      description: "",
-      date: "21/12/2019",
-    },
-    {
-      icon: "fa fa-paw",
-      name: "Pets",
-      description: "",
-      date: "21/12/2019",
-    },
+  {
+    icon: 'fa fa-utensils',
+    name: 'Restouraunts',
+    description: '',
+    date: '22/12/2019',
+  },
+  {
+    icon: 'fa fa-store-alt',
+    name: 'Utility bills',
+    description: '',
+    date: '21/12/2019',
+  },
+  {
+    icon: 'fa fa-paw',
+    name: 'Pets',
+    description: '',
+    date: '21/12/2019',
+  },
   ];
- 
+
   const classes = useStyles();
 
   return (
@@ -66,14 +66,17 @@ const TableCategories = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {categories.map(categories => (
-            <TableRow key={categories.category}>
+          {categories.map(category => (
+            <TableRow key={category.category}>
               <TableCell component="th" scope="row" >
-                <Icon style={{ width: '30px' }} className={categories.icon} /> {categories.name}
+                <Icon style={{ width: '30px' }} className={category.icon} />
+                {category.name}
               </TableCell>
-              <TableCell >{categories.description}</TableCell>
-              <TableCell >{categories.date}</TableCell>
-              <TableCell align="right"> {categories.action} <Dropdown/> </TableCell>
+              <TableCell >{category.description}</TableCell>
+              <TableCell >{category.date}</TableCell>
+              <TableCell align="right"> {category.action}
+                <Dropdown />
+              </TableCell>
             </TableRow>
                 ))}
         </TableBody>
