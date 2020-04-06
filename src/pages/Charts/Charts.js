@@ -26,7 +26,7 @@ const createDate = (user) => {
       datasets: [
         {
           backgroundColor: ['#008cd9', '#ff422f', '#ff9600', '#cfdd01'],
-          data: [584, 458, 102, 345],
+          data: [],
         },
       ],
     },
@@ -64,11 +64,22 @@ const createDate = (user) => {
   }
 
   // dataCharges
-  user.charges.forEach(item => {
+  user.charges.forEach((item) => {
     if (!dataChart.dataCharges.labels.includes(item.category)) {
       dataChart.dataCharges.labels.push(item.category);
+      dataChart.dataCharges.datasets[0].data.push(0);
     }
   });
+
+  for (let i = 0; i <= dataChart.dataCharges.labels.length; i += 1) {
+    user.charges.forEach((item) => {
+      if (dataChart.dataCharges.labels[i] === item.category) {
+        dataChart.dataCharges.datasets[0].data[i] += item.price;
+      }
+    });
+  }
+
+  console.log(dataChart)
 
   return dataChart;
 };
@@ -109,7 +120,7 @@ const Charts = () => {
           <Chart
             type="Doughnut"
             chartName="Circle"
-            chartData={ChartsData.chargesData}
+            chartData={createDate(User).dataCharges}
             chartOptions={ChartsData.optionsPie}
           />
         </div>
