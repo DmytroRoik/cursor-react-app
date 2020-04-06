@@ -10,10 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import './TableCategories.scss';
 import Dropdown from '../Dropdown/Dropdown';
-<<<<<<< HEAD
-
-=======
->>>>>>> c36181cdb17aa6a38b8b83edd3735e31f6dbd770
 
 const TableCategories = () => {
   const useStyles = makeStyles({
@@ -33,7 +29,6 @@ const TableCategories = () => {
     name: 'Clothes',
     description: '',
     date: '23/12/2019',
-<<<<<<< HEAD
   },
   {
     icon: 'fa fa-utensils',
@@ -54,27 +49,6 @@ const TableCategories = () => {
     date: '21/12/2019',
   },
   ];
-=======
-  },
-  {
-    icon: 'fa fa-utensils',
-    name: 'Restouraunts',
-    description: '',
-    date: '22/12/2019',
-  },
-  {
-    icon: 'fa fa-store-alt',
-    name: 'Utility bills',
-    description: '',
-    date: '21/12/2019',
-  },
-  {
-    icon: 'fa fa-paw',
-    name: 'Pets',
-    description: '',
-    date: '21/12/2019',
-  }];
->>>>>>> c36181cdb17aa6a38b8b83edd3735e31f6dbd770
 
   const classes = useStyles();
 
@@ -98,12 +72,8 @@ const TableCategories = () => {
               </TableCell>
               <TableCell >{category.description}</TableCell>
               <TableCell >{category.date}</TableCell>
-<<<<<<< HEAD
               <TableCell align="right"> {category.action}
                 <Dropdown />
-=======
-              <TableCell align="right"> {category.action} <Dropdown />
->>>>>>> c36181cdb17aa6a38b8b83edd3735e31f6dbd770
               </TableCell>
             </TableRow>
                 ))}
