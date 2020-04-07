@@ -1,8 +1,26 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+import './Sidebar.scss';
+import Logo from '../../assets/img/logo.png';
+
 const Sidebar = () => (
   <div className="sidebar">
-    <p>Hello from sidebar</p>
+    <div className="wraper">
+      <img src={Logo} alt="logo" />
+      <h2>MoneyTracker</h2>
+    </div>
+    <div className="list">
+      <Link to="/" href="/">
+        Home
+      </Link>
+      <Link to="/charts" href="/charts">
+        Charts
+      </Link>
+      <Link to="/categories" href="/categories">
+        Categories
+      </Link>
+    </div>
   </div>
 );
 
