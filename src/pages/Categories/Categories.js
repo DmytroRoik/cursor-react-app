@@ -1,14 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import Balance from '../../components/Balance';
 import BtnAddMore from '../../components/BtnAddMore';
 import TableCategories from '../../components/TableCategories';
 
-const Categories = () => (
+const Categories = props => (
   <div>
-    <Balance total={265279.07} />
+    <Balance total={props.balance} />
     <BtnAddMore />
     <TableCategories />
   </div>
 );
 
-export default Categories;
+const mapStateToProps = state => ({
+  balance: state.rootReducer.balance,
+});
+
+export default connect(mapStateToProps, null)(Categories);
