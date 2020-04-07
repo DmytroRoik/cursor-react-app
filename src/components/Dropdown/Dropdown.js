@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import EditIcon from '@material-ui/icons/Edit';
-
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 
 export default function Dropdown() {
   const useStyles = makeStyles(theme => ({
@@ -46,7 +44,7 @@ export default function Dropdown() {
 
     </div>
   );
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -57,9 +55,6 @@ export default function Dropdown() {
   return (
     <div>
       <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
         onClick={handleClick}
       >
         <MoreVertIcon />
