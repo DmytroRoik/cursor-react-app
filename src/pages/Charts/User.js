@@ -1,193 +1,193 @@
 const user = {
   charges: [
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
-      date: 1585985295, // Sat
+      date: 1585728960, // Sat
       price: 312,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
-      date: 1585812495, // Thu
+      date: 1585642560, // Thu
       price: 534,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1585294095, // Fri
       price: 745,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
-      date: 1585726095, // Wed
+      date: 1585556160, // Wed
       price: 235,
     },
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
       date: 1585466895, // Sun
       price: 645,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
       date: 1585380495, // Sat
       price: 432,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1585207695,
       price: 375,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
       date: 1585294095,
       price: 893,
     },
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
       date: 1585207695,
       price: 725,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
       date: 1585121295,
       price: 645,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1584862095,
       price: 159,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
       date: 1584775695,
       price: 357,
     },
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
       date: 1585207695,
       price: 645,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
       date: 1584602895,
       price: 852,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1584516495,
       price: 756,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
       date: 1584430095,
       price: 954,
     },
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
       date: 1584343695,
       price: 253,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
       date: 1584257295,
       price: 153,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1584170895,
       price: 152,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
       date: 1584084495,
       price: 985,
     },
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
       date: 1583998095,
       price: 546,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
       date: 1583911695,
       price: 534,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1583825295,
       price: 356,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
       date: 1583738895,
       price: 348,
     },
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
       date: 1583652495,
       price: 298,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
       date: 1583566095, // Sat
       price: 198,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1583479695, // Fri
       price: 654,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
       date: 1583393295, // Thu
       price: 356,
     },
     {
-      category: 'foot',
+      category: 'My mom',
       desc: '',
       date: 1583306895, // Wed
       price: 865,
     },
     {
-      category: 'pet',
+      category: 'Sale bool',
       desc: '',
       date: 1583220495, // Tue
       price: 845,
     },
     {
-      category: 'clothes',
+      category: 'Donations',
       desc: '',
       date: 1583134095, // Mon
       price: 846,
     },
     {
-      category: 'restoraunts',
+      category: 'Work',
       desc: '',
       date: 1583047695, // Sun
       price: 685,
@@ -197,171 +197,26 @@ const user = {
     {
       category: 'My mom',
       desc: '',
-      date: 1585985295, // Sat
-      price: 312,
+      date: 1585728960, // Sat
+      price: 453,
     },
     {
-      category: 'Sale book',
+      category: 'Sale bool',
       desc: '',
-      date: 1585812495, // Thu
-      price: 534,
-    },
-    {
-      category: 'Donations',
-      desc: '',
-      date: 1585294095, // Fri
-      price: 745,
-    },
-    {
-      category: 'Work',
-      desc: '',
-      date: 1585726095, // Wed
-      price: 235,
-    },
-    {
-      category: 'My mom',
-      desc: '',
-      date: 1585466895, // Sun
-      price: 645,
-    },
-    {
-      category: 'Sale book',
-      desc: '',
-      date: 1585380495, // Sat
-      price: 432,
-    },
-    {
-      category: 'Donations',
-      desc: '',
-      date: 1585207695,
-      price: 375,
-    },
-    {
-      category: 'Work',
-      desc: '',
-      date: 1585294095,
-      price: 893,
-    },
-    {
-      category: 'My mom',
-      desc: '',
-      date: 1585985295, // Sat
-      price: 423,
-    },
-    {
-      category: 'Sale book',
-      desc: '',
-      date: 1585812495, // Thu
-      price: 457,
-    },
-    {
-      category: 'Donations',
-      desc: '',
-      date: 1585294095, // Fri
-      price: 876,
-    },
-    {
-      category: 'Work',
-      desc: '',
-      date: 1585726095, // Wed
-      price: 432,
-    },
-    {
-      category: 'My mom',
-      desc: '',
-      date: 1585466895, // Sun
-      price: 123,
-    },
-    {
-      category: 'Sale book',
-      desc: '',
-      date: 1585380495, // Sat
-      price: 432,
-    },
-    {
-      category: 'Donations',
-      desc: '',
-      date: 1585207695,
-      price: 876,
-    },
-    {
-      category: 'Work',
-      desc: '',
-      date: 1585294095,
-      price: 945,
-    },
-    {
-      category: 'My mom',
-      desc: '',
-      date: 1585985295, // Sat
-      price: 312,
-    },
-    {
-      category: 'Sale book',
-      desc: '',
-      date: 1585812495, // Thu
-      price: 534,
-    },
-    {
-      category: 'Donations',
-      desc: '',
-      date: 1585294095, // Fri
-      price: 745,
-    },
-    {
-      category: 'Work',
-      desc: '',
-      date: 1585726095, // Wed
-      price: 235,
-    },
-    {
-      category: 'My mom',
-      desc: '',
-      date: 1585466895, // Sun
-      price: 645,
-    },
-    {
-      category: 'Sale book',
-      desc: '',
-      date: 1585380495, // Sat
-      price: 432,
-    },
-    {
-      category: 'Donations',
-      desc: '',
-      date: 1585207695,
-      price: 375,
-    },
-    {
-      category: 'Work',
-      desc: '',
-      date: 1585294095,
-      price: 893,
-    },
-
-    {
-      category: 'My mom',
-      desc: '',
-      date: 1585985295, // Sat
-      price: 876,
-    },
-    {
-      category: 'Sale book',
-      desc: '',
-      date: 1585812495, // Thu
-      price: 754,
-    },
-    {
-      category: 'Donations',
-      desc: '',
-      date: 1585294095, // Fri
+      date: 1585642560, // Thu
       price: 156,
     },
     {
+      category: 'Donations',
+      desc: '',
+      date: 1585294095, // Fri
+      price: 874,
+    },
+    {
       category: 'Work',
       desc: '',
-      date: 1585726095, // Wed
-      price: 278,
+      date: 1585556160, // Wed
+      price: 854,
     },
     {
       category: 'My mom',
@@ -370,22 +225,166 @@ const user = {
       price: 654,
     },
     {
-      category: 'Sale book',
+      category: 'Sale bool',
       desc: '',
       date: 1585380495, // Sat
-      price: 156,
+      price: 365,
     },
     {
       category: 'Donations',
       desc: '',
       date: 1585207695,
-      price: 954,
+      price: 956,
     },
     {
       category: 'Work',
       desc: '',
       date: 1585294095,
-      price: 457,
+      price: 865,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585207695,
+      price: 265,
+    },
+    {
+      category: 'Sale bool',
+      desc: '',
+      date: 1585121295,
+      price: 458,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1584862095,
+      price: 421,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1584775695,
+      price: 685,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1585207695,
+      price: 458,
+    },
+    {
+      category: 'Sale bool',
+      desc: '',
+      date: 1584602895,
+      price: 753,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1584516495,
+      price: 651,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1584430095,
+      price: 423,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1584343695,
+      price: 354,
+    },
+    {
+      category: 'Sale bool',
+      desc: '',
+      date: 1584257295,
+      price: 251,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1584170895,
+      price: 458,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1584084495,
+      price: 785,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1583998095,
+      price: 953,
+    },
+    {
+      category: 'Sale bool',
+      desc: '',
+      date: 1583911695,
+      price: 751,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1583825295,
+      price: 254,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1583738895,
+      price: 154,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1583652495,
+      price: 245,
+    },
+    {
+      category: 'Sale bool',
+      desc: '',
+      date: 1583566095, // Sat
+      price: 356,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1583479695, // Fri
+      price: 541,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1583393295, // Thu
+      price: 245,
+    },
+    {
+      category: 'My mom',
+      desc: '',
+      date: 1583306895, // Wed
+      price: 654,
+    },
+    {
+      category: 'Sale bool',
+      desc: '',
+      date: 1583220495, // Tue
+      price: 254,
+    },
+    {
+      category: 'Donations',
+      desc: '',
+      date: 1583134095, // Mon
+      price: 254,
+    },
+    {
+      category: 'Work',
+      desc: '',
+      date: 1583047695, // Sun
+      price: 356,
     },
   ],
 };

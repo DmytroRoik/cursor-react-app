@@ -1,29 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Chart from '../../components/Chart';
-import ChartsData from './ChartsData';
+import ChartsOptions from './ChartsOptions';
 import User from './User';
 import './Charts.scss';
 import changeData from './ChangeData';
 
 
 const Charts = () => {
-  changeData(User);
+  const [week, setWeek] = useState(true);
+  const toggleWeek = () => setWeek(!week);
   return (
     <React.Fragment>
       <div className="charts__header">
         <h3 className="charts__title">Summary</h3>
         <div className="charts__btn-wrap">
-          <button className="charts__btn ">Month</button>
-          <button className="charts__btn active">Week</button>
+          <button
+            className={`charts__btn ${!week ? 'active' : ''}`}
+            onClick={toggleWeek}
+          >Month
+          </button>
+          <button
+            className={`charts__btn ${week ? 'active' : ''}`}
+            onClick={toggleWeek}
+          >Week
+          </button>
         </div>
       </div>
       <div className="chart-line">
         <Chart
           type="Line"
           chartName="Summary"
-          chartData={changeData(User).dataLine}
-          chartOptions={ChartsData.optionsLine}
+          chartData={changeData(User, week).dataLine}
+          chartOptions={ChartsOptions.optionsLine}
           height={250}
         />
       </div>
@@ -34,8 +43,8 @@ const Charts = () => {
             type="Bar"
             chartName="Asass"
             height={300}
-            chartData={changeData(User).dataIncome}
-            chartOptions={ChartsData.optionsBar}
+            chartData={changeData(User, week).dataIncome}
+            chartOptions={ChartsOptions.optionsBar}
           />
         </div>
         <div className="charts__chart charts__chart-pie">
@@ -43,8 +52,8 @@ const Charts = () => {
           <Chart
             type="Doughnut"
             chartName="Circle"
-            chartData={changeData(User).dataCharges}
-            chartOptions={ChartsData.optionsPie}
+            chartData={changeData(User, week).dataCharges}
+            chartOptions={ChartsOptions.optionsPie}
           />
         </div>
       </div>

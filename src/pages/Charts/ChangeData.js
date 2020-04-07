@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 
-function createData(userData, bgBlue = false) {
+function createData(userData, week, bgBlue = false) {
   const result = {
     labels: [],
     datasets: [
@@ -15,7 +15,10 @@ function createData(userData, bgBlue = false) {
       },
     ],
   };
-  userData.forEach((item) => {
+
+  const dataWeek = week ? userData.slice(-7) : userData.slice(-30);
+
+  dataWeek.forEach((item) => {
     if (!result.labels.includes(item.category)) {
       result.labels.push(item.category);
       result.datasets[0].data.push(0);
@@ -23,7 +26,7 @@ function createData(userData, bgBlue = false) {
   });
 
   for (let i = 0; i <= result.labels.length; i += 1) {
-    userData.forEach((item) => {
+    dataWeek.forEach((item) => {
       if (result.labels[i] === item.category) {
         result.datasets[0].data[i] += item.price;
       }
@@ -33,8 +36,10 @@ function createData(userData, bgBlue = false) {
   return result;
 }
 
-const changeData = (user) => {
-  const Week = true;
+const dateArr = data => data.map(it => it.date).sort((a, b) => a - b);
+
+const changeData = (user, week) => {
+  const Week = week;
   const dataChart = {
     dataLine: {
       labels: [],
@@ -56,19 +61,15 @@ const changeData = (user) => {
         },
       ],
     },
-    dataCharges: createData(user.charges),
-    dataIncome: createData(user.income, true),
+    dataCharges: createData(user.charges, Week),
+    dataIncome: createData(user.income, Week, true),
   };
 
-  // dataLine
-  const dateArr = user.charges
-    .map(it => it.date)
-    .sort((a, b) => a - b);
 
-  for (let i = 0; i <= dateArr.length; i += 1) {
+  for (let i = 0; i <= dateArr(user.charges).length; i += 1) {
     user.charges.forEach((item) => {
-      if (item.date === dateArr[i]) {
-        if (dataChart.dataLine.labels[dataChart.dataLine.labels.length - 1] !== dateArr[i]) {
+      if (item.date === dateArr(user.charges)[i]) {
+        if (dataChart.dataLine.labels[dataChart.dataLine.labels.length - 1] !== dateArr(user.charges)[i]) {
           dataChart.dataLine.datasets[0].data.push(item.price);
           dataChart.dataLine.labels.push(item.date);
         } else {
@@ -79,10 +80,15 @@ const changeData = (user) => {
         }
       }
     });
+  }
+
+  const incomeData = [];
+  for (let i = 0; i <= dateArr(user.income).length; i += 1) {
     user.income.forEach((item) => {
-      if (item.date === dateArr[i]) {
-        if (dataChart.dataLine.labels[dataChart.dataLine.labels.length - 1] !== dateArr[i]) {
+      if (item.date === dateArr(user.income)[i]) {
+        if (incomeData[incomeData.length - 1] !== dateArr(user.charges)[i]) {
           dataChart.dataLine.datasets[1].data.push(item.price);
+          incomeData.push(item.date);
         } else {
           const idx = dataChart.dataLine.datasets[1].data.length - 1;
           const prevItem = dataChart.dataLine.datasets[1].data[idx];
