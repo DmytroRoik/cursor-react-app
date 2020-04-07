@@ -1,7 +1,4 @@
-$headings_color: #58738e ;
-$text_color: #656565;
-$inputs-border_color: #65656550;
-$button_color: #80aaff;
+@import "../../variables.scss";
 
 .wrapper {
   margin-left: 100px;
@@ -9,7 +6,7 @@ $button_color: #80aaff;
 }
 
 .main__heading {
-  color: $headings_color;
+  color: $new-categ_headings_color;
   font-size: 24px;
   padding-bottom: 35px;
 }
@@ -17,7 +14,7 @@ $button_color: #80aaff;
   padding-bottom: 20px;
   .form__input {
     border-radius: 5px;
-    border: 1px solid $inputs-border_color;
+    border: 1px solid $new-categ_inputs-border_color;
     width: 325px;
     font-size: 18px;
     padding-top: 6px;
@@ -25,7 +22,7 @@ $button_color: #80aaff;
   }
   .form__text {
     font-size: 18px;
-    color: $text_color;
+    color: $new-categ_text_color;
     padding-bottom: 5px;
   }
   .form__button {
@@ -35,11 +32,11 @@ $button_color: #80aaff;
     padding: 12px;
     font-size: 16px;  
     border-radius: 5px;
-    background-color: $button_color;
+    background-color: $new-categ_button_color;
     border: none;
     color: #fff;
     &:hover {
-      background-color: #729df3;
+      background-color: $new-categ_btn_hover_color;
       transform: scale(1.05);
       transition: all 0.3s;
       cursor: pointer;
@@ -47,7 +44,11 @@ $button_color: #80aaff;
   }
 }
 
-
+.balance {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
 
 
 
