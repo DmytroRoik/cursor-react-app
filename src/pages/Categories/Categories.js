@@ -1,20 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectBalance } from '../../redux/selectors/rootSelectors';
 
 import Balance from '../../components/Balance';
 import BtnAddMore from '../../components/BtnAddMore';
 import TableCategories from '../../components/TableCategories';
 
-const Categories = props => (
-  <div>
-    <Balance total={props.balance} />
-    <BtnAddMore />
-    <TableCategories />
-  </div>
-);
+const Categories = () => {
+  const balance = useSelector(selectBalance);
+  return (
+    <div>
+      <Balance total={balance} />
+      <BtnAddMore />
+      <TableCategories />
+    </div>
+  );
+};
 
-const mapStateToProps = state => ({
-  balance: state.rootReducer.balance,
-});
-
-export default connect(mapStateToProps, null)(Categories);
+export default Categories;
