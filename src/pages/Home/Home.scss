@@ -1,0 +1,13 @@
+// @include '../../variables.scss'
+
+.PrivateTabIndicator-colorSecondary-27{
+  background-color: blue
+}
+
+.home{
+  &__tabs{
+    &-title{
+      color: red
+    }
+  }
+}
