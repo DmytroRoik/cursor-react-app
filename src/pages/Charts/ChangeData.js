@@ -101,15 +101,10 @@ const changeData = (user, week) => {
 
   dataChart.dataLine.labels = dataChart.dataLine.labels.map(item => moment.unix(item).utc().format('ddd'));
 
-  if (Week) {
-    dataChart.dataLine.labels = dataChart.dataLine.labels.slice(-7);
-    dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(-7);
-    dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(-7);
-  } else {
-    dataChart.dataLine.labels = dataChart.dataLine.labels.slice(-30);
-    dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(-30);
-    dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(-30);
-  }
+  dataChart.dataLine.labels = dataChart.dataLine.labels.slice(Week ? -7 : -30);
+  dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(Week ? -7 : -30);
+  dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(Week ? -7 : -30);
+  
 
 
   return dataChart;
