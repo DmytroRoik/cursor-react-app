@@ -1,13 +1,38 @@
-// @include '../../variables.scss'
-
-.PrivateTabIndicator-colorSecondary-27{
-  background-color: blue
-}
+@import '../../variables.scss';
 
 .home{
-  &__tabs{
-    &-title{
-      color: red
+  &__select{
+    display: flex;
+    align-items: center;
+
+    &-row{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px;
+    }
+  }
+
+  h3{
+    color: $sidebar-color-text;
+    font-weight: 500;
+    padding-bottom: 3px;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .MuiSelect-root {
+    color: $sidebar-color-text ;
+    font-size: 17px ;
+  }
+
+  .MuiInput-underline{
+    &:before,
+    &:after{
+      display: none;
     }
   }
 }
+
+
+
