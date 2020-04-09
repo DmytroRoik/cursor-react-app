@@ -10,9 +10,10 @@
   font-size: 24px;
   padding-bottom: 35px;
 }
-.main-forms__item {
+.form {
   padding-bottom: 20px;
-  .form__input {
+  
+  &__input {
     border-radius: 5px;
     border: 1px solid $new-categ_inputs-border_color;
     width: 325px;
@@ -20,12 +21,12 @@
     padding-top: 6px;
     padding-bottom: 6px;
   }
-  .form__text {
+  &__text {
     font-size: 18px;
     color: $new-categ_text_color;
     padding-bottom: 5px;
   }
-  .form__button {
+  &__button {
     text-align: center;
     width: 330px;
     margin-top: 35px;
@@ -50,5 +51,7 @@
   right: 40px;
 }
 
-
+.description {
+  margin-top: 20px;
+}
 

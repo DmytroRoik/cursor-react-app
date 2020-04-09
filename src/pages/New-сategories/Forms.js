@@ -3,32 +3,28 @@ import './NewCategories.scss';
 import SimpleSelect from './select';
 
 
-const FormsInput = () => {
+const NewCategoryForm = () => {
   const [name, changeName] = useState();
   const [description, changeDescription] = useState();
-  function onChangeName(e) {
+  const onChangeName = (e) => {
     changeName(e.target.value);
   }
-  function onChangeDescription(e) {
+  const onChangeDescription = (e) => {
     changeDescription(e.target.value);
   }
   return (
-    <div className="main-forms">
-      <form className="main-forms__item" onSubmit={onChangeName}>
+    <form className="form">
         <p className="form__text">Name</p>
         <label>
           <input type="text" name="name" className="form__input" value={name} onChange={onChangeName} />
         </label>
-      </form>
-      <form className="main-forms__item" onSubmit={onChangeDescription}>
-        <p className="form__text">Description</p>
+        <p className="form__text description">Description</p>
         <label>
           <input type="text" name="description" className="form__input" value={description} onChange={onChangeDescription} />
         </label>
         <SimpleSelect/> 
         <button className="form__button" type="submit">Add new category</button>
       </form>
-    </div>
-  );
+    );
 };
-export default FormsInput;
+export default NewCategoryForm;
