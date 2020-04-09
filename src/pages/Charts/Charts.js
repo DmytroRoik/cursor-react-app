@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  selectChartsData,
+  selectChartsOptions,
+} from '../../redux/selectors/charts.selectors';
+
 import Chart from '../../components/Chart';
-import ChartsOptions from './ChartsOptions';
-import User from './User';
-import './Charts.scss';
 import changeData from './ChangeData';
 
+import './Charts.scss';
 
 const Charts = () => {
+  const chartsData = useSelector(selectChartsData);
+  const chartsOptions = useSelector(selectChartsOptions);
   const [week, setWeek] = useState(true);
   const toggleWeek = () => setWeek(!week);
   return (
@@ -30,8 +36,8 @@ const Charts = () => {
         <Chart
           type="Line"
           chartName="Summary"
-          chartData={changeData(User, week).dataLine}
-          chartOptions={ChartsOptions.optionsLine}
+          chartData={changeData(chartsData, week).dataLine}
+          chartOptions={chartsOptions.optionsLine}
           height={250}
         />
       </div>
@@ -40,10 +46,10 @@ const Charts = () => {
           <div className="charts__chart-title">Income categories</div>
           <Chart
             type="Bar"
-            chartName="Asass"
+            chartName="Bar"
             height={300}
-            chartData={changeData(User, week).dataIncome}
-            chartOptions={ChartsOptions.optionsBar}
+            chartData={changeData(chartsData, week).dataIncome}
+            chartOptions={chartsOptions.optionsBar}
           />
         </div>
         <div className="charts__chart charts__chart-pie">
@@ -51,8 +57,8 @@ const Charts = () => {
           <Chart
             type="Doughnut"
             chartName="Circle"
-            chartData={changeData(User, week).dataCharges}
-            chartOptions={ChartsOptions.optionsPie}
+            chartData={changeData(chartsData, week).dataCharges}
+            chartOptions={chartsOptions.optionsPie}
           />
         </div>
       </div>
