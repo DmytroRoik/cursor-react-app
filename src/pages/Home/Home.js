@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
-
 import BtnAddMore from '../../components/BtnAddMore';
+import { useSelector } from 'react-redux';
+import { selectBalance } from '../../redux/selectors/rootSelectors';
 import Balance from '../../components/Balance';
+
 import './Home.scss';
-import '../../variables.scss';
 
 const Home = () => {
   const [value, setValue] = useState('charges');
@@ -61,6 +62,5 @@ const Home = () => {
     </div>
   );
 };
-
 
 export default Home;

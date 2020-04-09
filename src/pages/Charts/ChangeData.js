@@ -9,7 +9,6 @@ function createData(userData, week, bgBlue = false) {
           'rgba(148, 195, 239, 1)'
           :
           ['#008cd9', '#ff422f', '#ff9600', '#cfdd01'],
-
         data: [],
       },
     ],
@@ -64,7 +63,6 @@ const changeData = (user, week) => {
     dataIncome: createData(user.income, Week, true),
   };
 
-
   for (let i = 0; i <= dateArr(user.charges).length; i += 1) {
     user.charges.forEach((item) => {
       if (item.date === dateArr(user.charges)[i]) {
@@ -99,7 +97,6 @@ const changeData = (user, week) => {
   }
 
   dataChart.dataLine.labels = dataChart.dataLine.labels.map(item => moment.unix(item).utc().format('ddd'));
-
   dataChart.dataLine.labels = dataChart.dataLine.labels.slice(Week ? -7 : -30);
   dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(Week ? -7 : -30);
   dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(Week ? -7 : -30);
