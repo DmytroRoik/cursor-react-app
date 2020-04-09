@@ -104,6 +104,11 @@ const changeData = (user, week) => {
   dataChart.dataLine.labels = dataChart.dataLine.labels.slice(Week ? -7 : -30);
   dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(Week ? -7 : -30);
   dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(Week ? -7 : -30);
+<<<<<<< HEAD
+=======
+  
+
+>>>>>>> remotes/origin/develop
 
   return dataChart;
 };
