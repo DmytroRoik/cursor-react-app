@@ -1,5 +1,5 @@
 import React from 'react';
-import './NewCharges.scss';
+import './NewCharge.scss';
 
 export default () => (
   <form className="form">

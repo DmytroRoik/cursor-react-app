@@ -4,7 +4,7 @@ import Home from './pages/Home/';
 import Charts from './pages/Charts';
 import Categories from './pages/Categories';
 import NewCategories from './pages/New-сategories';
-import NewCharge from './pages/New-charges';
+import NewCharge from './pages/New-charge';
 
 const routes = [
   {
@@ -25,7 +25,7 @@ const routes = [
     component: <NewCategories />,
   },
   {
-    path: '/new-charges',
+    path: '/new-charge',
     component: <NewCharge />,
   },
 ];

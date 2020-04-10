@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './NewCharges.scss';
+import './NewCharge.scss';
 
 
 export default () => {
