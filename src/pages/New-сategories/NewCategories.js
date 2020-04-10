@@ -1,7 +1,7 @@
 import React from 'react';
 import './NewCategories.scss';
 import NewCategoryForm from './Forms';
-import Balance from "../../components/Balance";
+import Balance from '../../components/Balance';
 
 
 export default () => (
