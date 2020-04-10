@@ -8,61 +8,20 @@
 .newCharges__heading {
   color: $new-categ_headings_color;
   font-size: 24px;
-  padding-bottom: 35px;
   display: inline-block;
 }
-.form {
-  padding-bottom: 20px;
-  
-  &__input {
-    border-radius: 5px;
-    border: 1px solid $new-categ_inputs-border_color;
-    width: 325px;
-    font-size: 18px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-  &__text {
-    font-size: 18px;
-    color: $new-categ_text_color;
-    padding-bottom: 5px;
-  }
-  &__button {
-    text-align: center;
-    width: 330px;
-    margin-top: 35px;
-    padding: 12px;
-    font-size: 16px;  
-    border-radius: 5px;
-    background-color: $new-categ_button_color;
-    border: none;
-    color: #fff;
-    &:hover {
-      background-color: $new-categ_btn_hover_color;
-      transform: scale(1.05);
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-  }
-}
-
-.balance {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-}
-
-.description {
-  margin-top: 20px;
-}
-
-
 .form__checkbox {
   display: flex;
+  align-items: baseline;
+  padding-bottom: 40px;
 }
+.switch__container {
+  padding-left: 40px;
+  display: flex;
+}
+
 .switches__checkbox {
   display: inline-block;
-  padding-left: 40px;
 }
 .switch-checkbox {
   height: 0;
@@ -70,7 +29,6 @@
   visibility: hidden;
   position: absolute;
 }
-
 
 .switch-label {
   display: flex;
@@ -110,4 +68,33 @@
 }
 .switch__text {
   color: $new-categ_text_color;
+}
+
+.form {
+  padding-bottom: 20px;
+  
+  &__input {
+    border-radius: 5px;
+    border: 1px solid $new-categ_inputs-border_color;
+    width: 325px;
+    font-size: 18px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  &__text {
+    font-size: 18px;
+    color: $new-categ_text_color;
+    padding-bottom: 5px;
+  }
+
+}
+
+.balance {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+.description {
+  margin-top: 20px;
 }

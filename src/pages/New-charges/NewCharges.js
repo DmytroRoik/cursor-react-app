@@ -7,7 +7,6 @@ import Switch from './switch';
 export default () => (
   <div className="newCharges__wrapper">
     <div className="newCharges__container">
-      <div className="newCharges__heading">New charge</div>
       <div className="switches__checkbox">
         <form className="form__checkbox">
           <Switch />
