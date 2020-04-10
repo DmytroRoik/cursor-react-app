@@ -41,23 +41,48 @@ const Home = () => {
 
       <div
         className="home__select-row"
-        value={value}
+        value="charges"
+        hidden={value !== 'charges'}
+      >
+        <div className="home__select__wrapp">
+          <div className="home__select">
+            <h3>My Charges</h3>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={week}
+              onChange={handleWeek}
+            >
+              <div value="week">this week</div>
+              <div value="month">this month</div>
+            </Select>
+          </div>
+
+          <BtnAddMore />
+        </div>
+      </div>
+
+      <div
+        className="home__select-row"
+        value="income"
         hidden={value !== 'income'}
       >
-        <div className="home__select">
-          <h3>My Charges</h3>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={week}
-            onChange={handleWeek}
-          >
-            <div value="week">this week</div>
-            <div value="month">this month</div>
-          </Select>
-        </div>
+        <div className="home__select__wrapp">
+          <div className="home__select">
+            <h3>My Income</h3>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={week}
+              onChange={handleWeek}
+            >
+              <div value="week">this week</div>
+              <div value="month">this month</div>
+            </Select>
+          </div>
 
-        <BtnAddMore />
+          <BtnAddMore />
+        </div>
       </div>
     </div>
   );
