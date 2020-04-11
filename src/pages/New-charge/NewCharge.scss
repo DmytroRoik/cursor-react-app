@@ -72,29 +72,33 @@
 
 .form {
   padding-bottom: 20px;
-  
+  a {
+    text-decoration: none;
+  }
+  &__item {
+    margin-bottom: 20px;
+    width: 350px;
+  }
   &__input {
     border-radius: 5px;
     border: 1px solid $new-categ_inputs-border_color;
-    width: 325px;
+    width: 350px;
     font-size: 18px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding: 10px 5px;
   }
   &__text {
     font-size: 18px;
     color: $new-categ_text_color;
     padding-bottom: 5px;
   }
-
+}
+.add-btn{
+  button {
+    width: 350px;
+    background: $new-categ_button_color;
+  }
+  button:hover {
+    background: $new-categ_btn_hover_color;
+  }
 }
 
-.balance {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-}
-
-.description {
-  margin-top: 20px;
-}

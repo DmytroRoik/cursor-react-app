@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
-import './NewCharge.scss';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { switchChanger } from '../../redux/reducers/rootReducer';
+
+import './NewCharge.scss';
 
 export default () => {
   const [checked, setChecked] = useState(true);
+  const switchDispatch = useDispatch();
+  const text = checked ? 'income' : 'charge';
+  useEffect(() => {
+    switchDispatch(switchChanger(text));
+  }, [checked]);
 
   const toggleChecked = () => {
     setChecked(!checked);
@@ -14,7 +22,7 @@ export default () => {
   return (
     <>
       <h4 className="newCharges__heading">
-        {checked ? 'New Income' : 'New Charge'}
+        New {text}
       </h4>
       <div className="switch__container">
         <span className="switch__text">Charges</span>

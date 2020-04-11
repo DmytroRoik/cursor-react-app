@@ -1,8 +1,10 @@
 import React from 'react';
-import NewChargeForms from './NewChargeForms';
+
 import Balance from '../../components/Balance';
-import './NewCharge.scss';
+import NewChargeForms from './NewChargeForms';
 import Switch from './switch';
+
+import './NewCharge.scss';
 
 export default () => (
   <div className="newCharges__wrapper">
@@ -13,7 +15,7 @@ export default () => (
         </form>
       </div>
       <NewChargeForms />
-      <div className="balance"><Balance total={272727.02} /></div>
+      <div className="balance"><Balance /></div>
     </div>
   </div>
 );
