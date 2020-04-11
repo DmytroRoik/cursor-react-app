@@ -1,7 +1,5 @@
 import moment from 'moment';
 
-// TODO: I think that all the below functions need replacing to chart actions. Also, I believe that there is very complicated logic for charts; it can be more straightforward.
-
 function createData(userData, week, bgBlue = false) {
   const result = {
     labels: [],
@@ -102,6 +100,7 @@ const changeData = (user, week) => {
   dataChart.dataLine.labels = dataChart.dataLine.labels.slice(Week ? -7 : -30);
   dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(Week ? -7 : -30);
   dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(Week ? -7 : -30);
+
   return dataChart;
 };
 
