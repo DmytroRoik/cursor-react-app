@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import './TableCategories.scss';
 import Dropdown from '../Dropdown/Dropdown';
+import AlertDialog from '../BtnDeleteModal/BtnDeleteModal';
 
 const TableCategories = () => {
   const useStyles = makeStyles({
@@ -53,33 +54,36 @@ const TableCategories = () => {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Category</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell align="right">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {categories.map(category => (
-            <TableRow key={category.category}>
-              <TableCell component="th" scope="row" >
-                <Icon style={{ width: '30px' }} className={category.icon} />
-                {category.name}
-              </TableCell>
-              <TableCell >{category.description}</TableCell>
-              <TableCell >{category.date}</TableCell>
-              <TableCell align="right"> {category.action}
-                <Dropdown />
-              </TableCell>
+    <>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Category</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell align="right">Action</TableCell>
             </TableRow>
-                ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {categories.map(category => (
+              <TableRow key={category.category}>
+                <TableCell component="th" scope="row" >
+                  <Icon style={{ width: '30px' }} className={category.icon} />
+                  {category.name}
+                </TableCell>
+                <TableCell >{category.description}</TableCell>
+                <TableCell >{category.date}</TableCell>
+                <TableCell align="right"> {category.action}
+                  <Dropdown />
+                </TableCell>
+              </TableRow>
+                  ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <AlertDialog />
+    </>
   );
 };
 

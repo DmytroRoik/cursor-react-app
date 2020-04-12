@@ -1,48 +1,49 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import BtnDelete from './components/Dropdown'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function SimpleSnackbar() {
+export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
+  const handleClose = () => {
     setOpen(false);
   };
 
   return (
     <div>
-      <Button onClick={handleClick}>Delete</Button>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open alert dialog
+      </Button>
+      <Dialog
         open={open}
-        autoHideDuration={6000}
         onClose={handleClose}
-        message="Note archived"
-        action={
-          <React.Fragment>
-            <Button color="secondary" size="small" onClick={handleClose}>
-              UNDO
-            </Button>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </React.Fragment>
-        }
-      />
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Use s location service?</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
