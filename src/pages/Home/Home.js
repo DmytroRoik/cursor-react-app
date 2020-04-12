@@ -5,6 +5,7 @@ import Select from '@material-ui/core/Select';
 import BtnAddMore from '../../components/BtnAddMore';
 import Balance from '../../components/Balance';
 import TableCategoriesCharges from '../../components/TableCategoriesCharges';
+import TableCategoriesIncomes from '../../components/TableCategoriesIncomes';
 
 import './Home.scss';
 
@@ -83,6 +84,7 @@ const Home = () => {
 
           <BtnAddMore />
         </div>
+        <TableCategoriesIncomes />
       </div>
     </div>
   );
