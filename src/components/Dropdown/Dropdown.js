@@ -37,7 +37,7 @@ export default function Dropdown() {
   const BtnDelete = () => (
     <div className="btnDelete">
       <Button
-        onClick={deleteDispatch(actionSwitchDelete())}
+        onClick={() => deleteDispatch(actionSwitchDelete())}
         variant="contained"
         color="secondary"
         className={classes.button}
