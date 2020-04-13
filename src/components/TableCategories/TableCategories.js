@@ -78,11 +78,11 @@ const TableCategories = () => {
                   <Dropdown />
                 </TableCell>
               </TableRow>
-                  ))}
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <AlertDialog />
+      <AlertDialog />// два методи для відкриття і закриття модалки (тру і фолс)
     </>
   );
 };
