@@ -82,7 +82,7 @@ const TableCategories = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <AlertDialog />// два методи для відкриття і закриття модалки (тру і фолс)
+      <AlertDialog />
     </>
   );
 };
