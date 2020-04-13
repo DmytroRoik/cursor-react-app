@@ -82,7 +82,7 @@ const TableCategories = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <AlertDialog />
+      <AlertDialog  />
     </>
   );
 };
