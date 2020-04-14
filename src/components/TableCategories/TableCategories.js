@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,45 +11,15 @@ import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import './TableCategories.scss';
 import Dropdown from '../Dropdown/Dropdown';
+import { selectCategories } from '../../redux/selectors/categories.selectors';
 
 const TableCategories = () => {
+  const categories = useSelector(selectCategories);
   const useStyles = makeStyles({
     table: {
       minWidth: 600,
     },
   });
-
-  const categories = [{
-    icon: 'fa fa-hamburger',
-    name: 'Food',
-    description: 'For all my food',
-    date: '26/12/2019',
-  },
-  {
-    icon: 'fa fa-tshirt',
-    name: 'Clothes',
-    description: '',
-    date: '23/12/2019',
-  },
-  {
-    icon: 'fa fa-utensils',
-    name: 'Restouraunts',
-    description: '',
-    date: '22/12/2019',
-  },
-  {
-    icon: 'fa fa-store-alt',
-    name: 'Utility bills',
-    description: '',
-    date: '21/12/2019',
-  },
-  {
-    icon: 'fa fa-paw',
-    name: 'Pets',
-    description: '',
-    date: '21/12/2019',
-  },
-  ];
 
   const classes = useStyles();
 
