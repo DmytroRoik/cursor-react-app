@@ -4,11 +4,15 @@
   &__select{
     display: flex;
     align-items: center;
+    
+
 
     &__wrapp{
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px;
+      padding-top: 25px;
+      padding-bottom: 25px;
     }
   }
 

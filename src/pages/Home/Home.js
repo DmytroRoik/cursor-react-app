@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
-import BtnAddMore from '../../components/BtnAddMore';
-import { useSelector } from 'react-redux';
+
 import { selectBalance } from '../../redux/selectors/rootSelectors';
+import BtnAddMore from '../../components/BtnAddMore';
 import Balance from '../../components/Balance';
+import TableCategoriesCharges from '../../components/TableCategoriesCharges';
+import TableCategoriesIncomes from '../../components/TableCategoriesIncomes';
 
 import './Home.scss';
 
@@ -14,6 +17,7 @@ const Home = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const balance = useSelector(selectBalance);
 
   const [week, setWeek] = React.useState('week');
 
@@ -23,7 +27,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Balance total={265279.07} />
+      <Balance total={balance} />
 
       <Tabs
         value={value}
@@ -60,6 +64,7 @@ const Home = () => {
 
           <BtnAddMore />
         </div>
+        <TableCategoriesCharges />
       </div>
 
       <div
@@ -83,6 +88,7 @@ const Home = () => {
 
           <BtnAddMore />
         </div>
+        <TableCategoriesIncomes />
       </div>
     </div>
   );

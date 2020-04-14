@@ -2,7 +2,6 @@ const SWITCH_ENABLE = 'SWITCH_ENABLE';
 // const Delete = "Delete";
 
 const initialState = {
-  isDeleteEnable: false,
   categories: [
     {
       id: 1,
@@ -35,11 +34,6 @@ const initialState = {
 
 const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SWITCH_ENABLE: {
-      return {
-        ...state, isDeleteEnable: !state.isDeleteEnable,
-      };
-    }
     // case Delete: {
     //   return {
     //     ...state, categoriesData: state.categoriesData.filter(item => item.id !== id)

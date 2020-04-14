@@ -66,7 +66,8 @@ const changeData = (user, week) => {
   for (let i = 0; i <= dateArr(user.charges).length; i += 1) {
     user.charges.forEach((item) => {
       if (item.date === dateArr(user.charges)[i]) {
-        if (dataChart.dataLine.labels[dataChart.dataLine.labels.length - 1] !== dateArr(user.charges)[i]) {
+        if (dataChart.dataLine.labels[dataChart.dataLine.labels.length - 1] !==
+          dateArr(user.charges)[i]) {
           dataChart.dataLine.datasets[0].data.push(item.price);
           dataChart.dataLine.labels.push(item.date);
         } else {
@@ -96,10 +97,13 @@ const changeData = (user, week) => {
     });
   }
 
-  dataChart.dataLine.labels = dataChart.dataLine.labels.map(item => moment.unix(item).utc().format('ddd'));
+  dataChart.dataLine.labels = dataChart.dataLine.labels.map(item =>
+    moment.unix(item).utc().format('ddd'));
   dataChart.dataLine.labels = dataChart.dataLine.labels.slice(Week ? -7 : -30);
-  dataChart.dataLine.datasets[0].data = dataChart.dataLine.datasets[0].data.slice(Week ? -7 : -30);
-  dataChart.dataLine.datasets[1].data = dataChart.dataLine.datasets[1].data.slice(Week ? -7 : -30);
+  dataChart.dataLine.datasets[0].data =
+  dataChart.dataLine.datasets[0].data.slice(Week ? -7 : -30);
+  dataChart.dataLine.datasets[1].data =
+  dataChart.dataLine.datasets[1].data.slice(Week ? -7 : -30);
 
   return dataChart;
 };
