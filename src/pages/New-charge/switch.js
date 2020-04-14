@@ -11,7 +11,7 @@ export default () => {
   const text = checked ? 'income' : 'charge';
   useEffect(() => {
     switchDispatch(switchChanger(text));
-  }, [checked]);
+  });
 
   const toggleChecked = () => {
     setChecked(!checked);
