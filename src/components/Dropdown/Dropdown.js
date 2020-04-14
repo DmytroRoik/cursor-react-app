@@ -8,9 +8,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { actionSwitchDelete } from '../../redux/reducers/categories.reducer';
 
-export default function Dropdown() {
+
+export default function Dropdown(props) {
   const useStyles = makeStyles(theme => ({
     button: {
       width: '105px',
@@ -19,7 +19,7 @@ export default function Dropdown() {
   }));
 
   const classes = useStyles();
-  const deleteDispatch = useDispatch();
+  
 
   const BtnEdit = () => (
     <div className="btnEdit">
@@ -37,7 +37,7 @@ export default function Dropdown() {
   const BtnDelete = () => (
     <div className="btnDelete">
       <Button
-        onClick={() => deleteDispatch(actionSwitchDelete())}
+        onClick={props.onDelete }
         variant="contained"
         color="secondary"
         className={classes.button}

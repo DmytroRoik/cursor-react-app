@@ -9,15 +9,14 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import './BtnDeleteModal.scss';
 import { actionSwitchDelete } from '../../redux/reducers/categories.reducer';
 
-export default function AlertDialog() {
-  const key = useSelector(state => state.categoriesReducer.isDeleteEnable);
-  const deleteDispatch = useDispatch();
+export default function AlertDialog(props) {
+
 
   return (
     <div>
       <Dialog
-        open={key}
-        onClose={() => deleteDispatch(actionSwitchDelete())}
+        open={props.open}
+        onClick={props.onCancel}
 
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -30,10 +29,10 @@ export default function AlertDialog() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button color="primary">
+          <Button  onClick={props.onSubmit}>
             OK
           </Button>
-          <Button onClick={() => deleteDispatch(actionSwitchDelete())} color="primary" autoFocus>
+          <Button  onClick={props.onCancel}>     
             Cancel
           </Button>
         </DialogActions>
