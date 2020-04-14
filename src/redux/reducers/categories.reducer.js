@@ -1,58 +1,37 @@
+import { LOAD_CATEGORIES_SUCCESS, REMOVE_CATEGORY_SUCCESS } from '../actions/categories.actions';
+
 const SWITCH_ENABLE = 'SWITCH_ENABLE';
 // const Delete = "Delete";
 
 const initialState = {
   categories: [
-    {
-      id: 1,
-      name: 'Food',
-      description: 'meat',
-      createdAt: '2020-04-12T09:52:40.225Z',
-      updatedAt: '2020-04-12T09:52:40.225Z',
-      icon: {
-        id: 1,
-        class: 'fa-hamburger',
-        createdAt: '2020-04-11T21:56:55.099Z',
-        updatedAt: '2020-04-11T21:56:55.099Z',
-      },
-    },
-    {
-      id: 2,
-      name: 'stringyyy',
-      description: 'stringhh',
-      createdAt: '2020-04-12T17:16:54.401Z',
-      updatedAt: '2020-04-12T17:16:54.401Z',
-      icon: {
-        id: 1,
-        class: 'fa-hamburger',
-        createdAt: '2020-04-11T21:56:55.099Z',
-        updatedAt: '2020-04-11T21:56:55.099Z',
-      },
-    },
+
   ],
 };
 
 const categoriesReducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
-    // case Delete: {
-    //   return {
-    //     ...state, categoriesData: state.categoriesData.filter(item => item.id !== id)
-    //   };
-    // }
+    case LOAD_CATEGORIES_SUCCESS: {
+      console.log(action);
+      return {
+        ...state,
+        categories: action.payload,
 
+      };
+      
+    }
+    case REMOVE_CATEGORY_SUCCESS: {
+      console.log(action.payload);//this is  id element were delete
+      return {
+        ...state,
+
+
+      };
+    }
     default:
       return state;
   }
 };
-console.log(categoriesReducer);
-
-export const actionSwitchDelete = () => ({
-  type: SWITCH_ENABLE,
-});
-console.log(actionSwitchDelete);
-// export const actionDeleteIten = (id) => ({
-//   type: Delete,
-//   payload: id,
-// });
 
 export default categoriesReducer;

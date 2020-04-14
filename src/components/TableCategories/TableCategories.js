@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
@@ -13,6 +13,7 @@ import './TableCategories.scss';
 import Dropdown from '../Dropdown/Dropdown';
 import AlertDialog from '../BtnDeleteModal/BtnDeleteModal';
 import { selectCategories } from '../../redux/selectors/categories.selectors';
+import { loadCategories, removeCategory } from '../../redux/actions/categories.actions';
 
 const TableCategories = () => {
   const categories = useSelector(selectCategories);
@@ -23,19 +24,23 @@ const TableCategories = () => {
   });
 
   const [open, OpenModal] = useState(false);
-  const [categoryId,setCategoryId]=useState(null);
+  const [categoryId, setCategoryId] = useState(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadCategories());
+  }, []);
   const deleteCategories = (id) => {
     OpenModal(true);
     setCategoryId(id);
-
   };
 
   const cancelDelete = () => {
     OpenModal(false);
   };
-  const removeItemById = () =>{
-console.log(categoryId) ;
-  }
+  const removeItemById = () => {
+    console.log(categoryId);
+    dispatch(removeCategory(categoryId))
+  };
 
   const classes = useStyles();
 
@@ -62,7 +67,7 @@ console.log(categoryId) ;
                 <TableCell >{category.date}</TableCell>
                 <TableCell align="right"> {category.action}
                   <Dropdown
-                    onDelete={()=> deleteCategories(category.id)}
+                    onDelete={() => deleteCategories(category.id)}
                   />
                 </TableCell>
               </TableRow>
