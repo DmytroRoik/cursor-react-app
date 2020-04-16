@@ -21,7 +21,7 @@ const categoriesReducer = (state = initialState, action) => {
       };
     }
     case REMOVE_CATEGORY_SUCCESS: {
-      console.log(action.payload);// this is  id element were delete
+      // console.log(action.payload);// this is  id element were delete
       return {
         ...state,
         categories: state.categories.filter(category => category.id !== action.payload),

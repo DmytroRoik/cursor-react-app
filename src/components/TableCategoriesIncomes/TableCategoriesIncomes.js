@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import './TableCategoriesIncomes.scss';
 import Dropdown from '../Dropdown/Dropdown';
+import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
 
 const TableCategoriesCharges = () => {
   const useStyles = makeStyles({
@@ -58,35 +59,38 @@ const TableCategoriesCharges = () => {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Category</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Money</TableCell>
-            <TableCell align="right">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {categories.map(category => (
-            <TableRow key={category.category}>
-              <TableCell component="th" scope="row" >
-                <Icon style={{ width: '30px' }} className={category.icon} />
-                {category.name}
-              </TableCell>
-              <TableCell >{category.description}</TableCell>
-              <TableCell >{category.date}</TableCell>
-              <TableCell >{category.money}</TableCell>
-              <TableCell align="right"> {category.action}
-                <Dropdown />
-              </TableCell>
+    <>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Category</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell>Money</TableCell>
+              <TableCell align="right">Action</TableCell>
             </TableRow>
+          </TableHead>
+          <TableBody>
+            {categories.map(category => (
+              <TableRow key={category.category}>
+                <TableCell component="th" scope="row" >
+                  <Icon style={{ width: '30px' }} className={category.icon} />
+                  {category.name}
+                </TableCell>
+                <TableCell >{category.description}</TableCell>
+                <TableCell >{category.date}</TableCell>
+                <TableCell >{category.money}</TableCell>
+                <TableCell align="right"> {category.action}
+                  <Dropdown />
+                </TableCell>
+              </TableRow>
                 ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <AlertDialogSlide />
+    </>
   );
 };
 
