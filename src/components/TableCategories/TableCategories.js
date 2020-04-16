@@ -38,7 +38,6 @@ const TableCategories = () => {
     OpenModal(false);
   };
   const removeItemById = () => {
-    console.log(categoryId);
     dispatch(removeCategory(categoryId));
   };
 
