@@ -39,7 +39,7 @@ const TableCategories = () => {
   };
   const removeItemById = () => {
     console.log(categoryId);
-    dispatch(removeCategory(categoryId))
+    dispatch(removeCategory(categoryId));
   };
 
   const classes = useStyles();

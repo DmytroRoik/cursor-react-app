@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,11 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import './BtnDeleteModal.scss';
-import { actionSwitchDelete } from '../../redux/reducers/categories.reducer';
+// import { actionSwitchDelete } from '../../redux/reducers/categories.reducer';
 
 export default function AlertDialog(props) {
-
-
   return (
     <div>
       <Dialog
@@ -29,10 +27,10 @@ export default function AlertDialog(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button  onClick={props.onSubmit}>
+          <Button onClick={props.onSubmit}>
             OK
           </Button>
-          <Button  onClick={props.onCancel}>     
+          <Button onClick={props.onCancel}>
             Cancel
           </Button>
         </DialogActions>

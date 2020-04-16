@@ -23,9 +23,9 @@ export const loadCategories = () => (dispatch) => {
 };
 
 
-export const removeCategory = (id) => (dispatch) => {
+export const removeCategory = id => (dispatch) => {
   api.removeCategory(id).then((res) => {
-    console.log("res",res)
+    console.log('res', res);
     dispatch({
       type: REMOVE_CATEGORY_SUCCESS,
       payload: id,

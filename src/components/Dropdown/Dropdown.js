@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -19,7 +19,7 @@ export default function Dropdown(props) {
   }));
 
   const classes = useStyles();
-  
+
 
   const BtnEdit = () => (
     <div className="btnEdit">
@@ -37,7 +37,7 @@ export default function Dropdown(props) {
   const BtnDelete = () => (
     <div className="btnDelete">
       <Button
-        onClick={props.onDelete }
+        onClick={props.onDelete}
         variant="contained"
         color="secondary"
         className={classes.button}
