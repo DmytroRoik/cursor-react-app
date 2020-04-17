@@ -1,9 +1,7 @@
 import { LOAD_CATEGORIES_SUCCESS, REMOVE_CATEGORY_SUCCESS } from '../actions/categories.actions';
 
 const initialState = {
-  categories: [
-
-  ],
+  categories: [],
 };
 
 const categoriesReducer = (state = initialState, action) => {
@@ -12,7 +10,6 @@ const categoriesReducer = (state = initialState, action) => {
       return {
         ...state,
         categories: action.payload,
-
       };
     }
     case REMOVE_CATEGORY_SUCCESS: {

@@ -23,19 +23,19 @@ const TableCategories = () => {
     },
   });
 
-  const [open, OpenModal] = useState(false);
+  const [isOpen, setIsOpenModal] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategories());
-  }, []);
+  });
   const deleteCategories = (id) => {
-    OpenModal(true);
+    setIsOpenModal(true);
     setCategoryId(id);
   };
 
   const cancelDelete = () => {
-    OpenModal(false);
+    setIsOpenModal(false);
   };
   const removeItemById = () => {
     dispatch(removeCategory(categoryId));
@@ -75,7 +75,7 @@ const TableCategories = () => {
         </Table>
       </TableContainer>
       <AlertDialog
-        open={open}
+        open={isOpen}
         onCancel={cancelDelete}
         onSubmit={removeItemById}
       />
