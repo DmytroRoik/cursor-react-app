@@ -5,9 +5,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
 
-const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
+
 
 export default function AlertDialogSlide(props) {
   return (
@@ -15,6 +14,7 @@ export default function AlertDialogSlide(props) {
       <Dialog
         open={props.open}
         onClick={props.onCancel}
+
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
@@ -27,10 +27,10 @@ export default function AlertDialogSlide(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={props.onSubmit}>
-            Delete
+            OK
           </Button>
           <Button onClick={props.onCancel}>
-            Close
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>

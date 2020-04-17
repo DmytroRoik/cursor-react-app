@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,50 +12,34 @@ import Icon from '@material-ui/core/Icon';
 import './TableCategoriesIncomes.scss';
 import Dropdown from '../Dropdown/Dropdown';
 import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
+import { selectCategoriesIncomes } from '../../redux/selectors/home.selectors';
+import { loadCategoriesIncomes, removeCategoryIncomes } from '../../redux/actions/home.actions';
 
 const TableCategoriesCharges = () => {
+  const categories = useSelector(selectCategoriesIncomes);
   const useStyles = makeStyles({
     table: {
       minWidth: 600,
     },
   });
 
-  const categories = [{
-    icon: 'fa fa-hamburger',
-    name: 'Food',
-    description: 'For all my food',
-    money: '$13.00',
-    date: '26/12/2019',
-  },
-  {
-    icon: 'fa fa-tshirt',
-    name: 'Clothes',
-    description: '',
-    money: '$26.10',
-    date: '23/12/2019',
-  },
-  {
-    icon: 'fa fa-utensils',
-    name: 'Restouraunts',
-    description: '',
-    money: '$11.25',
-    date: '22/12/2019',
-  },
-  {
-    icon: 'fa fa-store-alt',
-    name: 'Utility bills',
-    description: '',
-    money: '$3.50',
-    date: '21/12/2019',
-  },
-  {
-    icon: 'fa fa-paw',
-    name: 'Pets',
-    description: '',
-    money: '$121.60',
-    date: '21/12/2019',
-  },
-  ];
+  const [open, OpenModal] = useState(false);
+  const [categoryId, setCategoryId] = useState(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadCategoriesIncomes());
+  }, []);
+  const deleteCategoriesIncomes = (id) => {
+    OpenModal(true);
+    setCategoryId(id);
+  };
+
+  const cancelDelete = () => {
+    OpenModal(false);
+  };
+  const removeItemById = () => {
+    dispatch(removeCategoryIncomes(categoryId));
+  };
 
   const classes = useStyles();
 
@@ -80,18 +65,23 @@ const TableCategoriesCharges = () => {
                 </TableCell>
                 <TableCell >{category.description}</TableCell>
                 <TableCell >{category.date}</TableCell>
-                <TableCell >{category.money}</TableCell>
+                <TableCell >{category.money}</TableCell>  
                 <TableCell align="right"> {category.action}
-                  <Dropdown />
+                  <Dropdown onDelete={() => deleteCategoriesIncomes(category.id)} />
                 </TableCell>
               </TableRow>
                 ))}
           </TableBody>
-        </Table>
+        </Table> 
       </TableContainer>
-      <AlertDialogSlide />
+      <AlertDialogSlide
+        open={open}
+        onCancel={cancelDelete}
+        onSubmit={removeItemById}
+      />
     </>
   );
 };
+
 
 export default TableCategoriesCharges;

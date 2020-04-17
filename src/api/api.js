@@ -9,7 +9,10 @@ const BASE_CONNECTION = axios.create({
 const api = {
   getCategories: () => BASE_CONNECTION.get('categories'),
   removeCategory: id => BASE_CONNECTION.delete(`categories?id=${id}`),
+  removeCategoryCharges: id => BASE_CONNECTION.delete(`categories?id=${id}`),
+  removeCategoryIncomes: id => BASE_CONNECTION.delete(`categories?id=${id}`),
 };
+
 
 
 export default api;

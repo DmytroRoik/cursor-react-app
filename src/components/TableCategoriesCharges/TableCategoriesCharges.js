@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,21 +12,24 @@ import Icon from '@material-ui/core/Icon';
 import './TableCategoriesCharges.scss';
 import Dropdown from '../Dropdown/Dropdown';
 import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
-import { loadCategories, removeCategory } from '../../redux/actions/home.actions';
+import { selectCategoriesCharges } from '../../redux/selectors/home.selectors';
+import { loadCategoriesCharges, removeCategoryCharges } from '../../redux/actions/home.actions';
 
 const TableCategoriesCharges = () => {
+  const categories = useSelector(selectCategoriesCharges);
   const useStyles = makeStyles({
     table: {
       minWidth: 600,
     },
   });
+  
   const [open, OpenModal] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadCategories());
+    dispatch(loadCategoriesCharges());
   }, []);
-  const deleteCategories = (id) => {
+  const deleteCategoriesCharges = (id) => {
     OpenModal(true);
     setCategoryId(id);
   };
@@ -35,45 +38,8 @@ const TableCategoriesCharges = () => {
     OpenModal(false);
   };
   const removeItemById = () => {
-    dispatch(removeCategory(categoryId));
+    dispatch(removeCategoryCharges(categoryId));
   };
-  const categories = [{
-    icon: 'fa fa-hamburger',
-    name: 'Food',
-    description: 'For all my food',
-    money: '$13.00',
-    date: '26/12/2019',
-  },
-  {
-    icon: 'fa fa-tshirt',
-    name: 'Clothes',
-    description: '',
-    money: '$26.10',
-    date: '23/12/2019',
-  },
-  {
-    icon: 'fa fa-utensils',
-    name: 'Restouraunts',
-    description: '',
-    money: '$11.25',
-    date: '22/12/2019',
-  },
-  {
-    icon: 'fa fa-store-alt',
-    name: 'Utility bills',
-    description: '',
-    money: '$3.50',
-    date: '21/12/2019',
-  },
-  {
-    icon: 'fa fa-paw',
-    name: 'Pets',
-    description: '',
-    money: '$121.60',
-    date: '21/12/2019',
-  },
-  ];
-
   const classes = useStyles();
 
   return (
@@ -100,7 +66,7 @@ const TableCategoriesCharges = () => {
                 <TableCell >{category.date}</TableCell>
                 <TableCell >{category.money}</TableCell>
                 <TableCell align="right"> {category.action}
-                  <Dropdown onDelete={() => deleteCategories(category.id)} />
+                  <Dropdown onDelete={() => deleteCategoriesCharges(category.id)} />
                 </TableCell>
               </TableRow>
                 ))}
@@ -108,6 +74,7 @@ const TableCategoriesCharges = () => {
         </Table>
       </TableContainer>
       <AlertDialogSlide
+        open={open}
         onCancel={cancelDelete}
         onSubmit={removeItemById}
       />
