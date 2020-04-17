@@ -9,25 +9,12 @@ import Slide from '@material-ui/core/Slide';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
-export default function AlertDialogSlide() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function AlertDialogSlide(props) {
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} />
       <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
+        open={props.open}
+        onClick={props.onCancel}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
@@ -39,10 +26,10 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={props.onSubmit}>
             Delete
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={props.onCancel}>
             Close
           </Button>
         </DialogActions>

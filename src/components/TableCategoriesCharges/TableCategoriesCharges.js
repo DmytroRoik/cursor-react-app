@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,6 +12,7 @@ import Icon from '@material-ui/core/Icon';
 import './TableCategoriesCharges.scss';
 import Dropdown from '../Dropdown/Dropdown';
 import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
+import { loadCategories, removeCategory } from '../../redux/actions/home.actions';
 
 const TableCategoriesCharges = () => {
   const useStyles = makeStyles({
@@ -18,7 +20,23 @@ const TableCategoriesCharges = () => {
       minWidth: 600,
     },
   });
+  const [open, OpenModal] = useState(false);
+  const [categoryId, setCategoryId] = useState(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadCategories());
+  }, []);
+  const deleteCategories = (id) => {
+    OpenModal(true);
+    setCategoryId(id);
+  };
 
+  const cancelDelete = () => {
+    OpenModal(false);
+  };
+  const removeItemById = () => {
+    dispatch(removeCategory(categoryId));
+  };
   const categories = [{
     icon: 'fa fa-hamburger',
     name: 'Food',
@@ -82,14 +100,17 @@ const TableCategoriesCharges = () => {
                 <TableCell >{category.date}</TableCell>
                 <TableCell >{category.money}</TableCell>
                 <TableCell align="right"> {category.action}
-                  <Dropdown />
+                  <Dropdown onDelete={() => deleteCategories(category.id)} />
                 </TableCell>
               </TableRow>
                 ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <AlertDialogSlide />
+      <AlertDialogSlide
+        onCancel={cancelDelete}
+        onSubmit={removeItemById}
+      />
     </>
   );
 };
