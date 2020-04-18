@@ -1,40 +1,23 @@
+import { LOAD_CATEGORIES_SUCCESS, REMOVE_CATEGORY_SUCCESS } from '../actions/categories.actions';
+
 const initialState = {
-  categories: [
-    {
-      icon: 'fa fa-hamburger',
-      name: 'Food',
-      description: 'For all my food',
-      date: '26/12/2019',
-    },
-    {
-      icon: 'fa fa-tshirt',
-      name: 'Clothes',
-      description: '',
-      date: '23/12/2019',
-    },
-    {
-      icon: 'fa fa-utensils',
-      name: 'Restouraunts',
-      description: '',
-      date: '22/12/2019',
-    },
-    {
-      icon: 'fa fa-store-alt',
-      name: 'Utility bills',
-      description: '',
-      date: '21/12/2019',
-    },
-    {
-      icon: 'fa fa-paw',
-      name: 'Pets',
-      description: '',
-      date: '21/12/2019',
-    },
-  ],
+  categories: [],
 };
 
 const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_CATEGORIES_SUCCESS: {
+      return {
+        ...state,
+        categories: action.payload,
+      };
+    }
+    case REMOVE_CATEGORY_SUCCESS: {
+      return {
+        ...state,
+        categories: state.categories.filter(category => category.id !== action.payload),
+      };
+    }
     default:
       return state;
   }

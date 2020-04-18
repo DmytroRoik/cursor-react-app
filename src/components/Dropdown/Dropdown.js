@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -8,7 +9,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-export default function Dropdown() {
+
+export default function Dropdown(props) {
   const useStyles = makeStyles(theme => ({
     button: {
       width: '105px',
@@ -17,6 +19,7 @@ export default function Dropdown() {
   }));
 
   const classes = useStyles();
+
 
   const BtnEdit = () => (
     <div className="btnEdit">
@@ -34,6 +37,7 @@ export default function Dropdown() {
   const BtnDelete = () => (
     <div className="btnDelete">
       <Button
+        onClick={props.onDelete}
         variant="contained"
         color="secondary"
         className={classes.button}
