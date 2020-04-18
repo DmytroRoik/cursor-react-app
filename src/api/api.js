@@ -9,6 +9,7 @@ const BASE_CONNECTION = axios.create({
 const api = {
   getCategories: () => BASE_CONNECTION.get('categories'),
   removeCategory: id => BASE_CONNECTION.delete(`categories?id=${id}`),
+  getUserData: () => BASE_CONNECTION.get('/users/current'),
 };
 
 
