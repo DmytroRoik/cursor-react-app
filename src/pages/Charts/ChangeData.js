@@ -1,4 +1,7 @@
 import moment from 'moment';
+import { extendMoment } from 'moment-range';
+
+const { range } = extendMoment(moment);
 
 function createData(userData, week, bgBlue = false) {
   const result = {
@@ -34,7 +37,14 @@ function createData(userData, week, bgBlue = false) {
   return result;
 }
 
-const dateArr = data => data.map(it => it.date).sort((a, b) => a - b);
+const getPriceByDay = (userData, labels) =>
+  labels.map(label =>
+    userData.reduce((acc, current) => {
+      if (label === Number(moment(current.date).startOf('day'))) {
+        return acc + current.price;
+      }
+      return acc;
+    }, 0));
 
 const changeData = (user, week) => {
   const Week = week;
@@ -63,47 +73,24 @@ const changeData = (user, week) => {
     dataIncome: createData(user.income, Week, true),
   };
 
-  for (let i = 0; i <= dateArr(user.charges).length; i += 1) {
-    user.charges.forEach((item) => {
-      if (item.date === dateArr(user.charges)[i]) {
-        if (dataChart.dataLine.labels[dataChart.dataLine.labels.length - 1] !==
-          dateArr(user.charges)[i]) {
-          dataChart.dataLine.datasets[0].data.push(item.price);
-          dataChart.dataLine.labels.push(item.date);
-        } else {
-          const idx = dataChart.dataLine.datasets[0].data.length - 1;
-          const prevItem = dataChart.dataLine.datasets[0].data[idx];
-          dataChart.dataLine.datasets[0].data[idx] = prevItem + item.price;
-          i += 1;
-        }
-      }
-    });
-  }
+  const dateTo = moment().startOf('day');
+  const dateFrom = Week ?
+    moment().startOf('day').subtract(1, 'w') :
+    moment().startOf('day').subtract(1, 'months');
+  const timeRange = range([dateFrom, dateTo]);
 
-  const incomeData = [];
-  for (let i = 0; i <= dateArr(user.income).length; i += 1) {
-    user.income.forEach((item) => {
-      if (item.date === dateArr(user.income)[i]) {
-        if (incomeData[incomeData.length - 1] !== dateArr(user.charges)[i]) {
-          dataChart.dataLine.datasets[1].data.push(item.price);
-          incomeData.push(item.date);
-        } else {
-          const idx = dataChart.dataLine.datasets[1].data.length - 1;
-          const prevItem = dataChart.dataLine.datasets[1].data[idx];
-          dataChart.dataLine.datasets[1].data[idx] = prevItem + item.price;
-          i += 1;
-        }
-      }
-    });
-  }
+  dataChart.dataLine.labels =
+    Array.from(timeRange.by('d'))
+      .map(item => Number(item));
+
+
+  dataChart.dataLine.datasets[0].data =
+    getPriceByDay(user.charges, dataChart.dataLine.labels);
+  dataChart.dataLine.datasets[1].data =
+    getPriceByDay(user.income, dataChart.dataLine.labels);
 
   dataChart.dataLine.labels = dataChart.dataLine.labels.map(item =>
-    moment.unix(item).utc().format('ddd'));
-  dataChart.dataLine.labels = dataChart.dataLine.labels.slice(Week ? -7 : -30);
-  dataChart.dataLine.datasets[0].data =
-  dataChart.dataLine.datasets[0].data.slice(Week ? -7 : -30);
-  dataChart.dataLine.datasets[1].data =
-  dataChart.dataLine.datasets[1].data.slice(Week ? -7 : -30);
+    moment(item).format('ddd'));
 
   return dataChart;
 };
