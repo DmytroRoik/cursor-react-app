@@ -78,7 +78,7 @@ const TableCategories = () => {
       <AlertDialog
         open={isOpen}
         onCancel={cancelDelete}
-        onSubmit={removeItemById}
+        оnSubmit={removeItemById}
       />
     </>
   );
