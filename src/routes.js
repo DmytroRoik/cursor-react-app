@@ -4,6 +4,7 @@ import Home from './pages/Home/';
 import Charts from './pages/Charts';
 import Categories from './pages/Categories';
 import NewCategories from './pages/New-сategories';
+import NewCharge from './pages/New-charge';
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/new-categories',
     component: <NewCategories />,
+  },
+  {
+    path: '/new-charge',
+    component: <NewCharge />,
   },
 ];
 
