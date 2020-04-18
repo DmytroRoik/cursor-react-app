@@ -7,10 +7,7 @@ const BASE_CONNECTION = axios.create({
 });
 
 const api = {
-  getStats(date) {
-    return BASE_CONNECTION.get(`/stats?from=${date}`)
-      .then(res => res.data);
-  },
+  getStats: date => BASE_CONNECTION.get(`/stats?from=${date}`),
 };
 
 export default api;
