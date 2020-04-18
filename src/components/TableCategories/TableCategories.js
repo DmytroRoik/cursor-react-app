@@ -13,7 +13,8 @@ import './TableCategories.scss';
 import Dropdown from '../Dropdown/Dropdown';
 import AlertDialog from '../BtnDeleteModal/BtnDeleteModal';
 import { selectCategories } from '../../redux/selectors/categories.selectors';
-import { loadCategories, removeCategory } from '../../redux/actions/categories.actions';
+import { loadCategories,
+  removeCategory } from '../../redux/actions/categories.actions';
 
 const TableCategories = () => {
   const categories = useSelector(selectCategories);
@@ -28,7 +29,7 @@ const TableCategories = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategories());
-  });
+  }, []);
   const deleteCategories = (id) => {
     setIsOpenModal(true);
     setCategoryId(id);
@@ -59,7 +60,7 @@ const TableCategories = () => {
             {categories.map(category => (
               <TableRow key={category.id}>
                 <TableCell component="th" scope="row" >
-                  <Icon style={{ width: '30px' }} className={category.icon} />
+                  <Icon style={{ width: '30px' }} className={`fa ${category.icon.class}`} />
                   {category.name}
                 </TableCell>
                 <TableCell >{category.description}</TableCell>

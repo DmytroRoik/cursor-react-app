@@ -16,7 +16,7 @@ export const loadCategories = () => (dispatch) => {
   }).catch((err) => {
     console.log('error');
     dispatch({
-      type: LOAD_CATEGORIES_SUCCESS,
+      type: LOAD_CATEGORIES_FAIL,
       payload: err,
     });
   });
@@ -25,7 +25,6 @@ export const loadCategories = () => (dispatch) => {
 
 export const removeCategory = id => (dispatch) => {
   api.removeCategory(id).then((res) => {
-    console.log('res', res);
     dispatch({
       type: REMOVE_CATEGORY_SUCCESS,
       payload: id,
@@ -34,7 +33,7 @@ export const removeCategory = id => (dispatch) => {
   }).catch((err) => {
     console.log('error');
     dispatch({
-      type: REMOVE_CATEGORY_SUCCESS,
+      type: REMOVE_CATEGORY_FAIL,
       payload: err,
     });
   });
