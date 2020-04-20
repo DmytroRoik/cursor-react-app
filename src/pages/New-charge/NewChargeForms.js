@@ -23,14 +23,30 @@ export default () => {
       <div className="form__item">
         <p className="form__text">Total</p>
         <label>
-          <input type="text" name="name" className="form__input" placeholder="total..." />
+          <input
+            type="text"
+            name="name"
+            className="form__input"
+            placeholder="total..."
+            onChange={changeInputTotal}
+            value={totalValue}
+          />
         </label>
       </div>
       <div className="form__item">
         <p className="form__text description">Description</p>
         <label>
-          <input type="text" name="description" className="form__input" placeholder="description..." />
+          <input
+            type="text"
+            name="description"
+            className="form__input"
+            placeholder="description..."
+            onChange={changeInputDescription}
+            value={descriptionValue}
+          />
         </label>
+
+
       </div>
       <div className="form__item">
         <InputLabel htmlFor="age-native-helper">Select category</InputLabel>

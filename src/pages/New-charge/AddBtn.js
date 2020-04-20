@@ -13,6 +13,6 @@ const AddBtn = () => {
       <Button variant="contained" color="primary">Add new {btnName}</Button>
     </div>
   );
-}
+};
 
 export default AddBtn;
