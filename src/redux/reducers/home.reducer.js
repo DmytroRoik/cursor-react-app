@@ -12,7 +12,6 @@ const homeReducer = (state = initialState, action) => {
       return {
         ...state,
         charges: [...action.payload],
-
       };
     }
     case REMOVE_CATEGORY_CHARGES_SUCCESS: {
@@ -24,13 +23,13 @@ const homeReducer = (state = initialState, action) => {
     case LOAD_CATEGORIES_INCOMES_SUCCESS: {
       return {
         ...state,
-        charges: action.payload,
+        incomes: [...action.payload],
       };
     }
     case REMOVE_CATEGORY_INCOMES_SUCCESS: {
       return {
         ...state,
-        charges: state.charges.filter(charge => charge.id !== action.payload),
+        incomes: state.incomes.filter(charge => charge.id !== action.payload),
       };
     }
     default:

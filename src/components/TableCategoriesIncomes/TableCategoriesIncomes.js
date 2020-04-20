@@ -16,7 +16,7 @@ import { selectCategoriesIncomes } from '../../redux/selectors/home.selectors';
 import { loadCategoriesIncomes, removeCategoryIncomes } from '../../redux/actions/home.actions';
 
 const TableCategoriesCharges = () => {
-  const charges= useSelector(selectCategoriesIncomes);
+  const incomes = useSelector(selectCategoriesIncomes);
   const useStyles = makeStyles({
     table: {
       minWidth: 600,
@@ -28,7 +28,7 @@ const TableCategoriesCharges = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategoriesIncomes());
-  },[]);
+  }, []);
   const deleteCategoriesIncomes = (id) => {
     setIsOpenModal(true);
     setCategoryId(id);
@@ -56,20 +56,20 @@ const TableCategoriesCharges = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {charges.map(charge => (
-              <TableRow key={charge.categoryId}>
+            {incomes.map(income => (
+              <TableRow key={income.category}>
                 <TableCell component="th" scope="row" >
-                  <Icon style={{ width: '30px' }} className={charge.icon} />
-                  {charge.name}
+                  <Icon style={{ width: '30px' }} className={income.icon} />
+                  {income.name}
                 </TableCell>
-                <TableCell >{charge.description}</TableCell>
-                <TableCell >{charge.date}</TableCell>
-                <TableCell >{charge.money}</TableCell>
-                <TableCell align="right"> {charge.action}
-                  <Dropdown onDelete={() => deleteCategoriesIncomes(charge.id)} />
+                <TableCell >{income.description}</TableCell>
+                <TableCell >{income.date}</TableCell>
+                <TableCell >{income.money}</TableCell>
+                <TableCell align="right"> {income.action}
+                  <Dropdown onDelete={() => deleteCategoriesIncomes(income.id)} />
                 </TableCell>
               </TableRow>
-                ))}
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
