@@ -1,17 +1,14 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
-
 export default function CheckboxProfile() {
-  
-  const GreenCheckbox = withStyles({
+    const GreenCheckbox = withStyles({
     root: {
       '&$checked': {
         color: green[600],
@@ -23,7 +20,7 @@ export default function CheckboxProfile() {
   const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
-        width: '4ch',
+        width: '5ch',
       },
     },
   }));

@@ -9,8 +9,8 @@ import "./Avatar.scss"
 export default function Avatars() {
   const useStyles = makeStyles((theme) => ({
     root: {
-      height: "120px",
-      marginLeft: "50px",
+      height: "80px",
+      
 
     },
   }));

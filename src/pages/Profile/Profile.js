@@ -12,16 +12,16 @@ export default function Profile() {
     },
     root: {
       '& > *': {
-        marginLeft: "10px",
+       
         paddingBottom: "70px",
         width: '33ch',
       },
     },
     checkbox:{
-      paddingTop: "40px",
+      paddingTop: "25px",
     },
     button:{
-      marginRight: "320px",
+      marginRight: "470px",
     }
   }));
   
