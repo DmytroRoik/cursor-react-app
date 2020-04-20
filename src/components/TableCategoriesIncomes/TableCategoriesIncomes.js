@@ -22,7 +22,6 @@ const TableCategoriesCharges = () => {
       minWidth: 600,
     },
   });
-
   const [isOpen, setIsOpenModal] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
