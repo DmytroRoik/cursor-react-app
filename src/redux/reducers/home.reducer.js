@@ -11,26 +11,26 @@ const homeReducer = (state = initialState, action) => {
     case LOAD_CATEGORIES_CHARGES_SUCCESS: {
       return {
         ...state,
-        categories: action.payload,
+        charges: action.payload,
 
       };
     }
     case REMOVE_CATEGORY_CHARGES_SUCCESS: {
       return {
         ...state,
-        categories: state.categories.filter(category => category.id !== action.payload),
+        charges: state.charges.filter(charge => charge.id !== action.payload),
       };
     }
     case LOAD_CATEGORIES_INCOMES_SUCCESS: {
       return {
         ...state,
-        categories: action.payload,
+        charges: action.payload,
       };
     }
     case REMOVE_CATEGORY_INCOMES_SUCCESS: {
       return {
         ...state,
-        categories: state.categories.filter(category => category.id !== action.payload),
+        charges: state.charges.filter(charge => charge.id !== action.payload),
       };
     }
     default:

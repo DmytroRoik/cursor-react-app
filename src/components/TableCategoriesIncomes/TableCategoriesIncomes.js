@@ -23,19 +23,18 @@ const TableCategoriesCharges = () => {
     },
   });
 
-  const [open, OpenModal] = useState(false);
+  const [isOpen, setIsOpenModal] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategoriesIncomes());
-  }, []);
+  });
   const deleteCategoriesIncomes = (id) => {
-    OpenModal(true);
+    setIsOpenModal(true);
     setCategoryId(id);
   };
-
   const cancelDelete = () => {
-    OpenModal(false);
+    setIsOpenModal(false);
   };
   const removeItemById = () => {
     dispatch(removeCategoryIncomes(categoryId));
@@ -65,17 +64,17 @@ const TableCategoriesCharges = () => {
                 </TableCell>
                 <TableCell >{category.description}</TableCell>
                 <TableCell >{category.date}</TableCell>
-                <TableCell >{category.money}</TableCell>  
+                <TableCell >{category.money}</TableCell>
                 <TableCell align="right"> {category.action}
                   <Dropdown onDelete={() => deleteCategoriesIncomes(category.id)} />
                 </TableCell>
               </TableRow>
                 ))}
           </TableBody>
-        </Table> 
+        </Table>
       </TableContainer>
       <AlertDialogSlide
-        open={open}
+        open={isOpen}
         onCancel={cancelDelete}
         onSubmit={removeItemById}
       />
