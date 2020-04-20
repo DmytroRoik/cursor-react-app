@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
+import { Link } from 'react-router-dom';
 
 import { selectBalance } from '../../redux/selectors/rootSelectors';
 import BtnAddMore from '../../components/BtnAddMore';
@@ -62,7 +63,9 @@ const Home = () => {
             </Select>
           </div>
 
-          <BtnAddMore />
+          <Link to="/new-charge" href="/new-charge">
+            <BtnAddMore />
+          </Link>
         </div>
         <TableCategoriesCharges />
       </div>
