@@ -20,18 +20,18 @@ const api = {
       },
     );
   },
-  postNewIncome: (newTotal, newDescription) => {
-    BASE_CONNECTION.post(
-      'charges?type=income',
-      {
-        categoryId: 1,
-        description: newDescription,
-        date: 1587157200000,
-        money: newTotal,
-        type: 'income',
-      },
-    );
-  },
+  // postNewIncome: (newTotal, newDescription) => {
+  //   BASE_CONNECTION.post(
+  //     'charges?type=income',
+  //     {
+  //       categoryId: 1,
+  //       description: newDescription,
+  //       date: 1587157200000,
+  //       money: newTotal,
+  //       type: 'income',
+  //     },
+  //   );
+  // },
 
 
 };

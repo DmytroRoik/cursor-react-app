@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
 
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import AddBtn from './AddBtn';
+import {
+  postTotalDescriptionThunk,
+  setTotal,
+  setDescription,
+} from './redux/reducers/homeReducers/home.reducer'; // WTF??????
 
 import './NewCharge.scss';
 
@@ -17,6 +22,24 @@ export default () => {
       {category.name}
     </option>
   ));
+
+  const dispatch = useDispatch();
+  const totalValue = useSelector(state => state.homeReducer.totalValue);
+  const descriptionValue = useSelector(state => state.homeReducer.descriptionValue);
+
+  const changeInputTotal = (e) => {
+    dispatch(setTotal(e.target.value));
+  };
+
+  const changeInputDescription = (e) => {
+    dispatch(setDescription(e.target.value));
+  };
+
+  const onButtonClick = () => {
+    console.log('clicked');
+    dispatch(postTotalDescriptionThunk(totalValue, descriptionValue));
+  };
+
 
   return (
     <form className="form">
@@ -68,7 +91,7 @@ export default () => {
         />
       </div>
       <Link to="/">
-        <AddBtn />
+        <AddBtn onClick={onButtonClick} />
       </Link>
     </form>
   );
