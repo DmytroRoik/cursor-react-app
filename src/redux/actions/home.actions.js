@@ -16,8 +16,8 @@ export const loadCategoriesCharges = () => (dispatch) => {
     dispatch({
       type: LOAD_CATEGORIES_CHARGES_SUCCESS,
       payload: res.data.data,
-
     });
+
   }).catch((err) => {
     console.log('error');
     dispatch({

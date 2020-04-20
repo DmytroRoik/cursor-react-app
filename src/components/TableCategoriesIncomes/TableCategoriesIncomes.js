@@ -16,7 +16,7 @@ import { selectCategoriesIncomes } from '../../redux/selectors/home.selectors';
 import { loadCategoriesIncomes, removeCategoryIncomes } from '../../redux/actions/home.actions';
 
 const TableCategoriesCharges = () => {
-  const categories = useSelector(selectCategoriesIncomes);
+  const charges= useSelector(selectCategoriesIncomes);
   const useStyles = makeStyles({
     table: {
       minWidth: 600,
@@ -28,7 +28,7 @@ const TableCategoriesCharges = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategoriesIncomes());
-  });
+  },[]);
   const deleteCategoriesIncomes = (id) => {
     setIsOpenModal(true);
     setCategoryId(id);
@@ -56,17 +56,17 @@ const TableCategoriesCharges = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map(category => (
-              <TableRow key={category.category}>
+            {charges.map(charge => (
+              <TableRow key={charge.categoryId}>
                 <TableCell component="th" scope="row" >
-                  <Icon style={{ width: '30px' }} className={category.icon} />
-                  {category.name}
+                  <Icon style={{ width: '30px' }} className={charge.icon} />
+                  {charge.name}
                 </TableCell>
-                <TableCell >{category.description}</TableCell>
-                <TableCell >{category.date}</TableCell>
-                <TableCell >{category.money}</TableCell>
-                <TableCell align="right"> {category.action}
-                  <Dropdown onDelete={() => deleteCategoriesIncomes(category.id)} />
+                <TableCell >{charge.description}</TableCell>
+                <TableCell >{charge.date}</TableCell>
+                <TableCell >{charge.money}</TableCell>
+                <TableCell align="right"> {charge.action}
+                  <Dropdown onDelete={() => deleteCategoriesIncomes(charge.id)} />
                 </TableCell>
               </TableRow>
                 ))}

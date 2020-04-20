@@ -1,9 +1,9 @@
 import { LOAD_CATEGORIES_CHARGES_SUCCESS, REMOVE_CATEGORY_CHARGES_SUCCESS, LOAD_CATEGORIES_INCOMES_SUCCESS, REMOVE_CATEGORY_INCOMES_SUCCESS } from '../actions/home.actions';
 
 const initialState = {
-  categories: [
-
-  ],
+  categories: [],
+  charges: [],
+  incomes: [],
 };
 
 const homeReducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const homeReducer = (state = initialState, action) => {
     case LOAD_CATEGORIES_CHARGES_SUCCESS: {
       return {
         ...state,
-        charges: action.payload,
+        charges: [...action.payload],
 
       };
     }

@@ -27,7 +27,7 @@ const TableCategoriesCharges = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategoriesCharges());
-  });
+  },[]);
   const deleteCategoriesCharges = (id) => {
     setIsOpenModal(true);
     setCategoryId(id);
@@ -40,7 +40,7 @@ const TableCategoriesCharges = () => {
     dispatch(removeCategoryCharges(categoryId));
   };
   const classes = useStyles();
-
+ 
   return (
     <>
       <TableContainer component={Paper}>
@@ -55,8 +55,9 @@ const TableCategoriesCharges = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {charges.map(charge => (
-              <TableRow key={charge.categoryId}>
+            {
+            charges.map(charge => (
+              <TableRow key={charge.category}>
                 <TableCell component="th" scope="row" >
                   <Icon style={{ width: '30px' }} className={charge.icon} />
                   {charge.name}
