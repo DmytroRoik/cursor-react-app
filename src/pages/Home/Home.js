@@ -88,8 +88,9 @@ const Home = () => {
               <div value="month">this month</div>
             </Select>
           </div>
-
-          <BtnAddMore />
+          <Link to="/new-charge" href="/new-charge">
+            <BtnAddMore />
+          </Link>
         </div>
         <TableCategoriesIncomes />
       </div>

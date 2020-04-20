@@ -12,16 +12,15 @@ export const REMOVE_CATEGORY_INCOMES_FAIL = ' REMOVE_CATEGORY_INCOMES_FAIL';
 
 
 export const loadCategoriesCharges = () => (dispatch) => {
-  api.getCategoriesCharges().then((res) => {
+  api.getCharges().then((res) => {
     dispatch({
       type: LOAD_CATEGORIES_CHARGES_SUCCESS,
       payload: res.data.data,
     });
-
   }).catch((err) => {
     console.log('error');
     dispatch({
-      type: LOAD_CATEGORIES_CHARGES_SUCCESS,
+      type: LOAD_CATEGORIES_CHARGES_FAIL,
       payload: err,
     });
   });
@@ -29,7 +28,7 @@ export const loadCategoriesCharges = () => (dispatch) => {
 
 
 export const removeCategoryCharges = id => (dispatch) => {
-  api.removeCategoryCharges(id).then((res) => {
+  api.removeCharges(id).then((res) => {
     console.log('res', res);
     dispatch({
       type: REMOVE_CATEGORY_CHARGES_SUCCESS,
@@ -39,7 +38,7 @@ export const removeCategoryCharges = id => (dispatch) => {
   }).catch((err) => {
     console.log('error');
     dispatch({
-      type: REMOVE_CATEGORY_CHARGES_SUCCESS,
+      type: REMOVE_CATEGORY_CHARGES_FAIL,
       payload: err,
     });
   });
@@ -47,7 +46,7 @@ export const removeCategoryCharges = id => (dispatch) => {
 
 
 export const loadCategoriesIncomes = () => (dispatch) => {
-  api.getCategoriesIncomes().then((res) => {
+  api.getCharges().then((res) => {
     dispatch({
       type: LOAD_CATEGORIES_INCOMES_SUCCESS,
       payload: res.data.data,
@@ -56,7 +55,7 @@ export const loadCategoriesIncomes = () => (dispatch) => {
   }).catch((err) => {
     console.log('error');
     dispatch({
-      type: LOAD_CATEGORIES_INCOMES_SUCCESS,
+      type: LOAD_CATEGORIES_INCOMES_FAIL,
       payload: err,
     });
   });
@@ -64,7 +63,7 @@ export const loadCategoriesIncomes = () => (dispatch) => {
 
 
 export const removeCategoryIncomes = id => (dispatch) => {
-  api.removeCategoryIncomes(id).then((res) => {
+  api.removeCharges(id).then((res) => {
     console.log('res', res);
     dispatch({
       type: REMOVE_CATEGORY_INCOMES_SUCCESS,
@@ -74,7 +73,7 @@ export const removeCategoryIncomes = id => (dispatch) => {
   }).catch((err) => {
     console.log('error');
     dispatch({
-      type: REMOVE_CATEGORY_INCOMES_SUCCESS,
+      type: LOAD_CATEGORIES_INCOMES_FAIL,
       payload: err,
     });
   });

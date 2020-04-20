@@ -1,7 +1,6 @@
 import { LOAD_CATEGORIES_CHARGES_SUCCESS, REMOVE_CATEGORY_CHARGES_SUCCESS, LOAD_CATEGORIES_INCOMES_SUCCESS, REMOVE_CATEGORY_INCOMES_SUCCESS } from '../actions/home.actions';
 
 const initialState = {
-  categories: [],
   charges: [],
   incomes: [],
 };

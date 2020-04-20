@@ -40,7 +40,7 @@ const TableCategoriesCharges = () => {
     dispatch(removeCategoryCharges(categoryId));
   };
   const classes = useStyles();
- 
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -58,7 +58,7 @@ const TableCategoriesCharges = () => {
             {charges.map(charge => (
               <TableRow key={charge.category}>
                 <TableCell component="th" scope="row" >
-                  <Icon style={{ width: '30px' }} className={charge.icon} />
+                  <Icon style={{ width: '30px' }} className={`fa ${charge.category.icon.class}`} />
                   {charge.name}
                 </TableCell>
                 <TableCell >{charge.description}</TableCell>

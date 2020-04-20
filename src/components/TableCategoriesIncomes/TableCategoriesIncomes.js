@@ -58,7 +58,7 @@ const TableCategoriesCharges = () => {
             {incomes.map(income => (
               <TableRow key={income.category}>
                 <TableCell component="th" scope="row" >
-                  <Icon style={{ width: '30px' }} className={income.icon} />
+                  <Icon style={{ width: '30px' }} className={`fa ${income.category.icon.class}`} />
                   {income.name}
                 </TableCell>
                 <TableCell >{income.description}</TableCell>
