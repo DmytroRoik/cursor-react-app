@@ -5,6 +5,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Icon from '@material-ui/core/Icon';
+import { getIconsListThunk } from '../../redux/reducers/iconSelector.reducer';
+import { useSelector, useDispatch } from "react-redux";
+import { connect } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -16,12 +19,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleSelect() {
+ function SimpleSelect() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  const dispatch = useDispatch();
+ 
+  dispatch(getIconsListThunk());
+  
 
   const icons = ["fa fa-hamburger", "fas fa-utensils", "fas fa-dumbbell", "fas fa-train", "fas fa-briefcase-medical", "fas fa-paint-roller", "fas fa-theater-masks", "fas fa-wine-glass", "fas fa-smoking", "fas fa-paw", "fas fa-paw"];
   const menuItem = icons.map((item, index) =>
@@ -45,3 +53,12 @@ export default function SimpleSelect() {
     </div>
   );
 }
+
+function mapStateToProps(state, ownProps) {
+  
+  // component receives additionally:
+  return { icons: state.icons }
+}
+
+
+export default connect(mapStateToProps)(SimpleSelect)
