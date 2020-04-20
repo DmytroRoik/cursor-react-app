@@ -12,7 +12,6 @@ export default function Profile() {
     },
     root: {
       '& > *': {
-       
         paddingBottom: "70px",
         width: '33ch',
       },

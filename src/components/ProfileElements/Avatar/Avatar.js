@@ -10,8 +10,6 @@ export default function Avatars() {
   const useStyles = makeStyles((theme) => ({
     root: {
       height: "80px",
-      
-
     },
   }));
     const classes = useStyles();
