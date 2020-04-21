@@ -23,21 +23,21 @@ const TableCategoriesCharges = () => {
     },
   });
   const [isOpen, setIsOpenModal] = useState(false);
-  const [categoryId, setCategoryId] = useState(null);
+  const [changeId, setChangeId] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategoriesCharges());
   }, []);
   const deleteCategoriesCharges = (id) => {
     setIsOpenModal(true);
-    setCategoryId(id);
+    setChangeId(id);
   };
 
   const cancelDelete = () => {
     setIsOpenModal(false);
   };
   const removeItemById = () => {
-    dispatch(removeCategoryCharges(categoryId));
+    dispatch(removeCategoryCharges(changeId));
   };
   const classes = useStyles();
 

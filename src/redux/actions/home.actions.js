@@ -11,8 +11,8 @@ export const REMOVE_CATEGORY_INCOMES_SUCCESS = 'REMOVE_CATEGORY_INCOMES_SUCCESS'
 export const REMOVE_CATEGORY_INCOMES_FAIL = ' REMOVE_CATEGORY_INCOMES_FAIL';
 
 
-export const loadCategoriesCharges = () => (dispatch) => {
-  api.getCharges().then((res) => {
+export const loadCategoriesCharges = charge => (dispatch) => {
+  api.getCharges(charge).then((res) => {
     dispatch({
       type: LOAD_CATEGORIES_CHARGES_SUCCESS,
       payload: res.data.data,
@@ -45,8 +45,8 @@ export const removeCategoryCharges = id => (dispatch) => {
 };
 
 
-export const loadCategoriesIncomes = () => (dispatch) => {
-  api.getCharges().then((res) => {
+export const loadCategoriesIncomes = income => (dispatch) => {
+  api.getCharges(income).then((res) => {
     dispatch({
       type: LOAD_CATEGORIES_INCOMES_SUCCESS,
       payload: res.data.data,

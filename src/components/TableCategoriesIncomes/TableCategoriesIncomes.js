@@ -23,20 +23,20 @@ const TableCategoriesCharges = () => {
     },
   });
   const [isOpen, setIsOpenModal] = useState(false);
-  const [categoryId, setCategoryId] = useState(null);
+  const [incomeId, setIncomeId] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCategoriesIncomes());
   }, []);
   const deleteCategoriesIncomes = (id) => {
     setIsOpenModal(true);
-    setCategoryId(id);
+    setIncomeId(id);
   };
   const cancelDelete = () => {
     setIsOpenModal(false);
   };
   const removeItemById = () => {
-    dispatch(removeCategoryIncomes(categoryId));
+    dispatch(removeCategoryIncomes(incomeId));
   };
 
   const classes = useStyles();
