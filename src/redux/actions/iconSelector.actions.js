@@ -1,7 +1,7 @@
 import api from '../../api/api';
 
-export const LOAD_ICONS_SUCCESS = ' LOAD_ICONS_SUCCESS';
-export const LOAD_ICONS_FAIL = ' LOAD_ICONS_FAIL';
+export const LOAD_ICONS_SUCCESS = 'LOAD_ICONS_SUCCESS';
+export const LOAD_ICONS_FAIL = 'LOAD_ICONS_FAIL';
 
 export const loadIcons = () => (dispatch) => {
   api.getIcons().then((res) => {
