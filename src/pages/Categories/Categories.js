@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
+import { Link } from 'react-router-dom';
 
 import Balance from '../../components/Balance';
 import BtnAddMore from '../../components/BtnAddMore';
@@ -11,10 +12,12 @@ const Categories = () => {
   return (
     <div>
       <Balance total={balance} />
-      <BtnAddMore />
+      <Link to="/new-categories" href="/new-сategory">
+        <BtnAddMore />
+      </Link>
       <TableCategories />
     </div>
   );
-}
+};
 
 export default Categories;
