@@ -6,11 +6,11 @@ import { selectSwitchName } from '../../redux/selectors/rootSelectors';
 
 import './NewCharge.scss';
 
-const AddBtn = () => {
+const AddBtn = ({ onClick }) => {
   const btnName = useSelector(selectSwitchName);
   return (
     <div className="add-btn">
-      <Button variant="contained" color="primary">Add new {btnName}</Button>
+      <Button variant="contained" color="primary" onClick={onClick}>Add new {btnName} </Button>
     </div>
   );
 };

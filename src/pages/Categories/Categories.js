@@ -15,6 +15,6 @@ const Categories = () => {
       <TableCategories />
     </div>
   );
-}
+};
 
 export default Categories;

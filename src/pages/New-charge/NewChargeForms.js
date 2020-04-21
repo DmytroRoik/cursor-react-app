@@ -8,10 +8,11 @@ import TextField from '@material-ui/core/TextField';
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import AddBtn from './AddBtn';
 import {
-  postTotalDescriptionThunk,
+  postTotalDescriptionChargeThunk,
+  postTotalDescriptionIncomeThunk,
   setTotal,
   setDescription,
-} from './redux/reducers/homeReducers/home.reducer'; // WTF??????
+} from '../../redux/actions/charge.actions';
 
 import './NewCharge.scss';
 
@@ -24,8 +25,9 @@ export default () => {
   ));
 
   const dispatch = useDispatch();
-  const totalValue = useSelector(state => state.homeReducer.totalValue);
-  const descriptionValue = useSelector(state => state.homeReducer.descriptionValue);
+  const totalValue = useSelector(state => state.chargeReducer.totalValue);
+  const descriptionValue = useSelector(state => state.chargeReducer.descriptionValue);
+  const switchValue = useSelector(state => state.rootReducer.switchName);
 
   const changeInputTotal = (e) => {
     dispatch(setTotal(e.target.value));
@@ -37,7 +39,12 @@ export default () => {
 
   const onButtonClick = () => {
     console.log('clicked');
-    dispatch(postTotalDescriptionThunk(totalValue, descriptionValue));
+    console.log(totalValue, descriptionValue);
+    if (switchValue === 'charge') {
+      dispatch(postTotalDescriptionChargeThunk(totalValue, descriptionValue));
+    } else if (switchValue === 'income') {
+      dispatch(postTotalDescriptionIncomeThunk(totalValue, descriptionValue));
+    }
   };
 
 
@@ -52,7 +59,6 @@ export default () => {
             className="form__input"
             placeholder="total..."
             onChange={changeInputTotal}
-            value={totalValue}
           />
         </label>
       </div>
@@ -65,7 +71,6 @@ export default () => {
             className="form__input"
             placeholder="description..."
             onChange={changeInputDescription}
-            value={descriptionValue}
           />
         </label>
 
@@ -90,9 +95,9 @@ export default () => {
           }}
         />
       </div>
-      <Link to="/">
-        <AddBtn onClick={onButtonClick} />
-      </Link>
+      {/* <Link to="/" href="/"> */}
+      <AddBtn onClick={onButtonClick} />
+      {/* </Link> */}
     </form>
   );
 };
