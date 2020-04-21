@@ -1,3 +1,4 @@
+import { ADD_CHARGE_DATA_SUCCESS, ADD_INCOME_DATA_SUCCESS } from '../actions/charge.actions';
 const SWITCH_CHANGE = 'SWITCH_CHANGE';
 
 const initialState = {
@@ -10,6 +11,16 @@ const rootReducer = (state = initialState, action) => {
     case SWITCH_CHANGE: {
       return {
         ...state, switchName: action.payload,
+      };
+    }
+    case ADD_CHARGE_DATA_SUCCESS: {
+      return {
+        ...state, balance: action.payload.data.totalBalance,
+      };
+    }
+    case ADD_INCOME_DATA_SUCCESS: {
+      return {
+        ...state, balance: action.payload.data.totalBalance,
       };
     }
     default:

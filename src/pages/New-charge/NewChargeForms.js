@@ -1,17 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
 
 import { selectCategories } from '../../redux/selectors/categories.selectors';
+import { loadCategories } from '../../redux/actions/categories.actions';
 import AddBtn from './AddBtn';
 import {
   postTotalDescriptionChargeThunk,
   postTotalDescriptionIncomeThunk,
   setTotal,
   setDescription,
+  setDate,
 } from '../../redux/actions/charge.actions';
 
 import './NewCharge.scss';
@@ -25,9 +27,16 @@ export default () => {
   ));
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const totalValue = useSelector(state => state.chargeReducer.totalValue);
-  const descriptionValue = useSelector(state => state.chargeReducer.descriptionValue);
+  const descriptionValue =
+    useSelector(state => state.chargeReducer.descriptionValue);
+  const dateValue = useSelector(state => state.chargeReducer.dateValue);
   const switchValue = useSelector(state => state.rootReducer.switchName);
+
+  useEffect(() => {
+    dispatch(loadCategories());
+  }, []);
 
   const changeInputTotal = (e) => {
     dispatch(setTotal(e.target.value));
@@ -37,13 +46,21 @@ export default () => {
     dispatch(setDescription(e.target.value));
   };
 
+  const changeDataPickerValue = (e) => {
+    dispatch(setDate(new Date(e.target.value).valueOf()));
+  };
+
   const onButtonClick = () => {
-    console.log('clicked');
-    console.log(totalValue, descriptionValue);
     if (switchValue === 'charge') {
-      dispatch(postTotalDescriptionChargeThunk(totalValue, descriptionValue));
+      dispatch(postTotalDescriptionChargeThunk(
+        totalValue,
+        descriptionValue, dateValue, history,
+      ));
     } else if (switchValue === 'income') {
-      dispatch(postTotalDescriptionIncomeThunk(totalValue, descriptionValue));
+      dispatch(postTotalDescriptionIncomeThunk(
+        totalValue,
+        descriptionValue, dateValue, history,
+      ));
     }
   };
 
@@ -73,13 +90,12 @@ export default () => {
             onChange={changeInputDescription}
           />
         </label>
-
-
       </div>
+
       <div className="form__item">
         <InputLabel htmlFor="age-native-helper">Select category</InputLabel>
         <NativeSelect className="form__input">
-          <option aria-label="None" value="" />
+          <option aria-label="None" value="Select category" disabled="true" />
           {options}
         </NativeSelect>
       </div>
@@ -90,14 +106,13 @@ export default () => {
           type="date"
           className="form__input"
           defaultValue="2020-04-11"
+          onChange={changeDataPickerValue}
           InputLabelProps={{
             shrink: true,
           }}
         />
       </div>
-      {/* <Link to="/" href="/"> */}
       <AddBtn onClick={onButtonClick} />
-      {/* </Link> */}
     </form>
   );
 };

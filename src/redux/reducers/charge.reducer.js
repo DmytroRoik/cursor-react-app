@@ -1,9 +1,9 @@
-import { SET_TOTAL, SET_DESCRIPTION, LOAD_CHARGE_DATA_SUCCESS,
-  LOAD_INCOME_DATA_SUCCESS } from '../actions/charge.actions';
+import { SET_TOTAL, SET_DESCRIPTION, SET_DATE } from '../actions/charge.actions';
 
 const initialState = {
   totalValue: '',
   descriptionValue: '',
+  dateValue: '',
 };
 
 const chargeReducer = (state = initialState, action) => {
@@ -14,19 +14,8 @@ const chargeReducer = (state = initialState, action) => {
     case SET_DESCRIPTION: {
       return { ...state, descriptionValue: action.value };
     }
-    case LOAD_CHARGE_DATA_SUCCESS: {
-      return {
-        ...state,
-        totalValue: action.totalValue,
-        descriptionValue: action.descriptionValue,
-      };
-    }
-    case LOAD_INCOME_DATA_SUCCESS: {
-      return {
-        ...state,
-        totalValue: action.totalValue,
-        descriptionValue: action.descriptionValue,
-      };
+    case SET_DATE: {
+      return { ...state, dateValue: action.value };
     }
     default:
       return state;
