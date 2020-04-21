@@ -8,25 +8,25 @@ const api = {
   getStats: date => BASE_CONNECTION.get(`/stats?from=${date}`),
   getCategories: () => BASE_CONNECTION.get('categories'),
   removeCategory: id => BASE_CONNECTION.delete(`categories?id=${id}`),
-  postNewCharge: (newTotal, newDescription) => {
+  postNewCharge: (newTotal, newDescription, dateValue) => {
     return BASE_CONNECTION.post(
       'charges?type=charge',
       {
         categoryId: 1,
         description: newDescription,
-        date: 1587157200000,
+        date: dateValue,
         money: Number(newTotal),
         type: 'charge',
       },
     );
   },
-  postNewIncome: (newTotal, newDescription) => {
+  postNewIncome: (newTotal, newDescription, dateValue) => {
     return BASE_CONNECTION.post(
       'charges?type=income',
       {
         categoryId: 1,
         description: newDescription,
-        date: 1587157200000,
+        date: dateValue,
         money: Number(newTotal),
         type: 'income',
       },
@@ -34,6 +34,8 @@ const api = {
   },
 
 
+  getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
+  removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
 };
 
 export default api;
