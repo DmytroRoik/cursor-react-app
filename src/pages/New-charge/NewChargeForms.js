@@ -69,8 +69,9 @@ export default () => {
     <form className="form">
       <div className="form__item">
         <p className="form__text">Total</p>
-        <label>
+        <label htmlFor="input1">
           <input
+            id="input1"
             type="text"
             name="name"
             className="form__input"
@@ -81,8 +82,9 @@ export default () => {
       </div>
       <div className="form__item">
         <p className="form__text description">Description</p>
-        <label>
+        <label htmlFor="input2">
           <input
+            id="input2"
             type="text"
             name="description"
             className="form__input"

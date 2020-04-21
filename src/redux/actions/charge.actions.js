@@ -1,4 +1,3 @@
-// import { createHistory } from 'react-router-dom';
 import api from '../../api/api';
 
 export const SET_TOTAL = 'SET_TOTAL';
@@ -24,16 +23,17 @@ export const setDate = value => ({
   value,
 });
 
-
-export const postTotalDescriptionChargeThunk = (totalValue, descriptionValue, dateValue) => (dispatch) => {
+export const postTotalDescriptionChargeThunk = (
+  totalValue,
+  descriptionValue, dateValue, history,
+) => (dispatch) => {
   api.postNewCharge(totalValue, descriptionValue, dateValue).then((data) => {
     dispatch({
       type: ADD_CHARGE_DATA_SUCCESS,
       payload: data,
     });
-    //history.push('/');
+    history.push('/');
   }).catch((err) => {
-    console.log('error');
     dispatch({
       type: ADD_CHARGE_DATA_FAIL,
       payload: err,
@@ -41,15 +41,17 @@ export const postTotalDescriptionChargeThunk = (totalValue, descriptionValue, da
   });
 };
 
-export const postTotalDescriptionIncomeThunk = (totalValue, descriptionValue, dateValue) => (dispatch) => {
+export const postTotalDescriptionIncomeThunk = (
+  totalValue,
+  descriptionValue, dateValue, history,
+) => (dispatch) => {
   api.postNewCharge(totalValue, descriptionValue, dateValue).then((data) => {
     dispatch({
       type: ADD_INCOME_DATA_SUCCESS,
       payload: data,
     });
-    //history.push('/');
+    history.push('/');
   }).catch((err) => {
-    console.log('error');
     dispatch({
       type: ADD_INCOME_DATA_FAIL,
       payload: err,

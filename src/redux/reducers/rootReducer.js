@@ -1,4 +1,6 @@
-import { ADD_CHARGE_DATA_SUCCESS, ADD_INCOME_DATA_SUCCESS } from '../actions/charge.actions';
+import { ADD_CHARGE_DATA_SUCCESS,
+  ADD_INCOME_DATA_SUCCESS } from '../actions/charge.actions';
+
 const SWITCH_CHANGE = 'SWITCH_CHANGE';
 
 const initialState = {

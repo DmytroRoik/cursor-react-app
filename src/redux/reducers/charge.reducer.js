@@ -1,4 +1,5 @@
-import { SET_TOTAL, SET_DESCRIPTION, SET_DATE } from '../actions/charge.actions';
+import { SET_TOTAL, SET_DESCRIPTION,
+  SET_DATE } from '../actions/charge.actions';
 
 const initialState = {
   totalValue: '',

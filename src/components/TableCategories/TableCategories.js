@@ -60,7 +60,10 @@ const TableCategories = () => {
             {categories.map(category => (
               <TableRow key={category.id}>
                 <TableCell component="th" scope="row" >
-                  <Icon style={{ width: '30px' }} className={`fa ${category.icon.class}`} />
+                  <Icon
+                    style={{ width: '30px' }}
+                    className={`fa ${category.icon.class}`}
+                  />
                   {category.name}
                 </TableCell>
                 <TableCell >{category.description}</TableCell>
