@@ -13,12 +13,12 @@ const dataCurrentUser = (state = initialState, action) => {
     case GET_USER_DATA:
       return {
         ...state,
-        data: [...action.data],
+        data: action.data,
       };
     case GET_TOTAL_BALANCE: {
       return {
         ...state,
-        totalBalance: [...action.totalBalance],
+        totalBalance: action.totalBalance,
       };
     }
     default:

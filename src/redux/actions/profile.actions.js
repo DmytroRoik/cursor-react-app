@@ -28,7 +28,7 @@ export const getTotalBalanceThunk = (dispatch) => {
   }).catch((error) => {
     dispatch({
       type: GET_TOTAL_BALANCE_FAILED,
-      data: error,
+      totalBalance: error,
     });
   });
 };
