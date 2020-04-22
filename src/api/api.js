@@ -8,7 +8,9 @@ const api = {
   getStats: date => BASE_CONNECTION.get(`/stats?from=${date}`),
   getCategories: () => BASE_CONNECTION.get('categories'),
   removeCategory: id => BASE_CONNECTION.delete(`categories?id=${id}`),
-  getIcons: () => BASE_CONNECTION.get('/icons')
+  getIcons: () => BASE_CONNECTION.get('/icons'),
+  getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
+  removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
 };
 
 export default api;

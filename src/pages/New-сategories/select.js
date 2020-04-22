@@ -6,10 +6,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Icon from '@material-ui/core/Icon';
-import { selectIcons } from '../../redux/selectors/icons.selectors';
-import { loadIcons } from '../../redux/actions/iconSelector.actions';
+import { selectIcons } from '../../redux/selectors/rootSelectors';
+import { loadIcons } from '../../redux/actions/root.actions';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles( theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
