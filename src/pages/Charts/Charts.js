@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 import {
   selectChartsData,
   selectChartsOptions,
@@ -7,14 +8,38 @@ import {
 
 import Chart from '../../components/Chart';
 import changeData from './ChangeData';
-
+import getStats from '../../redux/actions/charts.actions';
 import './Charts.scss';
 
+
 const Charts = () => {
+  const dispatch = useDispatch();
   const chartsData = useSelector(selectChartsData);
   const chartsOptions = useSelector(selectChartsOptions);
   const [week, setWeek] = useState(true);
-  const toggleWeek = () => setWeek(!week);
+
+  const dateWeekAgo = moment().startOf('day').subtract(1, 'w').valueOf();
+  const dateMonthAgo = moment().startOf('day')
+    .subtract(1, 'months').valueOf();
+
+  useEffect(() => {
+    if (week) {
+      dispatch(getStats(Number(dateWeekAgo)));
+    } else {
+      dispatch(getStats(Number(dateMonthAgo)));
+    }
+  }, [dateWeekAgo, dateMonthAgo, dispatch, week]);
+
+  const getMonth = () => {
+    setWeek(false);
+    dispatch(getStats(Number(dateMonthAgo)));
+  };
+
+  const getWeek = () => {
+    setWeek(true);
+    dispatch(getStats(Number(dateWeekAgo)));
+  };
+
   return (
     <React.Fragment>
       <div className="charts__header">
@@ -22,12 +47,12 @@ const Charts = () => {
         <div className="charts__btn-wrap">
           <button
             className={`charts__btn ${!week ? 'active' : ''}`}
-            onClick={toggleWeek}
+            onClick={getMonth}
           >Month
           </button>
           <button
             className={`charts__btn ${week ? 'active' : ''}`}
-            onClick={toggleWeek}
+            onClick={getWeek}
           >Week
           </button>
         </div>

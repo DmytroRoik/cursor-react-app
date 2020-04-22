@@ -70,8 +70,8 @@ export default function Dropdown(props) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem value={BtnEdit}> <BtnEdit /> </MenuItem>
-        <MenuItem value={BtnDelete}> <BtnDelete /> </MenuItem>
+        <MenuItem> <BtnEdit /> </MenuItem>
+        <MenuItem> <BtnDelete /> </MenuItem>
       </Menu>
     </div>
   );
