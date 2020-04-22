@@ -31,7 +31,7 @@ export default function Profile() {
       <Avatar/>
       <form className={classes.root} noValidate autoComplete="off">
         <TextField id="standard-basic" label="Name" defaultValue="" /> <br/>
-        <TextField id="standard-basic" label="New phone number" /> 
+        <TextField id="standard-basic" label="Email" /> 
       </form>
       <div className={classes.button}>
         <BtnSaveProfile/>
