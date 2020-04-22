@@ -34,7 +34,7 @@ const dispatch = useDispatch();
 
 const menuItem = iconsServer.map((item, index) =>
     <MenuItem value={index * 10}> 
-          <Icon style={{ width: '30px', fontSize: "20px" }} className={`fas ${item}`} /> 
+          <Icon style={{width: '30px', fontSize: "20px"}} className={`fas ${item}`} /> 
           </MenuItem>
     ) 
   return (
