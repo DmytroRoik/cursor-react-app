@@ -4,7 +4,7 @@ import './BtnAddMore.scss';
 
 const BtnAddMore = () => (
   <div className="btnAddMore">
-    <Button variant="contained" color="primary">Add More</Button>
+    <Button variant="contained" color="primary"> Add More</Button>
   </div>
 );
 
