@@ -5,6 +5,7 @@ import Charts from './pages/Charts';
 import Categories from './pages/Categories';
 import NewCategories from './pages/New-сategories';
 import NewCharge from './pages/New-charge';
+import Profile from './pages/Profile';
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/new-charge',
     component: <NewCharge />,
+  },
+  {
+    path: '/profile',
+    component: <Profile />,
   },
 ];
 
