@@ -8,7 +8,7 @@ const initialState = {
   totalBalance: [],
 };
 
-const dataCurrentUser = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USER_DATA:
       return {
@@ -26,5 +26,5 @@ const dataCurrentUser = (state = initialState, action) => {
   }
 };
 
-export default dataCurrentUser;
+export default profileReducer;
 
