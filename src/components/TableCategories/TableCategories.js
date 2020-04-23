@@ -15,6 +15,7 @@ import AlertDialog from '../BtnDeleteModal/BtnDeleteModal';
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import { loadCategories,
   removeCategory } from '../../redux/actions/categories.actions';
+import EditDialog from '../BtnEditModal/BtnEditModal';
 
 const TableCategories = () => {
   const categories = useSelector(selectCategories);
@@ -25,6 +26,7 @@ const TableCategories = () => {
   });
 
   const [isOpen, setIsOpenModal] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -38,10 +40,17 @@ const TableCategories = () => {
   const cancelDelete = () => {
     setIsOpenModal(false);
   };
+  const cancelEdit = () => {
+    setIsEditOpen(false);
+  };
   const removeItemById = () => {
     dispatch(removeCategory(categoryId));
   };
-
+  const editCategories = (id) => {
+    setIsEditOpen(true);
+    setCategoryId(id);
+    // dispatch(editCategories(categoryId, data));
+  };
   const classes = useStyles();
 
   return (
@@ -68,6 +77,7 @@ const TableCategories = () => {
                 <TableCell align="right"> {category.action}
                   <Dropdown
                     onDelete={() => deleteCategories(category.id)}
+                    onEdit={() => editCategories(category.id)}
                   />
                 </TableCell>
               </TableRow>
@@ -80,6 +90,12 @@ const TableCategories = () => {
         onCancel={cancelDelete}
         оnSubmit={removeItemById}
       />
+      {categoryId && <EditDialog
+        open={isEditOpen}
+        onCancel={cancelEdit}
+        оnSubmit={editCategories}
+        id={categoryId}
+      />}
     </>
   );
 };
