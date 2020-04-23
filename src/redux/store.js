@@ -7,6 +7,7 @@ import chartsReducer from './reducers/charts.reducer';
 import categoriesReducer from './reducers/categories.reducer';
 import profileReducer from './reducers/profile.reducers';
 
+
 const reducers = combineReducers({
   rootReducer,
   homeReducer,
@@ -18,3 +19,5 @@ const reducers = combineReducers({
 const store = createStore(reducers, applyMiddleware(thunk));
 
 export default store;
+
+

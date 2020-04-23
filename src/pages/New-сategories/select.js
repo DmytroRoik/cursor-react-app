@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Icon from '@material-ui/core/Icon';
+import { selectIcons } from '../../redux/selectors/rootSelectors';
+import { loadIcons } from '../../redux/actions/root.actions';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles( theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -22,11 +25,16 @@ export default function SimpleSelect() {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+  const iconsServer = useSelector(selectIcons).map(i => i.class);
 
-  const icons = ["fa fa-hamburger", "fas fa-utensils", "fas fa-dumbbell", "fas fa-train", "fas fa-briefcase-medical", "fas fa-paint-roller", "fas fa-theater-masks", "fas fa-wine-glass", "fas fa-smoking", "fas fa-paw", "fas fa-paw"];
-  const menuItem = icons.map((item, index) =>
+const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadIcons());
+  }, []);
+
+const menuItem = iconsServer.map((item, index) =>
     <MenuItem value={index * 10}> 
-          <Icon style={{ width: '30px', fontSize: "20px" }} className={item} /> 
+          <Icon style={{width: '30px', fontSize: "20px"}} className={`fas ${item}`} /> 
           </MenuItem>
     ) 
   return (
@@ -37,7 +45,7 @@ export default function SimpleSelect() {
           labelId="demo-simple-select-label"
           value={age}
           onChange={handleChange}
-          style={{width: 330, border: "1px solid #65656550", borderRadius: 5, padding: 5}}
+          style={{width: 360, border: "1px solid #65656550", borderRadius: 5, padding: 5}}
         >
          {menuItem}
         </Select>
@@ -45,3 +53,7 @@ export default function SimpleSelect() {
     </div>
   );
 }
+
+
+
+
