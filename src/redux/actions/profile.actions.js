@@ -9,12 +9,12 @@ export const getUserDataThunk = (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
       type: GET_USER_DATA,
-      data: response.data,
+      payload: response.data,
     });
   }).catch((error) => {
     dispatch({
       type: GET_USER_DATA_FAIL,
-      data: error,
+      payload: error,
     });
   });
 };
@@ -23,12 +23,12 @@ export const getTotalBalanceThunk = (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
       type: GET_TOTAL_BALANCE,
-      totalBalance: response.totalBalance,
+      payload: response.totalBalance,
     });
   }).catch((error) => {
     dispatch({
       type: GET_TOTAL_BALANCE_FAILED,
-      totalBalance: error,
+      payload: error,
     });
   });
 };
