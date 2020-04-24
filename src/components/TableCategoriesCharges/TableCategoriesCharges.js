@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import moment from 'moment';
 import { orderBy } from 'lodash';
 import Icon from '@material-ui/core/Icon';
 import './TableCategoriesCharges.scss';
@@ -42,7 +43,7 @@ const TableCategoriesCharges = () => {
 
   useEffect(() => {
     dispatch(loadCategoriesCharges());
-  }, []);
+  }, [dispatch]);
 
   const deleteCategoriesCharges = (id) => {
     setIsOpenModal(true);
@@ -110,10 +111,10 @@ const TableCategoriesCharges = () => {
                     style={{ width: '30px' }}
                     className={`fa ${charge.icon}`}
                   />
-                  {charge.name}
+                  {charge.category.name}
                 </TableCell>
                 <TableCell >{charge.description}</TableCell>
-                <TableCell >{charge.date}</TableCell>
+                <TableCell >{moment(charge.data).format('DD/MM/YYYY')}</TableCell>
                 <TableCell >${charge.money}</TableCell>
                 <TableCell align="right"> {charge.action}
                   <Dropdown

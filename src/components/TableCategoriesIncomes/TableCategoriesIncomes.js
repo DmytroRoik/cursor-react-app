@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import moment from 'moment';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import { orderBy } from 'lodash';
 import Paper from '@material-ui/core/Paper';
@@ -43,7 +44,7 @@ const TableCategoriesCharges = () => {
 
   useEffect(() => {
     dispatch(loadCategoriesIncomes());
-  }, []);
+  }, [dispatch]);
 
   const deleteCategoriesIncomes = (id) => {
     setIsOpenModal(true);
@@ -112,11 +113,11 @@ const TableCategoriesCharges = () => {
                     style={{ width: '30px' }}
                     className={`fa ${income.icon}`}
                   />
-                  {income.name}
+                  {income.category.name}
                 </TableCell>
                 <TableCell >{income.description}</TableCell>
-                <TableCell >{income.date}</TableCell>
-                <TableCell >{income.money}</TableCell>
+                <TableCell >{moment(income.data).format('DD/MM/YYYY')}</TableCell>
+                <TableCell >${income.money}</TableCell>
                 <TableCell align="right"> {income.action}
                   <Dropdown
                     onDelete={() => deleteCategoriesIncomes(income.id)}

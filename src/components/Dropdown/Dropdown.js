@@ -56,6 +56,7 @@ export default function Dropdown(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <div>
       <IconButton
@@ -70,8 +71,8 @@ export default function Dropdown(props) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem> <BtnEdit /> </MenuItem>
-        <MenuItem> <BtnDelete /> </MenuItem>
+        <MenuItem onClick={handleClose}> <BtnEdit /> </MenuItem>
+        <MenuItem onClick={handleClose}> <BtnDelete /> </MenuItem>
       </Menu>
     </div>
   );
