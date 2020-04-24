@@ -44,7 +44,6 @@ const TableCategories = () => {
   };
 
   const classes = useStyles();
-  console.log(categories);
   return (
     <>
       <TableContainer component={Paper}>
