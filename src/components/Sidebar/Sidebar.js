@@ -21,6 +21,9 @@ const Sidebar = () => (
       <Link to="/categories" href="/categories">
         Categories
       </Link>
+      <Link to="/profile" href="/profile">
+        Profile
+      </Link>
     </div>
   </div>
 );

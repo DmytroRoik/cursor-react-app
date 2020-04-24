@@ -30,8 +30,10 @@ const api = {
   ),
 
 
+  getIcons: () => BASE_CONNECTION.get('/icons'),
   getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
   removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
 };
 
 export default api;
+

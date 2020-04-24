@@ -1,11 +1,13 @@
 import { ADD_CHARGE_DATA_SUCCESS,
   ADD_INCOME_DATA_SUCCESS } from '../actions/home.actions';
 
+import { LOAD_ICONS_SUCCESS } from '../actions/root.actions';
 const SWITCH_CHANGE = 'SWITCH_CHANGE';
 
 const initialState = {
   balance: 265279.07,
   switchName: 'charge',
+  icons: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -25,6 +27,12 @@ const rootReducer = (state = initialState, action) => {
         ...state, balance: action.payload.data.totalBalance,
       };
     }
+    case LOAD_ICONS_SUCCESS: {
+      return {
+        ...state,
+        icons: action.payload,
+      };
+    }
     default:
       return state;
   }
@@ -36,3 +44,4 @@ export const switchChanger = text => ({
 });
 
 export default rootReducer;
+
