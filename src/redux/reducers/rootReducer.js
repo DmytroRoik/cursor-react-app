@@ -1,5 +1,5 @@
 import { ADD_CHARGE_DATA_SUCCESS,
-  ADD_INCOME_DATA_SUCCESS } from '../actions/charge.actions';
+  ADD_INCOME_DATA_SUCCESS } from '../actions/home.actions';
 
 const SWITCH_CHANGE = 'SWITCH_CHANGE';
 

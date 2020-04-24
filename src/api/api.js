@@ -11,7 +11,7 @@ const api = {
   postNewCharge: (newTotal, newDescription, dateValue) => BASE_CONNECTION.post(
     'charges?type=charge',
     {
-      categoryId: 1,
+      categoryId: 37,
       description: newDescription,
       date: dateValue,
       money: Number(newTotal),
@@ -21,7 +21,7 @@ const api = {
   postNewIncome: (newTotal, newDescription, dateValue) => BASE_CONNECTION.post(
     'charges?type=income',
     {
-      categoryId: 1,
+      categoryId: 37,
       description: newDescription,
       date: dateValue,
       money: Number(newTotal),

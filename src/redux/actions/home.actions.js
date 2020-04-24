@@ -11,6 +11,12 @@ export const REMOVE_CATEGORY_INCOMES_SUCCESS = 'REMOVE_CATEGORY_INCOMES_SUCCESS'
 export const REMOVE_CATEGORY_INCOMES_FAIL = ' REMOVE_CATEGORY_INCOMES_FAIL';
 
 
+export const ADD_CHARGE_DATA_SUCCESS = 'LOAD_CHARGE_DATA_SUCCESS';
+export const ADD_CHARGE_DATA_FAIL = 'LOAD_CHARGE_DATA_FAIL';
+export const ADD_INCOME_DATA_SUCCESS = 'LOAD_INCOME_DATA_SUCCESS';
+export const ADD_INCOME_DATA_FAIL = 'LOAD_INCOME_DATA_FAIL';
+
+
 export const loadCategoriesCharges = () => (dispatch) => {
   api.getCharges().then((res) => {
     dispatch({
@@ -78,3 +84,41 @@ export const removeCategoryIncomes = id => (dispatch) => {
     });
   });
 };
+
+
+export const postTotalDescriptionChargeThunk = (
+  totalValue,
+  descriptionValue, dateValue, history,
+) => (dispatch) => {
+  api.postNewCharge(totalValue, descriptionValue, dateValue).then((data) => {
+    dispatch({
+      type: ADD_CHARGE_DATA_SUCCESS,
+      payload: data,
+    });
+    history.push('/');
+  }).catch((err) => {
+    dispatch({
+      type: ADD_CHARGE_DATA_FAIL,
+      payload: err,
+    });
+  });
+};
+
+export const postTotalDescriptionIncomeThunk = (
+  totalValue,
+  descriptionValue, dateValue, history,
+) => (dispatch) => {
+  api.postNewIncome(totalValue, descriptionValue, dateValue).then((data) => {
+    dispatch({
+      type: ADD_INCOME_DATA_SUCCESS,
+      payload: data,
+    });
+    history.push('/');
+  }).catch((err) => {
+    dispatch({
+      type: ADD_INCOME_DATA_FAIL,
+      payload: err,
+    });
+  });
+};
+
