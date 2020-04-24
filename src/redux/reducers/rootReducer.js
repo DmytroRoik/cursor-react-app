@@ -1,4 +1,6 @@
 import { LOAD_ICONS_SUCCESS } from '../actions/root.actions';
+import { GET_TOTAL_BALANCE } from '../actions/profile.actions';
+
 const SWITCH_CHANGE = 'SWITCH_CHANGE';
 
 const initialState = {
@@ -18,6 +20,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         icons: action.payload,
+      };
+    }
+    case GET_TOTAL_BALANCE: {
+      return {
+        ...state,
+        balance: action.payload,
       };
     }
     default:

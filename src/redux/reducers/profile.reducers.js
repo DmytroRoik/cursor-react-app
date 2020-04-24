@@ -1,11 +1,7 @@
-import {
-  GET_USER_DATA,
-  GET_TOTAL_BALANCE,
-} from '../actions/profile.actions';
+import { GET_USER_DATA } from '../actions/profile.actions';
 
 const initialState = {
   data: [],
-  totalBalance: [],
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -15,12 +11,6 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         data: action.data,
       };
-    case GET_TOTAL_BALANCE: {
-      return {
-        ...state,
-        totalBalance: action.totalBalance,
-      };
-    }
     default:
       return state;
   }
