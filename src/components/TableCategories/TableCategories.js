@@ -28,9 +28,11 @@ const TableCategories = () => {
   const [isOpen, setIsOpenModal] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(loadCategories());
-  }, [dispatch]);
+  }, []);
+
   const deleteCategories = (id) => {
     setIsOpenModal(true);
     setCategoryId(id);
@@ -44,6 +46,7 @@ const TableCategories = () => {
   };
 
   const classes = useStyles();
+
   return (
     <>
       <TableContainer component={Paper}>
