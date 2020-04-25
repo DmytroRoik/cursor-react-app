@@ -57,6 +57,7 @@ export default function Dropdown({ onDelete, onEdit }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <div>
       <IconButton
@@ -71,8 +72,8 @@ export default function Dropdown({ onDelete, onEdit }) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem> <BtnEdit /> </MenuItem>
-        <MenuItem> <BtnDelete /> </MenuItem>
+        <MenuItem onClick={handleClose}> <BtnEdit /> </MenuItem>
+        <MenuItem onClick={handleClose}> <BtnDelete /> </MenuItem>
       </Menu>
     </div>
   );
