@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
-export default function Dropdown(props) {
+export default function Dropdown({ onDelete, onEdit }) {
   const useStyles = makeStyles(theme => ({
     button: {
       width: '105px',
@@ -24,6 +24,7 @@ export default function Dropdown(props) {
   const BtnEdit = () => (
     <div className="btnEdit">
       <Button
+        onClick={onEdit}
         variant="contained"
         color="primary"
         className={classes.button}
@@ -37,7 +38,7 @@ export default function Dropdown(props) {
   const BtnDelete = () => (
     <div className="btnDelete">
       <Button
-        onClick={props.onDelete}
+        onClick={onDelete}
         variant="contained"
         color="secondary"
         className={classes.button}
@@ -56,6 +57,7 @@ export default function Dropdown(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <div>
       <IconButton
@@ -70,8 +72,8 @@ export default function Dropdown(props) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem> <BtnEdit /> </MenuItem>
-        <MenuItem> <BtnDelete /> </MenuItem>
+        <MenuItem onClick={handleClose}> <BtnEdit /> </MenuItem>
+        <MenuItem onClick={handleClose}> <BtnDelete /> </MenuItem>
       </Menu>
     </div>
   );
