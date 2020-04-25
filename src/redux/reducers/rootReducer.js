@@ -2,10 +2,11 @@ import { ADD_CHARGE_DATA_SUCCESS,
   ADD_INCOME_DATA_SUCCESS } from '../actions/home.actions';
 
 import { LOAD_ICONS_SUCCESS } from '../actions/root.actions';
+
 const SWITCH_CHANGE = 'SWITCH_CHANGE';
 
 const initialState = {
-  balance: 265279.07,
+  balance: 0,
   switchName: 'charge',
   icons: [],
 };

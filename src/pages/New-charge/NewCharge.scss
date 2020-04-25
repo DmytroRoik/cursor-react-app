@@ -96,10 +96,19 @@
   &__error{
     border-color:orangered;
   }
+  &__input{
+    border-radius: 5px;
+    border: 1px solid $new-categ_inputs-border_color;
+    width: 350px;
+    font-size: 18px;
+    padding: 10px 5px;
+  }
+  
   &__select {
     border-radius: 5px;
     border: 1px solid $new-categ_inputs-border_color;
     width: 350px;
+    height: 43px;
     font-size: 18px;
     padding: 10px 5px;
   }

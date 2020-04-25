@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -17,100 +17,78 @@ import './NewCharge.scss';
 
 export default () => {
   const dispatch = useDispatch();
+  const formData = useRef({
+    total: '',
+    description: '',
+    date: new Date().valueOf(),
+    category: 0,
+  });
+
   const history = useHistory();
   const switchValue = useSelector(state => state.rootReducer.switchName);
-  const [total, setTotal] = useState('');
-  const [totalErr, setTotalErr] = useState(false);
-  const [totalClass, setTotalClass] = useState();
-
-  const [description, setDescription] = useState('');
-  const [descriptionErr, setDescriptionErr] = useState(false);
-  const [descriptionClass, setDescriptionClass] = useState();
-
-  const [date, setDate] = useState('');
-
-  // const [categorySelect, setCategory] = useState(34);
-
-  const changeTotal = (e) => {
-    setTotal(e.target.value);
-  };
-
-  const changeDescription = (e) => {
-    setDescription(e.target.value);
-  };
+  const [totalClass, setTotalClass] = useState('');
+  const [descriptionClass, setDescriptionClass] = useState('');
 
   const checkTotalErr = () => {
-    const reg = /^\d+$/;
-    if (reg.test(total) === false) {
-      setTotalErr(true);
-    } else if (reg.test(total) === true) {
-      setTotalErr(false);
-    }
+    const reg = /^[0-9]{1,}$/;
+    return !reg.test(formData.current.total);
   };
 
   const checkDescriptionErr = () => {
     const reg = /^[\D]{3,}/;
-    if (reg.test(description) === false) {
-      setDescriptionErr(true);
-    } else if (reg.test(description) === true) {
-      setDescriptionErr(false);
+    return !reg.test(formData.current.description);
+  };
+
+  const checkValidation = () => {
+    const { total, description } = formData.current;
+    if (checkTotalErr() && total.length > 0) {
+      setTotalClass('form__error');
+    } else {
+      setTotalClass('');
+    }
+    if (checkDescriptionErr() && description.length > 0) {
+      setDescriptionClass('form__error');
+    } else {
+      setDescriptionClass('');
     }
   };
 
-  useEffect(() => {
-    checkTotalErr();
-    if (totalErr === true && total.length > 0) {
-      setTotalClass('form__inputTotal form__error');
-    } else if (totalErr === false) {
-      setTotalClass('form__inputTotal');
-    }
-    checkDescriptionErr();
-    if (descriptionErr === true && description.length > 0) {
-      setDescriptionClass('form__inputDescription form__error');
-    } else if (descriptionErr === false) {
-      setDescriptionClass('form__inputDescription');
-    }
-  });
+  const changeValue = (value, name) => {
+    formData.current[name] = value;
+    checkValidation();
+  };
+
   useEffect(() => {
     dispatch(loadCategories());
   }, []);
 
-  const changeDataPickerValue = (e) => {
-    setDate(new Date(e.target.value).valueOf());
-  };
-
   const categories = useSelector(selectCategories);
   const options = categories.map(category => (
-    <option key={category.name} value={category.name}>
+    <option key={category.name} value={category.id}>
       {category.name}
     </option>
   ));
 
-  const changeCategory = (e) => {
-    //setCategory(e.target.value);
-  };
-
-
   const onButtonClick = () => {
-    if (totalErr === false && descriptionErr === false) {
+    const {
+      total, description, date, category,
+    } = formData.current;
+    if (!checkTotalErr() && !checkDescriptionErr() && category) {
       if (switchValue === 'charge') {
         dispatch(postTotalDescriptionChargeThunk(
           total,
-          description, date, history,
+          description, Date.parse(date), history, category,
         ));
       } else if (switchValue === 'income') {
         dispatch(postTotalDescriptionIncomeThunk(
           total,
-          description, date, history,
+          description, Date.parse(date), history, category,
         ));
       }
-      alert('ALL IS GOOOD');
-      console.log(total, description, date);
     } else {
-      alert('Вы ввели неправильные данные');
+      console.log('Вы ввели неправильные данные');
     }
   };
-
   return (
     <form className="form">
       <div className="form__item">
@@ -120,11 +98,9 @@ export default () => {
             id="input1"
             type="text"
             name="total"
-            // className="form__input"
-            className={totalClass}
+            className={`form__inputTotal ${totalClass}`}
             placeholder="total..."
-            onChange={changeTotal}
-
+            onInput={e => changeValue(e.target.value, 'total')}
           />
         </label>
       </div>
@@ -135,18 +111,23 @@ export default () => {
             id="input2"
             type="text"
             name="description"
-            // className="form__input"
-            className={descriptionClass}
+            className={`form__inputDescription ${descriptionClass}`}
             placeholder="description..."
-            onChange={changeDescription}
+            onInput={e => changeValue(e.target.value, 'description')}
           />
         </label>
       </div>
 
       <div className="form__item">
         <InputLabel htmlFor="age-native-helper">Select category</InputLabel>
-        <NativeSelect className="form__select" onChange={changeCategory}>
-          <option aria-label="None" value="Select category" disabled />
+        <NativeSelect
+          className="form__select"
+          onChange={e => changeValue(
+          e.target.value,
+          'category',
+          )}
+        >
+          <option aria-label="None" selected disabled>Select category </option>
           {options}
         </NativeSelect>
       </div>
@@ -157,7 +138,7 @@ export default () => {
           type="date"
           className="form__select"
           defaultValue="2020-04-11"
-          onChange={changeDataPickerValue}
+          onChange={e => changeValue(e.target.value.valueOf(), 'date')}
           InputLabelProps={{
             shrink: true,
           }}
