@@ -8,7 +8,10 @@ import categoriesReducer from './reducers/categories.reducer';
 
 
 const reducers = combineReducers({
-  rootReducer, homeReducer, chartsReducer, categoriesReducer,
+  rootReducer,
+  homeReducer,
+  chartsReducer,
+  categoriesReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));
