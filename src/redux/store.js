@@ -16,5 +16,3 @@ const store = createStore(reducers, applyMiddleware(thunk));
 window.srr = store;
 
 export default store;
-
-

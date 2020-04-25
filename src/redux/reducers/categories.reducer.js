@@ -1,4 +1,8 @@
-import { LOAD_CATEGORIES_SUCCESS, REMOVE_CATEGORY_SUCCESS } from '../actions/categories.actions';
+import {
+  LOAD_CATEGORIES_SUCCESS,
+  REMOVE_CATEGORY_SUCCESS,
+  EDIT_CATEGORY_SUCCESS,
+} from '../actions/categories.actions';
 
 const initialState = {
   categories: [],
@@ -16,6 +20,11 @@ const categoriesReducer = (state = initialState, action) => {
       return {
         ...state,
         categories: state.categories.filter(category => category.id !== action.payload),
+      };
+    }
+    case EDIT_CATEGORY_SUCCESS: {
+      return {
+        ...state,
       };
     }
     default:

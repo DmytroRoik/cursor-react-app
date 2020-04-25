@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
-import { Link } from 'react-router-dom';
 
 import Balance from '../../components/Balance';
 import BtnAddMore from '../../components/BtnAddMore';

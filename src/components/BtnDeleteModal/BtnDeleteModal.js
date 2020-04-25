@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import './BtnDeleteModal.scss';
 
-const AlertDialog = ({ open, onCancel, оnSubmit }) => (
+const AlertDialog = ({ open, onCancel, onSubmit }) => (
   <div>
     <Dialog
       open={open}
@@ -24,7 +24,7 @@ const AlertDialog = ({ open, onCancel, оnSubmit }) => (
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={оnSubmit}>
+        <Button onClick={onSubmit}>
           OK
         </Button>
         <Button onClick={onCancel}>
