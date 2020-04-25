@@ -11,11 +11,17 @@ import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
 import './TableCategories.scss';
+
+import { selectCategories } from '../../redux/selectors/categories.selectors';
+import {
+  editCategory, loadCategories,
+  removeCategory,
+} from '../../redux/actions/categories.actions';
+import EditDialog from '../BtnEditModal/BtnEditModal';
 import Dropdown from '../Dropdown/Dropdown';
 import AlertDialog from '../BtnDeleteModal/BtnDeleteModal';
-import { selectCategories } from '../../redux/selectors/categories.selectors';
-import { loadCategories,
-  removeCategory } from '../../redux/actions/categories.actions';
+
+import './TableCategories.scss';
 
 const TableCategories = () => {
   const categories = useSelector(selectCategories);
@@ -24,8 +30,8 @@ const TableCategories = () => {
       minWidth: 600,
     },
   });
-
   const [isOpen, setIsOpenModal] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
 
@@ -37,14 +43,22 @@ const TableCategories = () => {
     setIsOpenModal(true);
     setCategoryId(id);
   };
-
   const cancelDelete = () => {
     setIsOpenModal(false);
+  };
+  const cancelEdit = () => {
+    setIsEditOpen(false);
   };
   const removeItemById = () => {
     dispatch(removeCategory(categoryId));
   };
-
+  const editCategories = (id) => {
+    setIsEditOpen(true);
+    setCategoryId(id);
+  };
+  const submitEditingDataHandler = (data) => {
+    dispatch(editCategory(categoryId, data));
+  };
   const classes = useStyles();
 
   return (
@@ -63,7 +77,10 @@ const TableCategories = () => {
             {categories.map(category => (
               <TableRow key={category.id}>
                 <TableCell component="th" scope="row" >
-                  <Icon style={{ width: '30px' }} className={`fa ${category.icon.class}`} />
+                  <Icon
+                    style={{ width: '30px' }}
+                    className={`fa ${category.icon.class}`}
+                  />
                   {category.name}
                 </TableCell>
                 <TableCell >{category.description}</TableCell>
@@ -71,6 +88,7 @@ const TableCategories = () => {
                 <TableCell align="right"> {category.action}
                   <Dropdown
                     onDelete={() => deleteCategories(category.id)}
+                    onEdit={() => editCategories(category.id)}
                   />
                 </TableCell>
               </TableRow>
@@ -81,8 +99,15 @@ const TableCategories = () => {
       <AlertDialog
         open={isOpen}
         onCancel={cancelDelete}
-        оnSubmit={removeItemById}
+        onSubmit={removeItemById}
       />
+      {categoryId && <EditDialog
+        open={isEditOpen}
+        onCancel={cancelEdit}
+        оnSubmit={editCategories}
+        submitEditingDataHandler={submitEditingDataHandler}
+        id={categoryId}
+      />}
     </>
   );
 };
