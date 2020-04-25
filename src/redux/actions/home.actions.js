@@ -86,11 +86,11 @@ export const removeCategoryIncomes = id => (dispatch) => {
 };
 
 
-export const postTotalDescriptionChargeThunk = (
+export const postTotalDescriptionThunk = (
   totalValue,
-  descriptionValue, dateValue, history, category,
+  descriptionValue, dateValue, history, category, type,
 ) => (dispatch) => {
-  api.postNewCharge(totalValue, descriptionValue, dateValue, category)
+  api.postNewCharge(totalValue, descriptionValue, dateValue, category, type)
     .then((data) => {
       dispatch({
         type: ADD_CHARGE_DATA_SUCCESS,
@@ -104,23 +104,3 @@ export const postTotalDescriptionChargeThunk = (
       });
     });
 };
-
-export const postTotalDescriptionIncomeThunk = (
-  totalValue,
-  descriptionValue, dateValue, history, category,
-) => (dispatch) => {
-  api.postNewIncome(totalValue, descriptionValue, dateValue, category)
-    .then((data) => {
-      dispatch({
-        type: ADD_INCOME_DATA_SUCCESS,
-        payload: data,
-      });
-      history.push('/');
-    }).catch((err) => {
-      dispatch({
-        type: ADD_INCOME_DATA_FAIL,
-        payload: err,
-      });
-    });
-};
-

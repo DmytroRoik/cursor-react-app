@@ -10,28 +10,15 @@ const api = {
   removeCategory: id => BASE_CONNECTION.delete(`categories?id=${id}`),
   postNewCharge: (
     newTotal,
-    newDescription, dateValue, category,
+    newDescription, dateValue, category, type,
   ) => BASE_CONNECTION.post(
-    'charges?type=charge',
+    `charges?type=${type}`,
     {
       categoryId: category,
       description: newDescription,
       date: dateValue,
-      money: Number(newTotal),
+      money: newTotal,
       type: 'charge',
-    },
-  ),
-  postNewIncome: (
-    newTotal,
-    newDescription, dateValue, category,
-  ) => BASE_CONNECTION.post(
-    'charges?type=income',
-    {
-      categoryId: category,
-      description: newDescription,
-      date: dateValue,
-      money: Number(newTotal),
-      type: 'income',
     },
   ),
 

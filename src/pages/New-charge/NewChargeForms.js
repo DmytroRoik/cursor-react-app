@@ -8,8 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import AddBtn from './AddBtn';
 import {
-  postTotalDescriptionChargeThunk,
-  postTotalDescriptionIncomeThunk,
+  postTotalDescriptionThunk,
 } from '../../redux/actions/home.actions';
 import { loadCategories } from '../../redux/actions/categories.actions';
 
@@ -20,7 +19,7 @@ export default () => {
   const formData = useRef({
     total: '',
     description: '',
-    date: new Date().valueOf(),
+    date: new Date(),
     category: 0,
   });
 
@@ -74,17 +73,10 @@ export default () => {
       total, description, date, category,
     } = formData.current;
     if (!checkTotalErr() && !checkDescriptionErr() && category) {
-      if (switchValue === 'charge') {
-        dispatch(postTotalDescriptionChargeThunk(
-          total,
-          description, Date.parse(date), history, category,
-        ));
-      } else if (switchValue === 'income') {
-        dispatch(postTotalDescriptionIncomeThunk(
-          total,
-          description, Date.parse(date), history, category,
-        ));
-      }
+      dispatch(postTotalDescriptionThunk(
+        total,
+        description, Date.parse(date), history, category, switchValue,
+      ));
     } else {
       console.log('Вы ввели неправильные данные');
     }
