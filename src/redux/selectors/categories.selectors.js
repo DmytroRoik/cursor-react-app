@@ -1,3 +1,9 @@
 const selectCategories = state => state.categoriesReducer.categories;
 
-export { selectCategories };
+const selectName = state => state.categoriesReducer.name;
+const selectDescription = state => state.categoriesReducer.description;
+const selectIconId = state => state.categoriesReducer.iconId;
+
+export { selectCategories, selectName, selectDescription, selectIconId };
+
+
