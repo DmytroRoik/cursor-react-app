@@ -37,7 +37,7 @@ const dispatch = useDispatch();
   }, []);
 
 const menuItem = iconsServer.map((item, index) =>
-    <MenuItem value={index + 1}> 
+    <MenuItem value={index + 1} key={index}> 
           <Icon style={{width: '30px', fontSize: "20px"}} className={`fas ${item}`} id={index}/> 
           </MenuItem>
     ) 

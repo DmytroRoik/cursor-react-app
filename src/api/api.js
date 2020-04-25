@@ -13,9 +13,9 @@ const api = {
   getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
   removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
   postCategory: (name, description, indexId) => BASE_CONNECTION.post('/categories', {
-    "name": name,
-    "description": description,
-    "iconId": indexId,
+    name: name,
+    description: description,
+    iconId: indexId,
   }),
 };
 

@@ -21,7 +21,8 @@ export default () => {
     dispatch(setDescriptionCategory(e.target.value));
   };
 
-  const onButtonClick = () => {
+  const onButtonClick = (e) => {
+    e.preventDefault();
     console.log("clicked");
     dispatch(postCategory(name, description, iconId));
   };

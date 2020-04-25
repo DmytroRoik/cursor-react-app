@@ -5,7 +5,7 @@ const initialState = {
   categories: [],
   name: '',
   description: '',
-  iconId: ''
+  iconId: 0
 };
 
 const categoriesReducer = (state = initialState, action) => {
