@@ -43,7 +43,7 @@ const TableCategoriesCharges = () => {
 
   useEffect(() => {
     dispatch(loadCategoriesCharges());
-  }, [dispatch]);
+  }, []);
 
   const deleteCategoriesCharges = (id) => {
     setIsOpenModal(true);

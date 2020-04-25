@@ -44,7 +44,7 @@ const TableCategoriesCharges = () => {
 
   useEffect(() => {
     dispatch(loadCategoriesIncomes());
-  }, [dispatch]);
+  }, []);
 
   const deleteCategoriesIncomes = (id) => {
     setIsOpenModal(true);
