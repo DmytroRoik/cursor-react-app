@@ -1,38 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './NewCategories.scss';
 import SimpleSelect from './select';
-import { selectName, selectDescription, selectIconId } from '../../redux/selectors/categories.selectors';
+import { selectIconId } from '../../redux/selectors/categories.selectors';
 import { useSelector, useDispatch } from "react-redux";
-import { postCategory, setNameCategory, setDescriptionCategory } from '../../redux/actions/categories.actions';
+import { postCategory } from '../../redux/actions/categories.actions';
 import { useHistory } from 'react-router-dom';
 
 
 export default () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const name = useSelector(selectName);
-  const description = useSelector(selectDescription);
-  const iconId = useSelector(selectIconId);
+  const [buttonState, changeButtonState ] = useState(true);
+  const [name, changeName] = useState('');
+  const [description, changeDescription] = useState(''); 
+   
+const iconId = useSelector(selectIconId);
   
-  const changeInputName = (e) => {
-    dispatch(setNameCategory(e.target.value));
+const changeInputName = (e) => {
+    changeName(e.target.value);
   };
 
+  useEffect(() => {
+    if(name!='' && iconId!=0){
+      changeButtonState(false)
+    } else {
+      changeButtonState(true)
+    }
+  },[name,iconId]);
+  
   const changeInputDescription = (e) => {
-    dispatch(setDescriptionCategory(e.target.value));
+    changeDescription(e.target.value);   
   };
 
-  const onButtonClick = (e) => {
+  const onButtonSubmit = (e) => {
     e.preventDefault();
     console.log("clicked");
     dispatch(postCategory(name, description, iconId, history));
-    
   };
 
   return (
-    <form className="form">
+    <form className="form" onSubmit={onButtonSubmit}>
     <p className="form__text">Name</p>
     <label>
       <input type="text" name="name" className="form__input" onChange={changeInputName} />
@@ -41,11 +49,9 @@ export default () => {
     <label>
       <input type="text" name="description" className="form__input" onChange={changeInputDescription}/>
     </label>
-    <SimpleSelect />
-    
-    <button className="form__button" type="submit" onClick={onButtonClick}>Add new category</button>
-    
-  </form>
+    <SimpleSelect/>
+    <button className="form__button" type="submit" disabled={buttonState} >Add new category</button>
+    </form>
   )
 };
 

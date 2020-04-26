@@ -1,17 +1,12 @@
 import api from '../../api/api';
 
-
 export const LOAD_CATEGORIES_SUCCESS = ' LOAD_CATEGORIES_SUCCESS';
 export const LOAD_CATEGORIES_FAIL = ' LOAD_CATEGORIES_FAIL';
 export const REMOVE_CATEGORY_SUCCESS = 'REMOVE_CATEGORY_SUCCESS';
 export const REMOVE_CATEGORY_FAIL = ' REMOVE_CATEGORY_FAIL';
 export const ADD_NEW_CATEGORY_SUCCESS = 'ADD_NEW_CATEGORY_SUCCESS';
 export const ADD_NEW_CATEGORY_FAIL='ADD_NEW_CATEGORY_FAIL';
-export const SET_NAME_CATEGORY = 'SET_NAME_CATEGORY';
-export const SET_DESCRIPTION_CATEGORY = 'SET_DESCRIPTION_CATEGORY';
 export const SET_ICON_ID = 'SET_ICON_ID';
-
-
 
 export const loadCategories = () => (dispatch) => {
   api.getCategories().then((res) => {
@@ -28,7 +23,6 @@ export const loadCategories = () => (dispatch) => {
     });
   });
 };
-
 
 export const removeCategory = id => (dispatch) => {
   api.removeCategory(id).then((res) => {
@@ -63,24 +57,10 @@ export const postCategory = (name, description, indexId, history )=>(dispatch) =
   });
 };
 
-export const setNameCategory = (value) => {
-  return {
-    type: SET_NAME_CATEGORY,
-    value,
-  };
-};
-
-export const setDescriptionCategory = (value) => {
-  return {
-    type: SET_DESCRIPTION_CATEGORY,
-    value,
-  }
-};
-
 export const setIconId = (value) => {
-  return {
-    type: SET_ICON_ID,
-    value,
-  }
-};
+   return {
+     type: SET_ICON_ID,
+     value,
+   }
+ };
 

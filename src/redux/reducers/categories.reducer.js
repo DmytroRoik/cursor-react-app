@@ -1,5 +1,5 @@
 import { LOAD_CATEGORIES_SUCCESS, REMOVE_CATEGORY_SUCCESS, ADD_NEW_CATEGORY_SUCCESS,
-   SET_NAME_CATEGORY, SET_DESCRIPTION_CATEGORY, SET_ICON_ID } from '../actions/categories.actions';
+  SET_ICON_ID } from '../actions/categories.actions';
 
 const initialState = {
   categories: [],
@@ -28,18 +28,7 @@ const categoriesReducer = (state = initialState, action) => {
       categories: [...state.categories, action.payload.data.data],
       };
     }
-    case SET_NAME_CATEGORY: {
-      return {
-        ...state,
-      name: action.value
-      };
-    }
-    case SET_DESCRIPTION_CATEGORY: {
-      return {
-        ...state,
-        description: action.value
-      };
-    }
+   
     case SET_ICON_ID: {
       return {
         ...state,

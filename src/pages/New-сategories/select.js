@@ -10,7 +10,6 @@ import { selectIcons } from '../../redux/selectors/rootSelectors';
 import { loadIcons } from '../../redux/actions/root.actions';
 import { setIconId } from '../../redux/actions/categories.actions';
 
-
 const useStyles = makeStyles( theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -26,6 +25,7 @@ export default function SimpleSelect() {
   const [icon, setIcon] = React.useState('');
   const handleChange = (event) => {
     setIcon(event.target.value);
+    console.log(event);
     dispatch(setIconId(event.target.value))
   };
   
