@@ -1,5 +1,6 @@
 import api from '../../api/api';
 
+
 export const LOAD_CATEGORIES_SUCCESS = ' LOAD_CATEGORIES_SUCCESS';
 export const LOAD_CATEGORIES_FAIL = ' LOAD_CATEGORIES_FAIL';
 export const REMOVE_CATEGORY_SUCCESS = 'REMOVE_CATEGORY_SUCCESS';
@@ -45,13 +46,14 @@ export const removeCategory = id => (dispatch) => {
   });
 };
  
-export const postCategory = (name, description, indexId )=>(dispatch) =>{
-  api.postCategory(name,description,indexId).then((res) => {
+export const postCategory = (name, description, indexId, history )=>(dispatch) =>{
+  api.postCategory(name,description,indexId).then((data) => {
     dispatch({
       type: ADD_NEW_CATEGORY_SUCCESS,
-      payload: name, description, indexId,
-
+      payload: data,
+     
     });
+    history.push('/categories')
   }).catch((err) => {
     console.log('error');
     dispatch({

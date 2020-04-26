@@ -25,7 +25,7 @@ const categoriesReducer = (state = initialState, action) => {
     case ADD_NEW_CATEGORY_SUCCESS: {
       return {
        ...state,
-      categories: action.payload,
+      categories: [...state.categories, action.payload.data.data],
       };
     }
     case SET_NAME_CATEGORY: {

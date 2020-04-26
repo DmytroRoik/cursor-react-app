@@ -1,13 +1,16 @@
 import React from 'react';
+
 import './NewCategories.scss';
 import SimpleSelect from './select';
 import { selectName, selectDescription, selectIconId } from '../../redux/selectors/categories.selectors';
 import { useSelector, useDispatch } from "react-redux";
 import { postCategory, setNameCategory, setDescriptionCategory } from '../../redux/actions/categories.actions';
+import { useHistory } from 'react-router-dom';
 
 
 export default () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const name = useSelector(selectName);
   const description = useSelector(selectDescription);
@@ -24,7 +27,8 @@ export default () => {
   const onButtonClick = (e) => {
     e.preventDefault();
     console.log("clicked");
-    dispatch(postCategory(name, description, iconId));
+    dispatch(postCategory(name, description, iconId, history));
+    
   };
 
   return (
@@ -38,7 +42,9 @@ export default () => {
       <input type="text" name="description" className="form__input" onChange={changeInputDescription}/>
     </label>
     <SimpleSelect />
+    
     <button className="form__button" type="submit" onClick={onButtonClick}>Add new category</button>
+    
   </form>
   )
 };

@@ -18,7 +18,6 @@ import { loadCategories,
 
 const TableCategories = () => {
   const categories = useSelector(selectCategories);
-  console.log(categories)
   const useStyles = makeStyles({
     table: {
       minWidth: 600,
