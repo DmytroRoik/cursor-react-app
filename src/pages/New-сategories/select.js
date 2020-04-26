@@ -10,6 +10,7 @@ import { selectIcons } from '../../redux/selectors/rootSelectors';
 import { loadIcons } from '../../redux/actions/root.actions';
 import { setIconId } from '../../redux/actions/categories.actions';
 
+
 const useStyles = makeStyles( theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -20,7 +21,8 @@ const useStyles = makeStyles( theme => ({
   },
 }));
 
-export default function SimpleSelect() {
+
+export default const SimpleSelect = ({ getIconId, iconId }) => {
   const classes = useStyles();
   const [icon, setIcon] = React.useState('');
   const handleChange = (event) => {
@@ -28,6 +30,18 @@ export default function SimpleSelect() {
     console.log(event);
     dispatch(setIconId(event.target.value))
   };
+  const [age, setAge] = useState(iconId || '');
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+  const iconsServer = useSelector(selectIcons);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadIcons());
+    if (getIconId) {
+      getIconId(age);
+    }
+  }, [dispatch, age]);
   
 const iconsServer = useSelector(selectIcons).map(i => i.class);
 
@@ -36,11 +50,13 @@ const dispatch = useDispatch();
     dispatch(loadIcons());
   }, []);
 
-const menuItem = iconsServer.map((item, index) =>
+const menuItem = iconsServer.map((item, index) => (
     <MenuItem value={index + 1} key={index}> 
           <Icon style={{width: '30px', fontSize: "20px"}} className={`fas ${item}`} id={index}/> 
           </MenuItem>
-    ) 
+    )
+);
+
   return (
     <div>
       <FormControl className={classes.formControl} style={{marginTop: 22, marginLeft:0}}>
@@ -59,6 +75,5 @@ const menuItem = iconsServer.map((item, index) =>
   );
 }
 
-
-
+export default SimpleSelect;
 
