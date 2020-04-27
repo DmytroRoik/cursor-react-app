@@ -22,6 +22,8 @@ import {
   removeCategoryIncomes,
 } from '../../redux/actions/home.actions';
 
+import EditDialog from '../BtnEditModal/BtnEditModal';
+
 const TableCategoriesCharges = () => {
   const [columToSort, setColumToSort] = useState('');
   const [sortDirection, setSortDirection] = useState('desc');
@@ -29,6 +31,7 @@ const TableCategoriesCharges = () => {
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
   const incomes = useSelector(selectCategoriesIncomes);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   const invertdirection = {
     asc: 'desc',
@@ -57,6 +60,19 @@ const TableCategoriesCharges = () => {
 
   const removeItemById = () => {
     dispatch(removeCategoryIncomes(categoryId));
+  };
+
+  const editCategoriesIncome = (id) => {
+    setIsEditOpen(true);
+    setCategoryId(id);
+  };
+
+  const cancelEdit = () => {
+    setIsEditOpen(false);
+  };
+
+  const submitEditingDataHandler = (data) => {
+    console.log(data);
   };
 
   const classes = useStyles();
@@ -121,6 +137,7 @@ const TableCategoriesCharges = () => {
                 <TableCell align="right"> {income.action}
                   <Dropdown
                     onDelete={() => deleteCategoriesIncomes(income.id)}
+                    onEdit={() => editCategoriesIncome(income.id)}
                   />
                 </TableCell>
               </TableRow>
@@ -133,6 +150,14 @@ const TableCategoriesCharges = () => {
         onCancel={cancelDelete}
         onSubmit={removeItemById}
       />
+      {categoryId && <EditDialog
+        open={isEditOpen}
+        onCancel={cancelEdit}
+        type="income"
+        оnSubmit={editCategoriesIncome}
+        submitEditingDataHandler={submitEditingDataHandler}
+        id={categoryId}
+      />}
     </>
   );
 };
