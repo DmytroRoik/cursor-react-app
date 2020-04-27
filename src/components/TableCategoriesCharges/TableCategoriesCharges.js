@@ -105,7 +105,7 @@ const TableCategoriesCharges = () => {
           </TableHead>
           <TableBody>
             {data.map(charge => (
-              <TableRow key={charge.category}>
+              <TableRow key={charge.id}>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '30px' }}
