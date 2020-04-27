@@ -79,10 +79,38 @@
     margin-bottom: 20px;
     width: 350px;
   }
-  &__input {
+  &__inputTotal{
+    border-radius: 5px;
+    border: 1px solid $new-categ_inputs-border_color;
+    width: 340px;
+    font-size: 18px;
+    padding: 10px 5px;
+    outline: none;
+  }
+  &__inputDescription {
+    border-radius: 5px;
+    border: 1px solid $new-categ_inputs-border_color;
+    width: 340px;
+    font-size: 18px;
+    padding: 10px 5px;
+    outline: none;
+  }
+  &__error{
+    border-color:orangered;
+  }
+  &__input{
     border-radius: 5px;
     border: 1px solid $new-categ_inputs-border_color;
     width: 350px;
+    font-size: 18px;
+    padding: 10px 5px;
+  }
+  
+  &__select {
+    border-radius: 5px;
+    border: 1px solid $new-categ_inputs-border_color;
+    width: 350px;
+    height: 43px;
     font-size: 18px;
     padding: 10px 5px;
   }
