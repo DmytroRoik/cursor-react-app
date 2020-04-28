@@ -1,4 +1,3 @@
-import BtnSaveProfile from './BtnSaveProfile';
+import BtnSaveProfile from "./BtnSaveProfile";
 
 export default BtnSaveProfile;
-

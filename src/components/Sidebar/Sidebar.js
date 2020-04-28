@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Logo from '../../assets/img/logo.png';
 
@@ -12,18 +12,18 @@ const Sidebar = () => (
       <h2>MoneyTracker</h2>
     </div>
     <div className="list">
-      <Link to="/" href="/">
+      <NavLink exact to="/" href="/" activeClassName="activeLink">
         Home
-      </Link>
-      <Link to="/charts" href="/charts">
+      </NavLink>
+      <NavLink exact to="/charts" href="/charts" activeClassName="activeLink">
         Charts
-      </Link>
-      <Link to="/categories" href="/categories">
+      </NavLink>
+      <NavLink exact to="/categories" href="/categories" activeClassName="activeLink">
         Categories
-      </Link>
-      <Link to="/profile" href="/profile">
+      </NavLink>
+      <NavLink exact to="/profile" href="/profile" activeClassName="activeLink">
         Profile
-      </Link>
+      </NavLink >
     </div>
   </div>
 );

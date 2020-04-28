@@ -1,3 +1,6 @@
+import { ADD_CHARGE_DATA_SUCCESS,
+  ADD_INCOME_DATA_SUCCESS } from '../actions/home.actions';
+
 import {
   LOAD_ICONS_SUCCESS,
   GET_USER_DATA,
@@ -7,8 +10,8 @@ import {
 const SWITCH_CHANGE = 'SWITCH_CHANGE';
 
 const initialState = {
+  balance: 0,
   data: [],
-  balance: 265279.07,
   switchName: 'charge',
   icons: [],
 };
@@ -18,6 +21,16 @@ const rootReducer = (state = initialState, action) => {
     case SWITCH_CHANGE: {
       return {
         ...state, switchName: action.payload,
+      };
+    }
+    case ADD_CHARGE_DATA_SUCCESS: {
+      return {
+        ...state, balance: action.payload.data.totalBalance,
+      };
+    }
+    case ADD_INCOME_DATA_SUCCESS: {
+      return {
+        ...state, balance: action.payload.data.totalBalance,
       };
     }
     case LOAD_ICONS_SUCCESS: {

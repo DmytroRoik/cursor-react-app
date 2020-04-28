@@ -50,6 +50,9 @@ const EditDialog = ({
   const getIconId = (idValue) => {
     setIconId(idValue);
   };
+  const setDate = (e) => {
+    setChargeIncomeDate(e.target.value)
+  };
   const collectDataForPutRequest = () => {
     if (type === 'categories') {
       return {
@@ -164,6 +167,7 @@ const EditDialog = ({
                   type="date"
                   className="form__input"
                   value={moment(chargeIncomeDate).format('YYYY-MM-DD')}
+                  onChange={setDate}
                   InputLabelProps={{
                     shrink: true,
                   }}
