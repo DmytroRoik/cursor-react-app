@@ -18,6 +18,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
 import { selectCategoriesIncomes } from '../../redux/selectors/home.selectors';
 import {
+  editIncomes,
   loadCategoriesIncomes,
   removeCategoryIncomes,
 } from '../../redux/actions/home.actions';
@@ -72,7 +73,10 @@ const TableCategoriesCharges = () => {
   };
 
   const submitEditingDataHandler = (data) => {
-    console.log(data);
+    const {
+      id, categoryIdDat, description, date, money, type,
+    } = data;
+    dispatch(editIncomes(id, categoryIdDat, description, date, money, type));
   };
 
   const classes = useStyles();
@@ -123,7 +127,7 @@ const TableCategoriesCharges = () => {
           </TableHead>
           <TableBody>
             {data.map(income => (
-              <TableRow key={income.category}>
+              <TableRow key={income.description + Math.random()}>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '30px' }}

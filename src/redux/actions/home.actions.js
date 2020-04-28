@@ -1,4 +1,5 @@
 import api from '../../api/api';
+import { EDIT_CHARGE_FAIL } from '../actionTypes';
 
 export const LOAD_CATEGORIES_CHARGES_SUCCESS = ' LOAD_CATEGORIES_CHARGES_SUCCESS';
 export const LOAD_CATEGORIES_CHARGES_FAIL = ' LOAD_CATEGORIES_CHARGES_FAIL';
@@ -73,6 +74,29 @@ export const removeCategoryIncomes = id => (dispatch) => {
     console.log('error');
     dispatch({
       type: LOAD_CATEGORIES_INCOMES_FAIL,
+      payload: err,
+    });
+  });
+};
+
+export const editCharges = (id, categoryId, description, date, money, type) => (dispatch) => {
+  api.editCharges(id, categoryId, description, date, money, type).then(() => {
+    dispatch(loadCategoriesCharges());
+  }).catch((err) => {
+    console.log('error');
+    dispatch({
+      type: EDIT_CHARGE_FAIL,
+      payload: err,
+    });
+  });
+};
+export const editIncomes = (id, categoryId, description, date, money, type) => (dispatch) => {
+  api.editCharges(id, categoryId, description, date, money, type).then(() => {
+    dispatch(loadCategoriesIncomes());
+  }).catch((err) => {
+    console.log('error');
+    dispatch({
+      type: EDIT_CHARGE_FAIL,
       payload: err,
     });
   });

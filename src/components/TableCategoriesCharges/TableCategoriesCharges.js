@@ -18,6 +18,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
 import { selectCategoriesCharges } from '../../redux/selectors/home.selectors';
 import {
+  editCharges,
   loadCategoriesCharges,
   removeCategoryCharges,
 } from '../../redux/actions/home.actions';
@@ -73,7 +74,10 @@ const TableCategoriesCharges = () => {
   };
 
   const submitEditingDataHandler = (data) => {
-    console.log(data);
+    const {
+      id, categoryIdDat, description, date, money, type,
+    } = data;
+    dispatch(editCharges(id, categoryIdDat, description, date, money, type));
   };
 
   const removeItemById = () => {
@@ -120,7 +124,7 @@ const TableCategoriesCharges = () => {
           </TableHead>
           <TableBody>
             {data.map(charge => (
-              <TableRow key={charge.category}>
+              <TableRow key={charge.description + Math.random()}>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '30px' }}
