@@ -5,7 +5,7 @@ import rootReducer from './reducers/rootReducer';
 import homeReducer from './reducers/home.reducer';
 import chartsReducer from './reducers/charts.reducer';
 import categoriesReducer from './reducers/categories.reducer';
-import profileReducer from './reducers/profile.reducers';
+import profileReducer from './reducers/profile.reducer';
 
 
 const reducers = combineReducers({
