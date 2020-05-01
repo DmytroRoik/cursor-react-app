@@ -10,7 +10,6 @@ import { selectIcons } from '../../redux/selectors/rootSelectors';
 import { loadIcons } from '../../redux/actions/root.actions';
 import { setIconId } from '../../redux/actions/categories.actions';
 
-
 const useStyles = makeStyles( theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -21,42 +20,27 @@ const useStyles = makeStyles( theme => ({
   },
 }));
 
-
-export default const SimpleSelect = ({ getIconId, iconId }) => {
+export default function SimpleSelect() {
   const classes = useStyles();
-  const [icon, setIcon] = React.useState('');
+  const [icon, setIcon] = useState('');
   const handleChange = (event) => {
     setIcon(event.target.value);
     console.log(event);
     dispatch(setIconId(event.target.value))
   };
-  const [age, setAge] = useState(iconId || '');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  const iconsServer = useSelector(selectIcons);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadIcons());
-    if (getIconId) {
-      getIconId(age);
-    }
-  }, [dispatch, age]);
-  
-const iconsServer = useSelector(selectIcons).map(i => i.class);
 
-const dispatch = useDispatch();
+  const iconsServer = useSelector(selectIcons).map(i => i.class);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadIcons());
   }, []);
 
-const menuItem = iconsServer.map((item, index) => (
-    <MenuItem value={index + 1} key={index}> 
+  const menuItem = iconsServer.map((item, index) =>
+    <MenuItem value={index + 1} key={index.class}> 
           <Icon style={{width: '30px', fontSize: "20px"}} className={`fas ${item}`} id={index}/> 
           </MenuItem>
-    )
-);
-
+    ) 
   return (
     <div>
       <FormControl className={classes.formControl} style={{marginTop: 22, marginLeft:0}}>
@@ -65,7 +49,6 @@ const menuItem = iconsServer.map((item, index) => (
           labelId="demo-simple-select-label"
           value={icon}
           onChange={handleChange}
-          
           style={{width: 360, border: "1px solid #65656550", borderRadius: 5, padding: 5}}
         >
          {menuItem}
@@ -74,6 +57,3 @@ const menuItem = iconsServer.map((item, index) => (
     </div>
   );
 }
-
-export default SimpleSelect;
-

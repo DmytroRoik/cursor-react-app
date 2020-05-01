@@ -26,10 +26,10 @@ const api = {
   getIcons: () => BASE_CONNECTION.get('/icons'),
   getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
   removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
-  postCategory: (name, description, indexId) => BASE_CONNECTION.post('/categories', {
-    name: name,
-    description: description,
-    iconId: indexId,
+  postCategory: (name, description, iconId) => BASE_CONNECTION.post('/categories', {
+    name,
+    description,
+    iconId,
   }),
   editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
 };

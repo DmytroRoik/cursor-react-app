@@ -1,12 +1,8 @@
 import { LOAD_CATEGORIES_SUCCESS,
   REMOVE_CATEGORY_SUCCESS,
   ADD_NEW_CATEGORY_SUCCESS,
-  SET_ICON_ID } from '../actions/categories.actions';
-import {
-  LOAD_CATEGORIES_SUCCESS,
-  REMOVE_CATEGORY_SUCCESS,
-  EDIT_CATEGORY_SUCCESS,
-} from '../actions/categories.actions';
+  SET_ICON_ID, EDIT_CATEGORY_SUCCESS } from '../actions/categories.actions';
+
 
 const initialState = {
   categories: [],
