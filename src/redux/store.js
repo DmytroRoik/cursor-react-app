@@ -6,7 +6,6 @@ import homeReducer from './reducers/home.reducer';
 import chartsReducer from './reducers/charts.reducer';
 import categoriesReducer from './reducers/categories.reducer';
 
-
 const reducers = combineReducers({
   rootReducer,
   homeReducer,
@@ -15,7 +14,5 @@ const reducers = combineReducers({
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));
-
-window.srr = store;
 
 export default store;
