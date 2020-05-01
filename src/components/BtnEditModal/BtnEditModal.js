@@ -51,7 +51,7 @@ const EditDialog = ({
     setIconId(idValue);
   };
   const setDate = (e) => {
-    setChargeIncomeDate(e.target.value)
+    setChargeIncomeDate(e.target.value);
   };
   const collectDataForPutRequest = () => {
     if (type === 'categories') {
