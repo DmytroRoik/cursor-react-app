@@ -30,9 +30,7 @@ const api = {
     description,
     iconId,
   }),
-  editCharges: (id, categoryId, description, date, money, type) => BASE_CONNECTION.put('charges', {
-    id, categoryId, description, date, money, type,
-  }),
+  editCharges: data => BASE_CONNECTION.put('charges', data),
   editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
 };
 

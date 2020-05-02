@@ -124,7 +124,7 @@ const TableCategoriesCharges = () => {
           </TableHead>
           <TableBody>
             {data.map(charge => (
-              <TableRow key={charge.description + Math.random()}>
+              <TableRow key={charge.id}>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '30px' }}

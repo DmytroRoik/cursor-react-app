@@ -39,7 +39,6 @@ const TableCategoriesCharges = () => {
     desc: 'asc',
   };
 
-
   const useStyles = makeStyles({
     table: {
       minWidth: 600,
@@ -99,7 +98,6 @@ const TableCategoriesCharges = () => {
     ? <ArrowDropDownIcon />
     : <ArrowDropUpIcon />;
 
-
   const data = orderBy(incomes, columToSort, sortDirection);
 
   return (
@@ -127,7 +125,7 @@ const TableCategoriesCharges = () => {
           </TableHead>
           <TableBody>
             {data.map(income => (
-              <TableRow key={income.description + Math.random()}>
+              <TableRow key={income.id}>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '30px' }}
@@ -165,6 +163,5 @@ const TableCategoriesCharges = () => {
     </>
   );
 };
-
 
 export default TableCategoriesCharges;

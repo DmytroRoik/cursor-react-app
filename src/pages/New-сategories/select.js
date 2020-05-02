@@ -10,7 +10,7 @@ import { selectIcons } from '../../redux/selectors/rootSelectors';
 import { loadIcons } from '../../redux/actions/root.actions';
 import { setIconId } from '../../redux/actions/categories.actions';
 
-const useStyles = makeStyles( theme => ({
+const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -23,35 +23,35 @@ const useStyles = makeStyles( theme => ({
 export default function SimpleSelect() {
   const classes = useStyles();
   const [icon, setIcon] = useState('');
-  const handleChange = (event) => {
-    setIcon(event.target.value);
-    console.log(event);
-    dispatch(setIconId(event.target.value))
-  };
-
+  const dispatch = useDispatch();
   const iconsServer = useSelector(selectIcons).map(i => i.class);
 
-  const dispatch = useDispatch();
+  const handleChange = (event) => {
+    setIcon(event.target.value);
+    dispatch(setIconId(event.target.value));
+  };
+
   useEffect(() => {
     dispatch(loadIcons());
   }, []);
 
-  const menuItem = iconsServer.map((item, index) =>
-    <MenuItem value={index + 1} key={index.class}> 
-          <Icon style={{width: '30px', fontSize: "20px"}} className={`fas ${item}`} id={index}/> 
-          </MenuItem>
-    ) 
+  const menuItem = iconsServer.map((item, index) => (<MenuItem value={index} key={item}>
+    <Icon style={{ width: '30px', fontSize: '20px' }} className={`fas ${item}`} id={index} />
+  </MenuItem>));
+
   return (
     <div>
-      <FormControl className={classes.formControl} style={{marginTop: 22, marginLeft:0}}>
-        <InputLabel id="demo-simple-select-label" style={{fontSize: 18}}>Select icon</InputLabel>
+      <FormControl className={classes.formControl} style={{ marginTop: 22, marginLeft: 0 }}>
+        <InputLabel id="demo-simple-select-label" style={{ fontSize: 18 }}>Select icon</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           value={icon}
           onChange={handleChange}
-          style={{width: 360, border: "1px solid #65656550", borderRadius: 5, padding: 5}}
+          style={{
+ width: 360, border: '1px solid #65656550', borderRadius: 5, padding: 5,
+}}
         >
-         {menuItem}
+          {menuItem}
         </Select>
       </FormControl>
     </div>

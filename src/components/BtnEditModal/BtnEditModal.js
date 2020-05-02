@@ -16,7 +16,7 @@ import {
   selectCategoriesIncomes,
 } from '../../redux/selectors/home.selectors';
 import { loadCategories } from '../../redux/actions/categories.actions';
-import { selectCategories } from '../../redux/selectors/categories.selectors';
+import { selectCategories, selectIconId } from '../../redux/selectors/categories.selectors';
 import SimpleSelect from '../../pages/New-сategories/select';
 
 import './BtnEditModal.scss';
@@ -41,30 +41,29 @@ const EditDialog = ({
   const categoryData = useSelector(selectCategories).find(category => category.id === id);
   const chargeIncomeData = useSelector(type === 'charge' ? selectCategoriesCharges : selectCategoriesIncomes).find(item => item.id === id);
   const categories = useSelector(selectCategories);
+  const iconIdSelector = useSelector(selectIconId) + 1; // I don't know who adjust iconId data after me, but now, if there isn't+1 value , app doesn't work
   const dispatch = useDispatch();
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setDescription] = useState('');
   const [payloadMoney, setPayloadMoney] = useState('');
   const [chargeIncomeDate, setChargeIncomeDate] = useState('');
-  const [iconId, setIconId] = useState(0);
   const [categoryId, setCategoryId] = useState(type === 'categories' ? 0 : chargeIncomeData.category.id);
   const changeInputState = (setFunctionHook, data) => {
     setFunctionHook(data);
   };
-  const getIconId = (idValue) => {
-    setIconId(idValue);
-  };
+
   const setDate = (e) => {
     setChargeIncomeDate(e.target.value);
   };
   const collectDataForPutRequest = () => {
     if (type === 'categories') {
-      return {
+      const data = {
         id,
         name: categoryName,
         description: categoryDescription,
-        iconId,
+        iconId: iconIdSelector,
       };
+      return data;
     }
     return {
       id,
@@ -92,7 +91,7 @@ const EditDialog = ({
   }, [categoryData, chargeIncomeData]);
 
   const options = categories.map(category => (
-    <option key={category.name} value={category.name}>
+    <option key={category.id} value={category.name}>
       {category.name}
     </option>
   ));
@@ -106,15 +105,15 @@ const EditDialog = ({
         >
           <DialogTitle id="alert-dialog-title">
             <span className="dialog_title">
-              {type === 'categories' ? 'Edit category' : null}
-              {type === 'charge' ? 'Edit charge' : null}
-              {type === 'income' ? 'Edit income' : null}
+              {type === 'categories' && 'Edit category'}
+              {type === 'charge' && 'Edit charge'}
+              {type === 'income' && 'Edit income'}
             </span>
           </DialogTitle>
           <DialogContent>
             <form className={classes.root} noValidate autoComplete="off">
               {/* CATEGORIES EDIT */}
-              {type === 'categories' ? (
+              {type === 'categories' && (
                 <>
                   <TextField
                     onChange={e =>
@@ -130,14 +129,12 @@ const EditDialog = ({
                     value={categoryDescription}
                     label="Category Description"
                   />
-                  <SimpleSelect
-                    getIconId={getIconId}
-                    iconId={categoryData.icon.id || 1}
-                  />
+                  <SimpleSelect />
                 </>
-              ) : null}
+              )
+              }
 
-              {type === 'income' || type === 'charge' ? (
+              {(type === 'income' || type === 'charge') && (
                 <>
                   <div className="form__item">
                     <InputLabel htmlFor="age-native-helper">
@@ -179,7 +176,8 @@ const EditDialog = ({
                     }}
                   />
                 </>
-              ) : null}
+              )
+              }
             </form>
           </DialogContent>
           <DialogActions>
