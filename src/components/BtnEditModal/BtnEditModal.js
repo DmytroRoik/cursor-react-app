@@ -31,7 +31,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EditDialog = ({
-  id, open, type, onCancel, submitEditingDataHandler,
+  id = 0,
+  open,
+  type,
+  onCancel,
+  submitEditingDataHandler,
 }) => {
   const classes = useStyles();
   const categoryData = useSelector(selectCategories).find(category => category.id === id);
@@ -73,15 +77,17 @@ const EditDialog = ({
   };
 
   useEffect(() => {
-    if (type === 'categories') {
-      setCategoryName(categoryData.name);
-      setDescription(categoryData.description);
-    } else if (type === 'income' || type === 'charge') {
-      setCategoryName(chargeIncomeData.category.name);
-      setPayloadMoney(chargeIncomeData.money);
-      setDescription(chargeIncomeData.description);
-      setChargeIncomeDate(chargeIncomeData.date);
-      dispatch(loadCategories());
+    if (categoryData) {
+      if (type === 'categories') {
+        setCategoryName(categoryData.name);
+        setDescription(categoryData.description);
+      } else if (type === 'income' || type === 'charge') {
+        setCategoryName(chargeIncomeData.category.name);
+        setPayloadMoney(chargeIncomeData.money);
+        setDescription(chargeIncomeData.description);
+        setChargeIncomeDate(chargeIncomeData.date);
+        dispatch(loadCategories());
+      }
     }
   }, [categoryData, chargeIncomeData]);
 
@@ -141,8 +147,7 @@ const EditDialog = ({
                       className="form__input"
                       value={categoryName}
                       onChange={e =>
-                        setCategoryId(categories.find(item => item.name === e.target.value)
-                          .id)
+                        setCategoryId(categories.find(item => item.name === e.target.value).id)
                       }
                     >
                       {options}
