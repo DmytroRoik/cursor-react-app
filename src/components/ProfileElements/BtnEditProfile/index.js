@@ -1,3 +1,3 @@
-import BtnEditProfile from "./BtnEditProfile";
+import BtnEditProfile from './BtnEditProfile';
 
 export default BtnEditProfile;
