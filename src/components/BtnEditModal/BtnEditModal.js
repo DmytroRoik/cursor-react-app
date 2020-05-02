@@ -43,7 +43,7 @@ const EditDialog = ({
   const [payloadMoney, setPayloadMoney] = useState('');
   const [chargeIncomeDate, setChargeIncomeDate] = useState('');
   const [iconId, setIconId] = useState(0);
-  const [categoryId, setCategoryId] = useState(chargeIncomeData.category.id);
+  const [categoryId, setCategoryId] = useState(type === 'categories' ? 0 : chargeIncomeData.category.id);
   const changeInputState = (setFunctionHook, data) => {
     setFunctionHook(data);
   };
@@ -51,7 +51,7 @@ const EditDialog = ({
     setIconId(idValue);
   };
   const setDate = (e) => {
-    setChargeIncomeDate(e.target.value)
+    setChargeIncomeDate(e.target.value);
   };
   const collectDataForPutRequest = () => {
     if (type === 'categories') {
@@ -92,102 +92,104 @@ const EditDialog = ({
   ));
   return (
     <>
-      <Dialog
-        open={open}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          <span className="dialog_title">
-            {type === 'categories' ? 'Edit category' : null}
-            {type === 'charge' ? 'Edit charge' : null}
-            {type === 'income' ? 'Edit income' : null}
-          </span>
-        </DialogTitle>
-        <DialogContent>
-          <form className={classes.root} noValidate autoComplete="off">
-            {/* CATEGORIES EDIT */}
-            {type === 'categories' ? (
-              <>
-                <TextField
-                  onChange={e =>
-                    changeInputState(setCategoryName, e.target.value)
-                  }
-                  value={categoryName}
-                  label="Category Name*"
-                />
-                <TextField
-                  onChange={e =>
-                    changeInputState(setDescription, e.target.value)
-                  }
-                  value={categoryDescription}
-                  label="Category Description"
-                />
-                <SimpleSelect
-                  getIconId={getIconId}
-                  iconId={categoryData.icon.id || 1}
-                />
-              </>
-            ) : null}
-
-            {type === 'income' || type === 'charge' ? (
-              <>
-                <div className="form__item">
-                  <InputLabel htmlFor="age-native-helper">
-                    Select category
-                  </InputLabel>
-                  <NativeSelect
-                    className="form__input"
-                    value={categoryName}
+      {categoryData && (
+        <Dialog
+          open={open}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            <span className="dialog_title">
+              {type === 'categories' ? 'Edit category' : null}
+              {type === 'charge' ? 'Edit charge' : null}
+              {type === 'income' ? 'Edit income' : null}
+            </span>
+          </DialogTitle>
+          <DialogContent>
+            <form className={classes.root} noValidate autoComplete="off">
+              {/* CATEGORIES EDIT */}
+              {type === 'categories' ? (
+                <>
+                  <TextField
                     onChange={e =>
-                      setCategoryId(categories.find(item => item.name === e.target.value)
-                          .id)
+                      changeInputState(setCategoryName, e.target.value)
                     }
-                  >
-                    {options}
-                  </NativeSelect>
-                </div>
-                <TextField
-                  label="Description"
-                  value={categoryDescription}
-                  onChange={e =>
-                    changeInputState(setDescription, e.target.value)
-                  }
-                />
-                <TextField
-                  label="Money"
-                  value={payloadMoney}
-                  onChange={e =>
-                    changeInputState(setPayloadMoney, e.target.value)
-                  }
-                />
-                <TextField
-                  id="date"
-                  label="Date"
-                  type="date"
-                  className="form__input"
-                  value={moment(chargeIncomeDate).format('YYYY-MM-DD')}
-                  onChange={setDate}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </>
-            ) : null}
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              submitEditingDataHandler(collectDataForPutRequest());
-              onCancel();
-            }}
-          >
-            Save
-          </Button>
-          <Button onClick={onCancel}>Cancel</Button>
-        </DialogActions>
-      </Dialog>
+                    value={categoryName}
+                    label="Category Name*"
+                  />
+                  <TextField
+                    onChange={e =>
+                      changeInputState(setDescription, e.target.value)
+                    }
+                    value={categoryDescription}
+                    label="Category Description"
+                  />
+                  <SimpleSelect
+                    getIconId={getIconId}
+                    iconId={categoryData.icon.id || 1}
+                  />
+                </>
+              ) : null}
+
+              {type === 'income' || type === 'charge' ? (
+                <>
+                  <div className="form__item">
+                    <InputLabel htmlFor="age-native-helper">
+                      Select category
+                    </InputLabel>
+                    <NativeSelect
+                      className="form__input"
+                      value={categoryName}
+                      onChange={e =>
+                        setCategoryId(categories.find(item => item.name === e.target.value)
+                          .id)
+                      }
+                    >
+                      {options}
+                    </NativeSelect>
+                  </div>
+                  <TextField
+                    label="Description"
+                    value={categoryDescription}
+                    onChange={e =>
+                      changeInputState(setDescription, e.target.value)
+                    }
+                  />
+                  <TextField
+                    label="Money"
+                    value={payloadMoney}
+                    onChange={e =>
+                      changeInputState(setPayloadMoney, e.target.value)
+                    }
+                  />
+                  <TextField
+                    id="date"
+                    label="Date"
+                    type="date"
+                    className="form__input"
+                    value={moment(chargeIncomeDate).format('YYYY-MM-DD')}
+                    onChange={setDate}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </>
+              ) : null}
+            </form>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                submitEditingDataHandler(collectDataForPutRequest());
+                onCancel();
+              }}
+            >
+              Save
+            </Button>
+            <Button onClick={onCancel}>Cancel</Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };
