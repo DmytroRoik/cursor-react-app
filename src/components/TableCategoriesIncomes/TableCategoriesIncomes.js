@@ -18,9 +18,12 @@ import Dropdown from '../Dropdown/Dropdown';
 import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
 import { selectCategoriesIncomes } from '../../redux/selectors/home.selectors';
 import {
+  editIncomes,
   loadCategoriesIncomes,
   removeCategoryIncomes,
 } from '../../redux/actions/home.actions';
+
+import EditDialog from '../BtnEditModal/BtnEditModal';
 
 const TableCategoriesCharges = () => {
   const [columToSort, setColumToSort] = useState('');
@@ -29,12 +32,12 @@ const TableCategoriesCharges = () => {
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
   const incomes = useSelector(selectCategoriesIncomes);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   const invertdirection = {
     asc: 'desc',
     desc: 'asc',
   };
-
 
   const useStyles = makeStyles({
     table: {
@@ -59,6 +62,22 @@ const TableCategoriesCharges = () => {
     dispatch(removeCategoryIncomes(categoryId));
   };
 
+  const editCategoriesIncome = (id) => {
+    setIsEditOpen(true);
+    setCategoryId(id);
+  };
+
+  const cancelEdit = () => {
+    setIsEditOpen(false);
+  };
+
+  const submitEditingDataHandler = (data) => {
+    const {
+      id, categoryIdDat, description, date, money, type,
+    } = data;
+    dispatch(editIncomes(id, categoryIdDat, description, date, money, type));
+  };
+
   const classes = useStyles();
 
   const labels = [
@@ -78,7 +97,6 @@ const TableCategoriesCharges = () => {
   const icon = sortDirection === 'asc'
     ? <ArrowDropDownIcon />
     : <ArrowDropUpIcon />;
-
 
   const data = orderBy(incomes, columToSort, sortDirection);
 
@@ -121,6 +139,7 @@ const TableCategoriesCharges = () => {
                 <TableCell align="right"> {income.action}
                   <Dropdown
                     onDelete={() => deleteCategoriesIncomes(income.id)}
+                    onEdit={() => editCategoriesIncome(income.id)}
                   />
                 </TableCell>
               </TableRow>
@@ -133,9 +152,16 @@ const TableCategoriesCharges = () => {
         onCancel={cancelDelete}
         onSubmit={removeItemById}
       />
+      {categoryId && <EditDialog
+        open={isEditOpen}
+        onCancel={cancelEdit}
+        type="income"
+        оnSubmit={editCategoriesIncome}
+        submitEditingDataHandler={submitEditingDataHandler}
+        id={categoryId}
+      />}
     </>
   );
 };
-
 
 export default TableCategoriesCharges;
