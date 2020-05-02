@@ -29,7 +29,7 @@ export default () => {
   const [descriptionClass, setDescriptionClass] = useState('');
 
   const checkTotalErr = () => {
-    const reg = /^[0-9]{1,}$/;
+    const reg = /^[0-9.]{1,}$/;
     return !reg.test(formData.current.total);
   };
 

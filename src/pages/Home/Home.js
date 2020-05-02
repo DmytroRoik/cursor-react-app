@@ -1,30 +1,57 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
 import { Link } from 'react-router-dom';
-
+import moment from 'moment';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
 import BtnAddMore from '../../components/BtnAddMore';
 import Balance from '../../components/Balance';
 import TableCategoriesCharges from '../../components/TableCategoriesCharges';
 import TableCategoriesIncomes from '../../components/TableCategoriesIncomes';
-
+import { getChargesFromThunk } from '../../redux/actions/home.actions';
 import './Home.scss';
 
+
 const Home = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState('charges');
-  const handleChange = (event, newValue) => {
+  const handleChange = (newValue) => {
     setValue(newValue);
   };
   const balance = useSelector(selectBalance);
 
-  const [week, setWeek] = React.useState('week');
+  const [week, setWeek] = useState('week');
 
   const handleWeek = (event) => {
     setWeek(event.target.value);
   };
+
+  // my code
+  const dateWeekAgo = moment().startOf('day').subtract(1, 'w').valueOf();
+  console.log(dateWeekAgo);
+  const dateMonthAgo = moment().startOf('day').subtract(1, 'months').valueOf();
+  // console.log(dateMonthAgo);
+
+  useEffect(() => {
+    if (week) {
+      dispatch(getChargesFromThunk(dateWeekAgo, value));
+    } else {
+      dispatch(getChargesFromThunk(dateMonthAgo, value));
+    }
+  }, [dateWeekAgo, dateMonthAgo, dispatch, week]);
+
+  const getMonth = () => {
+    setWeek(false);
+    dispatch(getChargesFromThunk(dateMonthAgo, value));
+  };
+
+  const getWeek = () => {
+    setWeek(true);
+    dispatch(getChargesFromThunk(dateWeekAgo, value));
+  };
+
 
   return (
     <div className="home">
@@ -58,8 +85,8 @@ const Home = () => {
               value={week}
               onChange={handleWeek}
             >
-              <div value="week">this week</div>
-              <div value="month">this month</div>
+              <option value="week" onClick={getWeek}>this week</option>
+              <option value="month"onClick={getMonth}>this month</option>
             </Select>
           </div>
 
@@ -84,8 +111,8 @@ const Home = () => {
               value={week}
               onChange={handleWeek}
             >
-              <div value="week">this week</div>
-              <div value="month">this month</div>
+              <option value="week" onClick={getWeek}>this week</option>
+              <option value="month" onClick={getMonth}>this month</option>
             </Select>
           </div>
           <Link to="/new-charge" href="/new-charge">
