@@ -8,16 +8,16 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
 export default function CheckboxProfile() {
-    const GreenCheckbox = withStyles({
+  const GreenCheckbox = withStyles({
     root: {
       '&$checked': {
         color: green[600],
       },
     },
     checked: {},
-  })((props) => <Checkbox color="default" {...props} />);
+  })(props => <Checkbox color="default" {...props} />);
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(theme => ({
     root: {
       '& > *': {
         width: '5ch',
@@ -27,29 +27,29 @@ export default function CheckboxProfile() {
 
   const [state, setState] = React.useState({
     checkedG: true,
-  });  
+  });
 
   const classes = useStyles();
-  
+
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
-  }; 
-  
+  };
+
   return (
-    <div class="checkboxProfile">
+    <div className="checkboxProfile">
       <FormGroup row>
-        <FormControlLabel 
+        <FormControlLabel
           control={<GreenCheckbox checked={state.checkedG} onChange={handleChange} name="checkedG" />}
-          label="Notify when budget will lower" 
+          label="Notify when budget will lower"
         />
-          <div >
-            <Grid container spacing={1} alignItems="flex-end">
-              <Grid className={classes.root}>
-                <TextField id="input-with-icon-grid" label="" />
-              </Grid>
-              <Grid item> $ </Grid>
+        <div >
+          <Grid container spacing={1} alignItems="flex-end">
+            <Grid className={classes.root}>
+              <TextField id="input-with-icon-grid" label="" />
             </Grid>
-          </div>
+            <Grid item> $ </Grid>
+          </Grid>
+        </div>
       </FormGroup>
     </div>
   );

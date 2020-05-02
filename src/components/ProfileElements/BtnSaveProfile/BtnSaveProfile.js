@@ -4,9 +4,8 @@ import './BtnSaveProfile.scss';
 
 const BtnSaveProfile = () => (
   <div className="btnSaveProfile">
-    <Button  variant="contained" color="primary">Save</Button>
-  </div>  
+    <Button variant="contained" color="primary">Save</Button>
+  </div>
 );
 
 export default BtnSaveProfile;
-

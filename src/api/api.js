@@ -1,6 +1,5 @@
 import * as axios from 'axios';
 
-
 const BASE_CONNECTION = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
@@ -22,7 +21,7 @@ const api = {
       type: 'charge',
     },
   ),
-  getUserData: () => BASE_CONNECTION.get('/users/current'),
+  getUserData: () => BASE_CONNECTION.get('users/current'),
   getIcons: () => BASE_CONNECTION.get('/icons'),
   getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
   removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),

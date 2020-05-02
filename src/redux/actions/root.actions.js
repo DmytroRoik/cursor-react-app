@@ -24,11 +24,11 @@ export const loadIcons = () => (dispatch) => {
   });
 };
 
-export const getTotalBalanceThunk = (dispatch) => {
+export const getTotalBalanceThunk = () => (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
       type: GET_TOTAL_BALANCE,
-      payload: response.totalBalance,
+      payload: response.data.totalBalance,
     });
   }).catch((error) => {
     dispatch({
@@ -38,11 +38,11 @@ export const getTotalBalanceThunk = (dispatch) => {
   });
 };
 
-export const getUserDataThunk = (dispatch) => {
+export const getUserDataThunk = () => (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
       type: GET_USER_DATA,
-      payload: response.data,
+      payload: response.data.data,
     });
   }).catch((error) => {
     dispatch({

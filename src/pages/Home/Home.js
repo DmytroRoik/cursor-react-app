@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
 import { Link } from 'react-router-dom';
 
+import { getTotalBalanceThunk } from '../../redux/actions/root.actions';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
 import BtnAddMore from '../../components/BtnAddMore';
 import Balance from '../../components/Balance';
@@ -19,17 +20,19 @@ const Home = () => {
     setValue(newValue);
   };
   const balance = useSelector(selectBalance);
-
+  const dispatch = useDispatch();
   const [week, setWeek] = React.useState('week');
 
   const handleWeek = (event) => {
     setWeek(event.target.value);
   };
 
+  useEffect(() => {
+    dispatch(getTotalBalanceThunk());
+  }, [balance]);
   return (
     <div className="home">
       <Balance total={balance} />
-
       <Tabs
         value={value}
         onChange={handleChange}
