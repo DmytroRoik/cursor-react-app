@@ -29,7 +29,7 @@
   }
   &__button {
     text-align: center;
-    width: 330px;
+    width: 360px;
     margin-top: 35px;
     padding: 12px;
     font-size: 16px;  
@@ -42,6 +42,14 @@
       transform: scale(1.05);
       transition: all 0.3s;
       cursor: pointer;
+    }
+    &:disabled {
+      background-color: grey;
+    }
+    &:disabled:hover {
+      transform: scale(1);
+      background-color: grey;
+      cursor: not-allowed;
     }
   }
 }

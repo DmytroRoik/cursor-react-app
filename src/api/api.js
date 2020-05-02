@@ -1,5 +1,6 @@
 import * as axios from 'axios';
 
+
 const BASE_CONNECTION = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
@@ -27,6 +28,11 @@ const api = {
   removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
   putProfile: () => BASE_CONNECTION.put('/users'),
   getAvatars: () => BASE_CONNECTION.get('/avatars'),
+  postCategory: (name, description, iconId) => BASE_CONNECTION.post('/categories', {
+    name,
+    description,
+    iconId,
+  }),
   editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
 };
 
