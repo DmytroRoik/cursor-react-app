@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url>
+    <loc>https://money-tracker-app.netlify.app/</loc>
+  </url>
+  <url>
+    <loc>https://money-tracker-app.netlify.app/charts</loc>
+  </url>
+  <url>
+    <loc>https://money-tracker-app.netlify.app/categories</loc>
+  </url>
+  <url>
+    <loc>https://money-tracker-app.netlify.app/profile</loc>
+  </url>
+  <url>
+    <loc>https://money-tracker-app.netlify.app/new-charge</loc>
+  </url>
+  <url>
+    <loc>https://money-tracker-app.netlify.app/new-categories</loc>
+  </url>
+
+  </urlset>
