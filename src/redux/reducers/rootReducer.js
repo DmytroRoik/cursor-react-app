@@ -11,7 +11,10 @@ const SWITCH_CHANGE = 'SWITCH_CHANGE';
 
 const initialState = {
   balance: 0,
-  data: [],
+  data: {
+    name: '',
+    email: '',
+  },
   switchName: 'charge',
   icons: [],
 };
@@ -42,7 +45,10 @@ const rootReducer = (state = initialState, action) => {
     case GET_USER_DATA:
       return {
         ...state,
-        data: action.data,
+        data: {
+          name: action.payload.name,
+          email: action.payload.email,
+        },
       };
     case GET_TOTAL_BALANCE: {
       return {
@@ -61,4 +67,3 @@ export const switchChanger = text => ({
 });
 
 export default rootReducer;
-
