@@ -25,6 +25,7 @@ export const ADD_INCOME_DATA_FAIL = 'LOAD_INCOME_DATA_FAIL';
 export const GET_CHARGES_FROM_REQUEST = 'GET_CHARGES_FROM_REQUEST';
 export const GET_CHARGES_FROM_SUCCESS = 'GET_CHARGES_FROM_SUCCESS';
 export const GET_CHARGES_FROM_FAIL = 'GET_CHARGES_FROM_FAIL';
+export const GET_INCOMES_FROM_SUCCESS = 'GET_INCOMES_FROM_SUCCESS';
 
 export const loadCategoriesCharges = () => (dispatch) => {
   api.getCharges('charge').then((res) => {
@@ -121,10 +122,17 @@ export const getChargesFromThunk = (date, type) => async (dispatch) => {
 
   try {
     const charges = await api.getChargesFrom(date, type);
-    dispatch({
-      type: GET_CHARGES_FROM_SUCCESS,
-      payload: charges.data.data,
-    });
+    if (type === 'charge') {
+      dispatch({
+        type: GET_CHARGES_FROM_SUCCESS,
+        payload: charges.data.data,
+      });
+    } else {
+      dispatch({
+        type: GET_INCOMES_FROM_SUCCESS,
+        payload: charges.data.data,
+      });
+    }
   } catch (err) {
     dispatch({
       type: GET_CHARGES_FROM_FAIL,
