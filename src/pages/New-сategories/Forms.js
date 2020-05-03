@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 import './NewCategories.scss';
 import SimpleSelect from './select';
 import { selectIconId } from '../../redux/selectors/categories.selectors';
-import { useSelector, useDispatch } from 'react-redux';
 import { postCategory } from '../../redux/actions/categories.actions';
-import { useHistory } from 'react-router-dom';
-
 
 export default () => {
   const dispatch = useDispatch();

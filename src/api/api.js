@@ -12,7 +12,7 @@ const api = {
   postNewCharge: (
     newTotal,
     newDescription, dateValue, category, type,
-  ) => BASE_CONNECTION.post(пше 
+  ) => BASE_CONNECTION.post(
     `charges?type=${type}`,
     {
       categoryId: category,
@@ -26,13 +26,20 @@ const api = {
   getIcons: () => BASE_CONNECTION.get('/icons'),
   getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
   removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
-  putProfile: () => BASE_CONNECTION.put('/users'),
-  getAvatars: () => BASE_CONNECTION.get('/avatars'),
-  postCategory: (name, description, iconId) => BASE_CONNECTION.post('/categories', {
+  putProfile: (
     name,
-    description,
-    iconId,
+    email,
+  ) => BASE_CONNECTION.put('/users', {
+    name,
+    email,
   }),
+  getAvatars: () => BASE_CONNECTION.get('/avatars'),
+  postCategory: (name, description, iconId) =>
+    BASE_CONNECTION.post('/categories', {
+      name,
+      description,
+      iconId,
+    }),
   editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
 };
 

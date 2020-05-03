@@ -1,77 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import React, { useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import BtnSaveProfile from "../../components/ProfileElements/BtnSaveProfile/BtnSaveProfile";
-import Avatar from "../../components/ProfileElements/Avatar/Avatar";
-import CheckboxProfile from "../../components/ProfileElements/CheckboxProfile/CheckboxProfile";
-import {loadAvatar} from "../../redux/actions/profile.actions";
-import {getUserDataProfile} from "../../redux/actions/profile.actions";
-
-
+import Avatar from '../../components/ProfileElements/Avatar/Avatar';
+import selectUserData from '../../redux/selectors/profile.selectors';
+import '../../components/ProfileElements/BtnEditProfile';
+import { postUserData } from '../../redux/actions/profile.actions';
+import CheckboxProfile from '../../components/ProfileElements/CheckboxProfile';
 
 export default function Profile() {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(theme => ({
     margin: {
       margin: theme.spacing(1),
     },
     root: {
       '& > *': {
-        paddingBottom: "70px",
+        paddingBottom: '70px',
         width: '33ch',
       },
     },
-    checkbox:{
-      paddingTop: "25px",
+    checkbox: {
+      paddingTop: '25px',
     },
-    button:{
-      marginRight: "470px",
-    }
+    button: {
+      marginLeft: '450px',
+    },
   }));
-  
   const classes = useStyles();
-  
-  const [nameId, setNameId] = React.useState('');
-  const handleChangeNameId = (event) => {
-    setNameId(event.target.value);
-  };
-
-  const [email, setEmail] = React.useState('');
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-
+  const formData = useRef();
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getUserDataProfile());
-  // }, []);
+  formData.current = useSelector(selectUserData);
 
-  const avatar = () => {
-    dispatch(loadAvatar());
-  }
-  
-  
+  const handleChangeValue = name => (event) => {
+    formData.current[name] = event.target.value;
+  };
+  const saveProfile = (e) => {
+    e.preventDefault();
+    const { name, email } = formData.current;
+    dispatch(postUserData(name, email));
+  };
+
+  if (!formData.current) { return null; }
   return (
     <div>
       <Avatar />
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField 
+        <TextField
           id="standard-basic"
-          label="Name" 
-          onChange={handleChangeNameId}
-          value={nameId} />  <br/>
-        <TextField 
-          id="standard-basic" 
+          label="Name"
+          onChange={handleChangeValue('name')}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={formData.current.name}
+        />  <br />
+        <TextField
+          id="standard-basic"
           label="Email"
-          onChange={handleChangeEmail}
-          value={email} />
+          onChange={handleChangeValue('email')}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={formData.current.email}
+        />
       </form>
       <div className={classes.button}>
-        <BtnSaveProfile/>
+        <div className="btnSaveProfile">
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={saveProfile}
+          >Save
+          </Button>
+        </div>
       </div>
       <div className={classes.checkbox}>
-        <CheckboxProfile/>
+        <CheckboxProfile />
       </div>
-    </div>   
+    </div>
   );
 }
