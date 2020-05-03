@@ -2,7 +2,6 @@ import api from '../../api/api';
 
 export const LOAD_ICONS_SUCCESS = 'LOAD_ICONS_SUCCESS';
 export const LOAD_ICONS_FAIL = 'LOAD_ICONS_FAIL';
-
 export const GET_USER_DATA = 'GET_USER_DATA';
 export const GET_USER_DATA_FAIL = 'GET_USER_DATA_FAIL';
 export const GET_TOTAL_BALANCE = 'GET_TOTAL_BALANCE';
@@ -24,11 +23,11 @@ export const loadIcons = () => (dispatch) => {
   });
 };
 
-export const getTotalBalanceThunk = (dispatch) => {
+export const getTotalBalanceThunk = () => (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
       type: GET_TOTAL_BALANCE,
-      payload: response.totalBalance,
+      payload: response.data.totalBalance,
     });
   }).catch((error) => {
     dispatch({
@@ -38,11 +37,11 @@ export const getTotalBalanceThunk = (dispatch) => {
   });
 };
 
-export const getUserDataThunk = (dispatch) => {
+export const getUserDataThunk = () => (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
       type: GET_USER_DATA,
-      payload: response.data,
+      payload: response.data.data,
     });
   }).catch((error) => {
     dispatch({

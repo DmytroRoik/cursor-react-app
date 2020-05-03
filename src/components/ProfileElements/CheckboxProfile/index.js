@@ -1,3 +1,3 @@
-import CheckboxProfile from "./CheckboxProfile";
+import CheckboxProfile from './CheckboxProfile';
 
 export default CheckboxProfile;

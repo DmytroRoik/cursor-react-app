@@ -3,7 +3,6 @@ import { LOAD_CATEGORIES_SUCCESS,
   ADD_NEW_CATEGORY_SUCCESS,
   SET_ICON_ID, EDIT_CATEGORY_SUCCESS } from '../actions/categories.actions';
 
-
 const initialState = {
   categories: [],
   name: '',

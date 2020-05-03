@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { getTotalBalanceThunk } from '../../redux/actions/root.actions';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
 import BtnAddMore from '../../components/BtnAddMore';
 import Balance from '../../components/Balance';
@@ -14,7 +15,6 @@ import TableCategoriesIncomes from '../../components/TableCategoriesIncomes';
 import { getChargesFromThunk } from '../../redux/actions/home.actions';
 import './Home.scss';
 
-
 const Home = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('charge');
@@ -22,7 +22,6 @@ const Home = () => {
     setValue(newValue);
   };
   const balance = useSelector(selectBalance);
-
   const [startDate, setStartDate] = useState('week');
 
   const handleWeek = (event) => {
@@ -41,10 +40,13 @@ const Home = () => {
     }
   }, [startDate, value]);
 
+  useEffect(() => {
+    dispatch(getTotalBalanceThunk());
+  }, [balance]);
+
   return (
     <div className="home">
       <Balance total={balance} />
-
       <Tabs
         value={value}
         onChange={handleChange}
