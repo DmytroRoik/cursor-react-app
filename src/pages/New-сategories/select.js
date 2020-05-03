@@ -24,39 +24,25 @@ export default function SimpleSelect() {
   const classes = useStyles();
   const [icon, setIcon] = useState('');
   const dispatch = useDispatch();
+  const iconsServer = useSelector(selectIcons).map(i => i.class);
+
   const handleChange = (event) => {
     setIcon(event.target.value);
     dispatch(setIconId(event.target.value));
   };
 
-  const iconsServer = useSelector(selectIcons).map(i => i.class);
-
-
   useEffect(() => {
     dispatch(loadIcons());
   }, []);
 
-  const menuItem = iconsServer.map((item, index) =>
-    (
-      <MenuItem value={index + 1} key={index.class}>
-        <Icon
-          style={{ width: '30px', fontSize: '20px' }}
-          className={`fas ${item}`}
-          id={index}
-        />
-      </MenuItem>
-    ));
+  const menuItem = iconsServer.map((item, index) => (<MenuItem value={index} key={item}>
+    <Icon style={{ width: '30px', fontSize: '20px' }} className={`fas ${item}`} id={index} />
+  </MenuItem>));
+
   return (
     <div>
-      <FormControl
-        className={classes.formControl}
-        style={{ marginTop: 22, marginLeft: 0 }}
-      >
-        <InputLabel
-          id="demo-simple-select-label"
-          style={{ fontSize: 18 }}
-        >Select icon
-        </InputLabel>
+      <FormControl className={classes.formControl} style={{ marginTop: 22, marginLeft: 0 }}>
+        <InputLabel id="demo-simple-select-label" style={{ fontSize: 18 }}>Select icon</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           value={icon}

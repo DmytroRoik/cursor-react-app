@@ -20,7 +20,6 @@ export default function Avatars() {
     }
   }));
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <div className={classes.avatar}>
@@ -38,3 +37,5 @@ export default function Avatars() {
     </div>
   );
 }
+
+

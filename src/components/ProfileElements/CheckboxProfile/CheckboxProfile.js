@@ -17,20 +17,19 @@ export default function CheckboxProfile() {
     checked: {},
   })(props => <Checkbox color="default" {...props} />);
 
-  const useStyles = makeStyles(theme => ({
+
+  const useStyles = makeStyles({
     root: {
       '& > *': {
         width: '5ch',
       },
     },
-  }));
+  });
 
   const [state, setState] = useState(false);
-
   const classes = useStyles();
-
   const handleChange = (event) => {
-    setState(event.target.checked);
+     setState(event.target.checked);
   };
   return (
     <div className="checkboxProfile">

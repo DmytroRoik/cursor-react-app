@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
- 
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUserDataProfile } from './redux/actions/profile.actions';

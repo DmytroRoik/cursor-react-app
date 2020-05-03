@@ -10,7 +10,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Icon from '@material-ui/core/Icon';
 import moment from 'moment';
-import './TableCategories.scss';
 
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import {
@@ -104,6 +103,7 @@ const TableCategories = () => {
       {categoryId && <EditDialog
         open={isEditOpen}
         onCancel={cancelEdit}
+        type="categories"
         оnSubmit={editCategories}
         submitEditingDataHandler={submitEditingDataHandler}
         id={categoryId}

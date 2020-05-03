@@ -1,6 +1,5 @@
 import * as axios from 'axios';
 
-
 const BASE_CONNECTION = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
@@ -22,7 +21,7 @@ const api = {
       type: 'charge',
     },
   ),
-  getUserData: () => BASE_CONNECTION.get('/users/current'),
+  getUserData: () => BASE_CONNECTION.get('users/current'),
   getIcons: () => BASE_CONNECTION.get('/icons'),
   getCharges: (type = 'charge') => BASE_CONNECTION.get(`charges?type=${type}`),
   removeCharges: id => BASE_CONNECTION.delete(`charges?id=${id}`),
@@ -33,14 +32,14 @@ const api = {
     name,
     email,
   }),
-  getAvatars: () => BASE_CONNECTION.get('/avatars'),
   postCategory: (name, description, iconId) =>
     BASE_CONNECTION.post('/categories', {
       name,
       description,
       iconId,
     }),
-  editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
+ editCharges: data => BASE_CONNECTION.put('charges', data),
+ editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
 };
 
 export default api;
