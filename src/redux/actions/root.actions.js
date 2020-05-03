@@ -2,7 +2,6 @@ import api from '../../api/api';
 
 export const LOAD_ICONS_SUCCESS = 'LOAD_ICONS_SUCCESS';
 export const LOAD_ICONS_FAIL = 'LOAD_ICONS_FAIL';
-
 export const GET_USER_DATA = 'GET_USER_DATA';
 export const GET_USER_DATA_FAIL = 'GET_USER_DATA_FAIL';
 export const GET_TOTAL_BALANCE = 'GET_TOTAL_BALANCE';

@@ -17,13 +17,13 @@ export default function CheckboxProfile() {
     checked: {},
   })(props => <Checkbox color="default" {...props} />);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles({
     root: {
       '& > *': {
         width: '5ch',
       },
     },
-  }));
+  });
 
   const [state, setState] = React.useState({
     checkedG: true,
