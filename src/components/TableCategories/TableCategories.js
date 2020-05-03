@@ -77,7 +77,7 @@ const TableCategories = () => {
               <TableRow key={category.id}>
                 <TableCell component="th" scope="row" >
                   <Icon
-                    style={{ width: '30px' }}
+                    style={{ width: '40px' }}
                     className={`fa ${category.icon.class}`}
                   />
                   {category.name}

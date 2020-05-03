@@ -48,8 +48,8 @@ const homeReducer = (state = initialState, action) => {
     case GET_CHARGES_FROM_SUCCESS: {
       return {
         ...state,
-        //charges: payload.data.charge,
-        //incomes: payload.data.income,
+        charges: action.payload,
+        incomes: action.payload,
       };
     }
     default:

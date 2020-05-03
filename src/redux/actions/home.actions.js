@@ -120,10 +120,10 @@ export const getChargesFromThunk = (date, type) => async (dispatch) => {
   });
 
   try {
-    const charges = await api.getChargesFrom(date, type).then(res => res.data);
+    const charges = await api.getChargesFrom(date, type);
     dispatch({
       type: GET_CHARGES_FROM_SUCCESS,
-      payload: charges,
+      payload: charges.data.data,
     });
   } catch (err) {
     dispatch({
@@ -134,7 +134,8 @@ export const getChargesFromThunk = (date, type) => async (dispatch) => {
   }
 };
 
-export const editCharges = (id, categoryId, description, date, money, type) => (dispatch) => {
+export const editCharges =
+(id, categoryId, description, date, money, type) => (dispatch) => {
   api.editCharges(id, categoryId, description, date, money, type).then(() => {
     dispatch(loadCategoriesCharges());
   }).catch((err) => {
@@ -145,7 +146,8 @@ export const editCharges = (id, categoryId, description, date, money, type) => (
     });
   });
 };
-export const editIncomes = (id, categoryId, description, date, money, type) => (dispatch) => {
+export const editIncomes =
+(id, categoryId, description, date, money, type) => (dispatch) => {
   api.editCharges(id, categoryId, description, date, money, type).then(() => {
     dispatch(loadCategoriesIncomes());
   }).catch((err) => {

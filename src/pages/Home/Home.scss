@@ -46,10 +46,5 @@
     &:hover{
       cursor: pointer;
     }
-    &:not(:last-of-type){
-      margin-bottom: 5px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid $main-blue;
-    }
   }
 }

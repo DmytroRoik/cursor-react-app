@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
@@ -16,42 +17,29 @@ import './Home.scss';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState('charges');
-  const handleChange = (newValue) => {
+  const [value, setValue] = useState('charge');
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   const balance = useSelector(selectBalance);
 
-  const [week, setWeek] = useState('week');
+  const [startDate, setStartDate] = useState('week');
 
   const handleWeek = (event) => {
-    setWeek(event.target.value);
+    const { value: startDateValue } = event.target;
+    setStartDate(startDateValue);
   };
 
-  // my code
   const dateWeekAgo = moment().startOf('day').subtract(1, 'w').valueOf();
-  console.log(dateWeekAgo);
   const dateMonthAgo = moment().startOf('day').subtract(1, 'months').valueOf();
-  // console.log(dateMonthAgo);
 
   useEffect(() => {
-    if (week) {
+    if (startDate === 'week') {
       dispatch(getChargesFromThunk(dateWeekAgo, value));
     } else {
       dispatch(getChargesFromThunk(dateMonthAgo, value));
     }
-  }, [dateWeekAgo, dateMonthAgo, dispatch, week]);
-
-  const getMonth = () => {
-    setWeek(false);
-    dispatch(getChargesFromThunk(dateMonthAgo, value));
-  };
-
-  const getWeek = () => {
-    setWeek(true);
-    dispatch(getChargesFromThunk(dateWeekAgo, value));
-  };
-
+  }, [startDate, value]);
 
   return (
     <div className="home">
@@ -67,14 +55,14 @@ const Home = () => {
           },
         }}
       >
-        <Tab value="charges" label="Charges" className="home__tabs-title" />
+        <Tab value="charge" label="Charge" className="home__tabs-title" />
         <Tab value="income" label="Income" className="home__tabs-title" />
       </Tabs>
 
       <div
         className="home__select-row"
-        value="charges"
-        hidden={value !== 'charges'}
+        value="charge"
+        hidden={value !== 'charge'}
       >
         <div className="home__select__wrapp">
           <div className="home__select">
@@ -82,11 +70,11 @@ const Home = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={week}
+              defaultValue={startDate}
               onChange={handleWeek}
             >
-              <option value="week" onClick={getWeek}>this week</option>
-              <option value="month"onClick={getMonth}>this month</option>
+              <MenuItem value="week" >this week</MenuItem>
+              <MenuItem value="month" >this month</MenuItem>
             </Select>
           </div>
 
@@ -108,11 +96,11 @@ const Home = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={week}
+              defaultValue={startDate}
               onChange={handleWeek}
             >
-              <option value="week" onClick={getWeek}>this week</option>
-              <option value="month" onClick={getMonth}>this month</option>
+              <MenuItem value="week" >this week</MenuItem>
+              <MenuItem value="month" >this month</MenuItem>
             </Select>
           </div>
           <Link to="/new-charge" href="/new-charge">
