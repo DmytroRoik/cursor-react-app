@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getUserDataProfile } from './redux/actions/profile.actions';
 
 import Layout from './layout';
 import Sidebar from './components/Sidebar';
@@ -12,6 +14,10 @@ import routes from './routes';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserDataProfile());
+  }, []);
   return (
     <Router>
       <Layout

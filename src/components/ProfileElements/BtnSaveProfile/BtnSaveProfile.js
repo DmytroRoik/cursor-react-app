@@ -4,7 +4,7 @@ import './BtnSaveProfile.scss';
 
 const BtnSaveProfile = () => (
   <div className="btnSaveProfile">
-    <Button variant="contained" color="primary">Save</Button>
+    <Button variant="contained" color="primary" type="submit">Save</Button>
   </div>
 );
 
