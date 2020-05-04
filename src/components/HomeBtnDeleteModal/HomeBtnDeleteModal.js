@@ -18,7 +18,7 @@ const AlertDialogSlide = ({ open, onCancel, onSubmit }) => (
       <DialogTitle id="alert-dialog-slide-title">Delete Entry</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-slide-description">
-          <p> Selected entry will be permamently deleted.</p>
+          <p> Selected entry will be permanently deleted.</p>
           <p>You can`t  undo  this operation later</p>
         </DialogContentText>
       </DialogContent>

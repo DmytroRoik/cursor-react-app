@@ -1,12 +1,10 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import "./BtnSaveProfile.scss";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import './BtnSaveProfile.scss';
 
 const BtnSaveProfile = () => (
   <div className="btnSaveProfile">
-    <Button variant="contained" color="primary">
-      Save
-    </Button>
+    <Button variant="contained" color="primary" type="submit">Save</Button>
   </div>
 );
 

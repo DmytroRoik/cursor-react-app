@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { getTotalBalanceThunk } from '../../redux/actions/root.actions';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
 import BtnAddMore from '../../components/BtnAddMore';
 import Balance from '../../components/Balance';
@@ -41,10 +42,12 @@ const Home = () => {
     }
   }, [startDate, value]);
 
+  useEffect(() => {
+    dispatch(getTotalBalanceThunk());
+  }, [balance]);
   return (
     <div className="home">
       <Balance total={balance} />
-
       <Tabs
         value={value}
         onChange={handleChange}
