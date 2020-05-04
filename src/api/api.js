@@ -30,9 +30,13 @@ const api = {
   putProfile: (
     name,
     email,
+    notify,
+    criticalBudget,
   ) => BASE_CONNECTION.put('/users', {
     name,
     email,
+    notify,
+    criticalBudget,
   }),
   postCategory: (name, description, iconId) =>
     BASE_CONNECTION.post('/categories', {
