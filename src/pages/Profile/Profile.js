@@ -74,7 +74,7 @@ export default function Profile() {
       <Avatar />
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
-          id="standard-basic"
+          id="standard-basic1"
           label="Name"
           onChange={handleChangeValue('name')}
           InputLabelProps={{
@@ -83,7 +83,7 @@ export default function Profile() {
           defaultValue={formData.current.name}
         />  <br />
         <TextField
-          id="standard-basic"
+          id="standard-basic2"
           label="Email"
           onChange={handleChangeValue('email')}
           InputLabelProps={{
