@@ -127,13 +127,13 @@ const TableCategoriesCharges = () => {
               <TableRow key={charge.id}>
                 <TableCell component="th" scope="row" >
                   <Icon
-                    style={{ width: '30px' }}
-                    className={`fa ${charge.icon}`}
+                    style={{ width: '40px' }}
+                    className={`fa ${charge.category.icon.class}`}
                   />
                   {charge.category.name}
                 </TableCell>
                 <TableCell >{charge.description}</TableCell>
-                <TableCell >{moment(charge.data).format('DD/MM/YYYY')}</TableCell>
+                <TableCell >{moment(charge.date).format('DD/MM/YYYY')}</TableCell>
                 <TableCell >${charge.money}</TableCell>
                 <TableCell align="right"> {charge.action}
                   <Dropdown

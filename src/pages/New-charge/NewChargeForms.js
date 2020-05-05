@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
+import moment from 'moment';
 
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import AddBtn from './AddBtn';
@@ -29,7 +30,7 @@ export default () => {
   const [descriptionClass, setDescriptionClass] = useState('');
 
   const checkTotalErr = () => {
-    const reg = /^[0-9]{1,}$/;
+    const reg = /^[0-9.]{1,}$/;
     return !reg.test(formData.current.total);
   };
 
@@ -114,12 +115,13 @@ export default () => {
         <InputLabel htmlFor="age-native-helper">Select category</InputLabel>
         <NativeSelect
           className="form__select"
+          defaultValue={formData.current.category}
           onChange={e => changeValue(
           e.target.value,
           'category',
           )}
         >
-          <option aria-label="None" selected disabled>Select category </option>
+          <option aria-label="None" value={0} disabled>Select category </option>
           {options}
         </NativeSelect>
       </div>
@@ -129,7 +131,7 @@ export default () => {
           label="Date"
           type="date"
           className="form__select"
-          defaultValue="2020-04-11"
+          defaultValue={moment(formData.current.date).format('YYYY-MM-DD')}
           onChange={e => changeValue(e.target.value.valueOf(), 'date')}
           InputLabelProps={{
             shrink: true,

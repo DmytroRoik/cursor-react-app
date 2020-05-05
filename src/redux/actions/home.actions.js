@@ -17,6 +17,10 @@ export const ADD_CHARGE_DATA_SUCCESS = 'LOAD_CHARGE_DATA_SUCCESS';
 export const ADD_CHARGE_DATA_FAIL = 'LOAD_CHARGE_DATA_FAIL';
 export const ADD_INCOME_DATA_SUCCESS = 'LOAD_INCOME_DATA_SUCCESS';
 export const ADD_INCOME_DATA_FAIL = 'LOAD_INCOME_DATA_FAIL';
+export const GET_CHARGES_FROM_REQUEST = 'GET_CHARGES_FROM_REQUEST';
+export const GET_CHARGES_FROM_SUCCESS = 'GET_CHARGES_FROM_SUCCESS';
+export const GET_CHARGES_FROM_FAIL = 'GET_CHARGES_FROM_FAIL';
+export const GET_INCOMES_FROM_SUCCESS = 'GET_INCOMES_FROM_SUCCESS';
 
 export const loadCategoriesCharges = () => (dispatch) => {
   api.getCharges('charge').then((res) => {
@@ -102,7 +106,36 @@ export const postTotalDescriptionThunk = (
     });
 };
 
-export const editCharges = (id, categoryId, description, date, money, type) => (dispatch) => {
+
+export const getChargesFromThunk = (date, type) => async (dispatch) => {
+  dispatch({
+    type: GET_CHARGES_FROM_REQUEST,
+  });
+
+  try {
+    const charges = await api.getChargesFrom(date, type);
+    if (type === 'charge') {
+      dispatch({
+        type: GET_CHARGES_FROM_SUCCESS,
+        payload: charges.data.data,
+      });
+    } else {
+      dispatch({
+        type: GET_INCOMES_FROM_SUCCESS,
+        payload: charges.data.data,
+      });
+    }
+  } catch (err) {
+    dispatch({
+      type: GET_CHARGES_FROM_FAIL,
+      payload: err,
+      error: true,
+    });
+  }
+};
+
+export const editCharges =
+(id, categoryId, description, date, money, type) => (dispatch) => {
   api.editCharges(id, categoryId, description, date, money, type).then(() => {
     dispatch(loadCategoriesCharges());
   }).catch((err) => {
@@ -114,7 +147,8 @@ export const editCharges = (id, categoryId, description, date, money, type) => (
   });
 };
 
-export const editIncomes = (id, categoryId, description, date, money, type) => (dispatch) => {
+export const editIncomes =
+(id, categoryId, description, date, money, type) => (dispatch) => {
   api.editCharges(id, categoryId, description, date, money, type).then(() => {
     dispatch(loadCategoriesIncomes());
   }).catch((err) => {

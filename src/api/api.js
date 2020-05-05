@@ -6,6 +6,8 @@ const BASE_CONNECTION = axios.create({
 
 const api = {
   getStats: date => BASE_CONNECTION.get(`/stats?from=${date}`),
+  getChargesFrom: (date, type) => BASE_CONNECTION
+    .get(`/charges?type=${type}&from=${date}`),
   getCategories: () => BASE_CONNECTION.get('categories'),
   removeCategory: id => BASE_CONNECTION.delete(`categories?id=${id}`),
   postNewCharge: (
@@ -18,7 +20,7 @@ const api = {
       description: newDescription,
       date: dateValue,
       money: newTotal,
-      type: 'charge',
+      type,
     },
   ),
   getUserData: () => BASE_CONNECTION.get('users/current'),
@@ -38,8 +40,9 @@ const api = {
       description,
       iconId,
     }),
- editCharges: data => BASE_CONNECTION.put('charges', data),
- editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
+
+  editCharges: data => BASE_CONNECTION.put('charges', data),
+  editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
 };
 
 export default api;
