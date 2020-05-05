@@ -23,7 +23,6 @@ const Home = () => {
     setValue(newValue);
   };
   const balance = useSelector(selectBalance);
-
   const [startDate, setStartDate] = useState('week');
 
   const handleWeek = (event) => {
@@ -45,6 +44,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTotalBalanceThunk());
   }, [balance]);
+
   return (
     <div className="home">
       <Balance total={balance} />
