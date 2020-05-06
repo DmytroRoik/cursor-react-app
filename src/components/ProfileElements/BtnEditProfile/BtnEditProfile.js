@@ -1,9 +1,33 @@
 import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
+import { blue } from '@material-ui/core/colors';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: 'none',
+  },
+  button:{
+    borderRadius:'50px',
+    width:'70px',
+    height:'70px',
+  },
+  edit:{
+    color:'blue',
+    paddingLeft:'10px',
+    paddingTop:'10px',
+  }
+ 
+}));
 
 export default function BtnEditProfile() {
+  const classes = useStyles();
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const uploadImage = async (e) => {
@@ -24,9 +48,25 @@ export default function BtnEditProfile() {
   };
   return (
     <div className="btnEditProfile">
-      <IconButton aria-label="edit" color="primary" name="file" onClick={uploadImage}>
-        <EditIcon fontSize="large" />
-      </IconButton>
+        <div className={classes.root}>
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="contained-button-file"
+        multiple
+        type="file"
+      />
+       <label htmlFor="contained-button-file">
+        <Button
+          variant="contained"
+          color="gray"
+          className={classes.button}
+          startIcon={ <div className={classes.edit}><EditIcon /></div> }
+            onClick={uploadImage}
+            >
+        </Button>
+      </label>
+      <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
       {loading ? (
         <h3>Loading....</h3>
       ) : (
@@ -36,6 +76,7 @@ export default function BtnEditProfile() {
         />
       )}
 
+    </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import selectUserData from '../../redux/selectors/profile.selectors';
 import '../../components/ProfileElements/BtnEditProfile';
 import { postUserData } from '../../redux/actions/profile.actions';
 import CheckboxProfile from '../../components/ProfileElements/CheckboxProfile';
-import UploadButtons from '../../components/ProfileElements/ChooseFileAvatar/ChooseFileAvatar';
+
 
 export default function Profile() {
   const useStyles = makeStyles(theme => ({
@@ -80,7 +80,6 @@ export default function Profile() {
       <div className={classes.checkbox}>
         <CheckboxProfile />
       </div>
-      <UploadButtons />
     </div>
   );
 }
