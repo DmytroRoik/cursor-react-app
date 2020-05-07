@@ -133,7 +133,10 @@ const Home = () => {
           <TableCategoriesIncomes />
         </div>
       </div>
-      {userData && (showToaster && <Toaster open={showToaster} handleClose={handleClose} />)}
+      {userData && (showToaster && <Toaster
+        open={showToaster}
+        handleClose={handleClose}
+      />)}
     </>
   );
 };

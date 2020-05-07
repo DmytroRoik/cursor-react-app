@@ -18,12 +18,11 @@ const useStyles = makeStyles(theme => ({
 
 export default ({ open, handleClose }) => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="info">
-          Your Balance is lower than your critical Budget!!!
+          Your Balance is lower than your critical budget!!!
         </Alert>
       </Snackbar>
     </div>

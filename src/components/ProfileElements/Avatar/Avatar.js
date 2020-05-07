@@ -7,7 +7,7 @@ import Avatarka from '../../../assets/img/user_avatar.png';
 import './Avatar.scss';
 
 export default function Avatars() {
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles(() => ({
     root: {
       height: '80px',
     },
@@ -17,7 +17,7 @@ export default function Avatars() {
       height: '200px',
       width: '200px',
       borderRadius: '50%',
-    }
+    },
   }));
   const classes = useStyles();
   return (
@@ -37,5 +37,4 @@ export default function Avatars() {
     </div>
   );
 }
-
 

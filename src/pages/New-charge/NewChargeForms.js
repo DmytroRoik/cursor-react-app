@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
 import selectUserData from '../../redux/selectors/profile.selectors';
-
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import AddBtn from './AddBtn';
 import { postTotalDescriptionThunk } from '../../redux/actions/home.actions';
@@ -15,7 +14,6 @@ import { loadCategories } from '../../redux/actions/categories.actions';
 import Notifier from '../../components/Notifier/Notifier';
 import { getUserDataProfile } from '../../redux/actions/profile.actions';
 import { getTotalBalanceThunk } from '../../redux/actions/root.actions';
-
 import './NewCharge.scss';
 
 export default () => {
