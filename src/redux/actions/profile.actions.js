@@ -5,6 +5,7 @@ export const GET_USER_DATA_FAIL = 'GET_USER_DATA_FAIL';
 export const ADD_USER_DATA_SUCCESS = 'ADD_USER_DATA_SUCCESS';
 export const ADD_USER_DATA_FAIL = 'ADD_USER_DATA_FAIL';
 
+
 export const getUserDataProfile = () => (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
@@ -18,11 +19,14 @@ export const getUserDataProfile = () => (dispatch) => {
     });
   });
 };
+
 export const postUserData = (
   name,
   email,
+  notify,
+  criticalBudget,
 ) => (dispatch) => {
-  api.putProfile(name, email).then((data) => {
+  api.putProfile(name, email, notify, criticalBudget).then((data) => {
     dispatch({
       type: ADD_USER_DATA_SUCCESS,
       payload: data,
@@ -34,4 +38,3 @@ export const postUserData = (
     });
   });
 };
-

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Select from '@material-ui/core/Select';
@@ -14,6 +14,7 @@ import TableCategoriesCharges from '../../components/TableCategoriesCharges';
 import TableCategoriesIncomes from '../../components/TableCategoriesIncomes';
 import { getChargesFromThunk } from '../../redux/actions/home.actions';
 import './Home.scss';
+
 
 const Home = () => {
   const dispatch = useDispatch();
