@@ -53,7 +53,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_TOTAL_BALANCE: {
       return {
         ...state,
-        balance: action.payload,
+        balance: action.payload.toFixed(2),
       };
     }
     default:
