@@ -8,6 +8,7 @@ export default function BtnEditProfile() {
   const [loading, setLoading] = useState(false);
   const uploadImage = async (e) => {
     const files = e.target;
+    console.log(e) 
     const data = new FormData();
     data.append('file', files[1]);
     setLoading(true);
@@ -26,6 +27,7 @@ export default function BtnEditProfile() {
     <div className="btnEditProfile">
       <IconButton aria-label="edit" color="primary" name="file" onClick={uploadImage}>
         <EditIcon fontSize="large" />
+        
       </IconButton>
       {loading ? (
         <h3>Loading....</h3>
