@@ -32,7 +32,7 @@ export const postUserData = (
   notify,
   criticalBudget,
 ) => (dispatch) => {
-  api.putProfile(name, email).then(({ data }) => {
+  api.putProfile(name, email, notify, criticalBudget).then(({ data }) => {
     data.data.avatar =
     (process.env.REACT_APP_BASE_URL).slice(0, -1) + data.data.avatar;
 
