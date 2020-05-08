@@ -1,6 +1,7 @@
 import {
   GET_USER_DATA,
   ADD_USER_DATA_SUCCESS,
+  POST_AVATAR_SUCCESS,
 } from '../actions/profile.actions';
 
 const initialState = {
@@ -15,6 +16,12 @@ const profileReducer = (state = initialState, action) => {
         data: action.payload,
       };
     case ADD_USER_DATA_SUCCESS: {
+      return {
+        ...state,
+        data: action.payload.data,
+      };
+    }
+    case POST_AVATAR_SUCCESS: {
       return {
         ...state,
         data: action.payload.data,

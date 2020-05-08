@@ -5,6 +5,10 @@ export const GET_USER_DATA_FAIL = 'GET_USER_DATA_FAIL';
 export const ADD_USER_DATA_SUCCESS = 'ADD_USER_DATA_SUCCESS';
 export const ADD_USER_DATA_FAIL = 'ADD_USER_DATA_FAIL';
 
+export const POST_AVATAR_REQUEST = 'POST_AVATAR_REQUEST';
+export const POST_AVATAR_SUCCESS = 'POST_AVATAR_SUCCESS';
+export const POST_AVATAR_FAIL = 'POST_AVATAR_FAIL';
+
 export const getUserDataProfile = () => (dispatch) => {
   api.getUserData().then((response) => {
     dispatch({
@@ -18,6 +22,7 @@ export const getUserDataProfile = () => (dispatch) => {
     });
   });
 };
+
 export const postUserData = (
   name,
   email,
@@ -33,5 +38,29 @@ export const postUserData = (
       payload: err,
     });
   });
+};
+
+
+export const editAvatar = data => async (dispatch) => {
+  dispatch({
+    type: POST_AVATAR_REQUEST,
+  });
+
+  try {
+    const avatar = await api.editAvatar(data).then(res => res.data);
+    avatar.data.avatar =
+    (process.env.REACT_APP_BASE_URL).slice(0, -1) + avatar.data.avatar;
+
+    dispatch({
+      type: POST_AVATAR_SUCCESS,
+      payload: avatar,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_AVATAR_FAIL,
+      payload: err,
+      error: true,
+    });
+  }
 };
 

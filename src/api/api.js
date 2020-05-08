@@ -43,6 +43,7 @@ const api = {
 
   editCharges: data => BASE_CONNECTION.put('charges', data),
   editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
+  editAvatar: data => BASE_CONNECTION.post('users/uploadImage', data),
 };
 
 export default api;
