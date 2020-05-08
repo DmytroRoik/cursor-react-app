@@ -30,7 +30,10 @@ export const postUserData = (
   name,
   email,
 ) => (dispatch) => {
-  api.putProfile(name, email).then((data) => {
+  api.putProfile(name, email).then(({ data }) => {
+    data.data.avatar =
+    (process.env.REACT_APP_BASE_URL).slice(0, -1) + data.data.avatar;
+
     dispatch({
       type: ADD_USER_DATA_SUCCESS,
       payload: data,

@@ -9,7 +9,7 @@ import './Avatar.scss';
 
 export default function Avatars() {
   const ava = useSelector(selectUserData);
-  // console.log(ava)
+  console.log(ava)
   const useStyles = makeStyles({
     root: {
       height: '80px',
