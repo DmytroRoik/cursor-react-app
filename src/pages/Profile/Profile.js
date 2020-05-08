@@ -1,16 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { green } from '@material-ui/core/colors';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import { postUserData } from '../../redux/actions/profile.actions';
 import Avatar from '../../components/ProfileElements/Avatar/Avatar';
 import selectUserData from '../../redux/selectors/profile.selectors';
 import '../../components/ProfileElements/BtnEditProfile';
-import { postUserData } from '../../redux/actions/profile.actions';
-import CheckboxProfile from '../../components/ProfileElements/CheckboxProfile';
 
 
 export default function Profile() {
+  const GreenCheckbox = withStyles({
+    root: {
+      '&$checked': {
+        color: green[600],
+      },
+    },
+    checked: {},
+  })(props => <Checkbox color="default" {...props} />);
+
   const useStyles = makeStyles(theme => ({
     margin: {
       margin: theme.spacing(1),
@@ -27,19 +40,33 @@ export default function Profile() {
     button: {
       marginLeft: '450px',
     },
+    root2: {
+      '& > *': {
+        width: '5ch',
+      },
+    },
   }));
+
   const classes = useStyles();
   const formData = useRef();
   const dispatch = useDispatch();
   formData.current = useSelector(selectUserData);
+  const [check, changeCheck] = useState((formData.current &&
+    formData.current.notify) || false);
 
   const handleChangeValue = name => (event) => {
-    formData.current[name] = event.target.value;
+    if (name === 'notify') {
+      changeCheck(!check);
+    } else {
+      formData.current[name] = event.target.value;
+    }
   };
-  const saveProfile = (e) => {
-    e.preventDefault();
-    const { name, email } = formData.current;
-    dispatch(postUserData(name, email));
+
+  const saveProfile = () => {
+    const {
+      name, email, criticalBudget,
+    } = formData.current;
+    dispatch(postUserData(name, email, check, criticalBudget));
   };
 
   if (!formData.current) { return null; }
@@ -66,6 +93,7 @@ export default function Profile() {
           defaultValue={formData.current.email}
         />
       </form>
+
       <div className={classes.button}>
         <div className="btnSaveProfile">
           <Button
@@ -77,8 +105,33 @@ export default function Profile() {
           </Button>
         </div>
       </div>
+
       <div className={classes.checkbox}>
-        <CheckboxProfile />
+        <div className="checkboxProfile">
+          <FormGroup row>
+            <FormControlLabel
+              control={<GreenCheckbox
+                checked={check}
+                onChange={handleChangeValue('notify')}
+                name="checkedG"
+              />}
+              label="Notify when budget will lower"
+            />
+
+            <div >
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid className={classes.root2}>
+                  <TextField
+                    id="input-with-icon-grid"
+                    defaultValue={formData.current.criticalBudget}
+                    onChange={handleChangeValue('criticalBudget')}
+                  />
+                </Grid>
+                <Grid item> $ </Grid>
+              </Grid>
+            </div>
+          </FormGroup>
+        </div>
       </div>
     </div>
   );

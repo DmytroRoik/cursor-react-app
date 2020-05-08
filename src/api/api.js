@@ -30,9 +30,13 @@ const api = {
   putProfile: (
     name,
     email,
+    notify,
+    criticalBudget,
   ) => BASE_CONNECTION.put('/users', {
     name,
     email,
+    notify,
+    criticalBudget,
   }),
   postCategory: (name, description, iconId) =>
     BASE_CONNECTION.post('/categories', {
@@ -40,10 +44,10 @@ const api = {
       description,
       iconId,
     }),
-
   editCharges: data => BASE_CONNECTION.put('charges', data),
   editCategory: (id, data) => BASE_CONNECTION.put(`categories?id=${id}`, data),
   editAvatar: data => BASE_CONNECTION.post('users/uploadImage', data),
 };
+
 
 export default api;

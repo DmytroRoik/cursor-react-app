@@ -29,6 +29,8 @@ export const getUserDataProfile = () => (dispatch) => {
 export const postUserData = (
   name,
   email,
+  notify,
+  criticalBudget,
 ) => (dispatch) => {
   api.putProfile(name, email).then(({ data }) => {
     data.data.avatar =
@@ -45,7 +47,6 @@ export const postUserData = (
     });
   });
 };
-
 
 export const editAvatar = data => async (dispatch) => {
   dispatch({
