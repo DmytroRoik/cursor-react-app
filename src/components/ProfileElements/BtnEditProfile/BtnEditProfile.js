@@ -44,19 +44,19 @@ export default function BtnEditProfile() {
     <div className="btnEditProfile">
 
       <div className={classes.root}>
-        <input
-          className={classes.input}
-          accept="image/*"
-          id="contained-button-file"
-          type="file"
-          name="file"
-          onChange={uploadImage}
-        />
         <IconButton aria-label="edit" color="primary" >
           <label
             htmlFor="contained-button-file"
             className="btnEditProfile__label"
           >
+            <input
+              className={classes.input}
+              accept="image/*"
+              id="contained-button-file"
+              type="file"
+              name="file"
+              onChange={uploadImage}
+            />
             <EditIcon fontSize="large" />
           </label>
         </IconButton>

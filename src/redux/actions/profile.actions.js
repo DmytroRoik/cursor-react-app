@@ -11,6 +11,9 @@ export const POST_AVATAR_FAIL = 'POST_AVATAR_FAIL';
 
 export const getUserDataProfile = () => (dispatch) => {
   api.getUserData().then((response) => {
+    response.data.data.avatar =
+    (process.env.REACT_APP_BASE_URL).slice(0, -1) + response.data.data.avatar;
+
     dispatch({
       type: GET_USER_DATA,
       payload: response.data.data,
