@@ -9,8 +9,7 @@ import './Avatar.scss';
 
 export default function Avatars() {
   const ava = useSelector(selectUserData);
-  console.log(ava)
-  const useStyles = makeStyles({
+  const useStyles = makeStyles(() => ({
     root: {
       height: '80px',
     },
@@ -21,7 +20,8 @@ export default function Avatars() {
       width: '200px',
       borderRadius: '50%',
     },
-  });
+  }));
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -29,9 +29,9 @@ export default function Avatars() {
         <Badge
           overlap="circle"
           anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
           badgeContent={<BtnEditProfile />}
         >
           <Avatar className={classes.avatar} alt="avatar" src={ava.avatar} />
@@ -40,3 +40,4 @@ export default function Avatars() {
     </div>
   );
 }
+
