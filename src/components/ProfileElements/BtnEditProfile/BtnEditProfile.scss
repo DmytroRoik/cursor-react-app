@@ -1,5 +1,8 @@
 .btnEditProfile {
-  border: solid 1px transparent;
   border-radius: 50%;
   background-color: ghostwhite;
+
+  &__label{
+    height: 35px;
+  }
 }
