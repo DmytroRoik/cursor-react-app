@@ -13,8 +13,11 @@ import Balance from '../../components/Balance';
 import TableCategoriesCharges from '../../components/TableCategoriesCharges';
 import TableCategoriesIncomes from '../../components/TableCategoriesIncomes';
 import { getChargesFromThunk } from '../../redux/actions/home.actions';
-import './Home.scss';
+import { getUserDataProfile } from '../../redux/actions/profile.actions';
+import selectUserData from '../../redux/selectors/profile.selectors';
+import Toaster from '../../components/Toaster';
 
+import './Home.scss';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,8 +26,10 @@ const Home = () => {
     setValue(newValue);
   };
   const balance = useSelector(selectBalance);
+  const userData = useSelector(selectUserData);
 
   const [startDate, setStartDate] = useState('week');
+  const [showToaster, setShowToaster] = useState(false);
 
   const handleWeek = (event) => {
     const { value: startDateValue } = event.target;
@@ -44,75 +49,95 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getTotalBalanceThunk());
+    dispatch(getUserDataProfile());
+    if (userData) {
+      if (balance < userData.criticalBudget) {
+        setShowToaster(true);
+      }
+    }
   }, [balance]);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setShowToaster(false);
+  };
+
   return (
-    <div className="home">
-      <Balance total={balance} />
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="wrapped label tabs example"
-        TabIndicatorProps={{
-          style: {
-            backgroundColor: '#3b92f5',
-          },
-        }}
-      >
-        <Tab value="charge" label="Charge" className="home__tabs-title" />
-        <Tab value="income" label="Income" className="home__tabs-title" />
-      </Tabs>
+    <>
+      <div className="home">
+        <Balance total={balance} />
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="wrapped label tabs example"
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: '#3b92f5',
+            },
+          }}
+        >
+          <Tab value="charge" label="Charge" className="home__tabs-title" />
+          <Tab value="income" label="Income" className="home__tabs-title" />
+        </Tabs>
 
-      <div
-        className="home__select-row"
-        value="charge"
-        hidden={value !== 'charge'}
-      >
-        <div className="home__select__wrapp">
-          <div className="home__select">
-            <h3>My Charges</h3>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              defaultValue={startDate}
-              onChange={handleWeek}
-            >
-              <MenuItem value="week" >this week</MenuItem>
-              <MenuItem value="month" >this month</MenuItem>
-            </Select>
+        <div
+          className="home__select-row"
+          value="charge"
+          hidden={value !== 'charge'}
+        >
+          <div className="home__select__wrapp">
+            <div className="home__select">
+              <h3>My Charges</h3>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                defaultValue={startDate}
+                onChange={handleWeek}
+              >
+                <MenuItem value="week">this week</MenuItem>
+                <MenuItem value="month">this month</MenuItem>
+              </Select>
+            </div>
+
+            <Link to="/new-charge" href="/new-charge">
+              <BtnAddMore />
+            </Link>
           </div>
-
-          <Link to="/new-charge" href="/new-charge">
-            <BtnAddMore />
-          </Link>
+          <TableCategoriesCharges />
         </div>
-        <TableCategoriesCharges />
-      </div>
 
-      <div
-        className="home__select-row"
-        value="income"
-        hidden={value !== 'income'}
-      >
-        <div className="home__select__wrapp">
-          <div className="home__select">
-            <h3>My Income</h3>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              defaultValue={startDate}
-              onChange={handleWeek}
-            >
-              <MenuItem value="week" >this week</MenuItem>
-              <MenuItem value="month" >this month</MenuItem>
-            </Select>
+        <div
+          className="home__select-row"
+          value="income"
+          hidden={value !== 'income'}
+        >
+          <div className="home__select__wrapp">
+            <div className="home__select">
+              <h3>My Income</h3>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                defaultValue={startDate}
+                onChange={handleWeek}
+              >
+                <MenuItem value="week">this week</MenuItem>
+                <MenuItem value="month">this month</MenuItem>
+              </Select>
+            </div>
+            <Link to="/new-charge" href="/new-charge">
+              <BtnAddMore />
+            </Link>
           </div>
-          <Link to="/new-charge" href="/new-charge">
-            <BtnAddMore />
-          </Link>
+          <TableCategoriesIncomes />
         </div>
-        <TableCategoriesIncomes />
       </div>
-    </div>
+      {userData && (showToaster && <Toaster
+        open={showToaster}
+        handleClose={handleClose}
+      />)}
+    </>
   );
 };
 
