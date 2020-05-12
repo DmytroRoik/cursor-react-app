@@ -1,12 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
+import selectUserData from '../../../redux/selectors/profile.selectors';
 import BtnEditProfile from '../BtnEditProfile/BtnEditProfile';
-import Avatarka from '../../../assets/img/user_avatar.png';
 import './Avatar.scss';
 
 export default function Avatars() {
+  const ava = useSelector(selectUserData);
   const useStyles = makeStyles(() => ({
     root: {
       height: '80px',
@@ -19,6 +21,7 @@ export default function Avatars() {
       borderRadius: '50%',
     },
   }));
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -26,12 +29,12 @@ export default function Avatars() {
         <Badge
           overlap="circle"
           anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
           badgeContent={<BtnEditProfile />}
         >
-          <Avatar className={classes.avatar} alt="avatar" src={Avatarka} />
+          <Avatar className={classes.avatar} alt="avatar" src={ava.avatar} />
         </Badge>
       </div>
     </div>

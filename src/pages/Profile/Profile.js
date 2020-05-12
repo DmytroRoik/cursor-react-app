@@ -13,6 +13,7 @@ import Avatar from '../../components/ProfileElements/Avatar/Avatar';
 import selectUserData from '../../redux/selectors/profile.selectors';
 import '../../components/ProfileElements/BtnEditProfile';
 
+
 export default function Profile() {
   const GreenCheckbox = withStyles({
     root: {
