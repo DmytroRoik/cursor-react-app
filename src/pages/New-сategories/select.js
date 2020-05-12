@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const SimpleSelect = ({ id }) => {
   const classes = useStyles();
-  const [icon, setIcon] = useState(id - 1);
+  const [icon, setIcon] = useState(id ? id - 1 : 0);
   const dispatch = useDispatch();
   const iconsServer = useSelector(selectIcons).map(i => i.class);
 
@@ -30,7 +30,6 @@ const SimpleSelect = ({ id }) => {
     setIcon(event.target.value);
     dispatch(setIconId(event.target.value));
   };
-  debugger
 
   useEffect(() => {
     dispatch(loadIcons());

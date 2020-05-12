@@ -34,10 +34,6 @@ const TableCategories = () => {
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loadCategories());
-  }, []);
-
   const deleteCategories = (id) => {
     setIsOpenModal(true);
     setCategoryId(id);
@@ -52,6 +48,7 @@ const TableCategories = () => {
     dispatch(removeCategory(categoryId));
   };
   const editCategories = (id) => {
+    console.log(1)
     setIsEditOpen(true);
     setCategoryId(id);
   };

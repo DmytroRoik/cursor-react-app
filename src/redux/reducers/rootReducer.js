@@ -26,6 +26,13 @@ const rootReducer = (state = initialState, action) => {
         ...state, switchName: action.payload,
       };
     }
+    //TODO
+    case GET_USER_DATA:
+      console.log(action)
+      return {
+        ...state,
+        balance: action.balance.toFixed(2),
+      };
     case ADD_CHARGE_DATA_SUCCESS: {
       return {
         ...state, balance: action.payload.data.totalBalance,

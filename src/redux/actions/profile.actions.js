@@ -17,6 +17,7 @@ export const getUserDataProfile = () => (dispatch) => {
     dispatch({
       type: GET_USER_DATA,
       payload: response.data.data,
+      balance: response.data.totalBalance,
     });
   }).catch((error) => {
     dispatch({

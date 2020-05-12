@@ -155,7 +155,7 @@ const TableCategoriesCharges = () => {
       {categoryId && <EditDialog
         open={isEditOpen}
         onCancel={cancelEdit}
-        type="income"
+        type="incomes"
         оnSubmit={editCategoriesIncome}
         submitEditingDataHandler={submitEditingDataHandler}
         id={categoryId}

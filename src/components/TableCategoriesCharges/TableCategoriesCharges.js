@@ -23,6 +23,7 @@ import {
   removeCategoryCharges,
 } from '../../redux/actions/home.actions';
 import EditDialog from '../BtnEditModal/BtnEditModal';
+import {loadCategories} from "../../redux/actions/categories.actions";
 
 const TableCategoriesCharges = () => {
   const [columToSort, setColumToSort] = useState('');
@@ -43,10 +44,6 @@ const TableCategoriesCharges = () => {
       minWidth: 600,
     },
   });
-
-  useEffect(() => {
-    dispatch(loadCategoriesCharges());
-  }, []);
 
   const deleteCategoriesCharges = (id) => {
     setIsOpenModal(true);
@@ -98,7 +95,7 @@ const TableCategoriesCharges = () => {
     : <ArrowDropUpIcon />;
 
   const data = orderBy(charges, columToSort, sortDirection);
-
+  console.log(55)
   return (
     <>
       <TableContainer component={Paper}>
@@ -151,15 +148,17 @@ const TableCategoriesCharges = () => {
         onCancel={cancelDelete}
         onSubmit={removeItemById}
       />
-
-      {categoryId && <EditDialog
-        open={isEditOpen}
-        onCancel={cancelEdit}
-        type="charge"
-        оnSubmit={editCategoriesCharges}
-        submitEditingDataHandler={submitEditingDataHandler}
-        id={categoryId}
-      />}
+      {categoryId && (
+        <EditDialog
+          open={isEditOpen}
+          onCancel={cancelEdit}
+          type="charges"
+          оnSubmit={editCategoriesCharges}
+          submitEditingDataHandler={submitEditingDataHandler}
+          id={categoryId}
+        />
+      )
+      }
     </>
   );
 };
