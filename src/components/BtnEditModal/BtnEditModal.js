@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -21,6 +21,7 @@ import { selectCategories,
 import SimpleSelect from '../../pages/New-сategories/select';
 
 import './BtnEditModal.scss';
+import {loadCategoriesCharges} from "../../redux/actions/home.actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,23 +41,24 @@ const EditDialog = ({
 }) => {
   const classes = useStyles();
   const categoryData = useSelector(selectCategories)
-    .find(category => category.id === id);
-  const chargeIncomeData = useSelector(type === 'charge' ?
+    .find(category => category.id === id) || { icon: {} };
+  const chargeIncomeData = useSelector(type === 'charges' ?
     selectCategoriesCharges : selectCategoriesIncomes)
-    .find(item => item.id === id);
+    .find(item => item.id === id) || { category: {} };
   const categories = useSelector(selectCategories);
   const iconIdSelector = useSelector(selectIconId) + 1;
-  // I don't know who adjust iconId data after me, but now, if there isn't+1 value , app doesn't work
   const dispatch = useDispatch();
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setDescription] = useState('');
   const [payloadMoney, setPayloadMoney] = useState('');
   const [chargeIncomeDate, setChargeIncomeDate] = useState('');
-  const [categoryId, setCategoryId] = useState(type === 'categories'
-    ? 0 : chargeIncomeData.category.id = 0);
+  const [categoryId, setCategoryId] = useState(0);
   const changeInputState = (setFunctionHook, data) => {
     setFunctionHook(data);
   };
+  const cancel = useCallback(onCancel, [])
+  const callback1 = useCallback(submitEditingDataHandler, [])
+
 
   const setDate = (e) => {
     setChargeIncomeDate(e.target.value);
@@ -86,26 +88,30 @@ const EditDialog = ({
       if (type === 'categories') {
         setCategoryName(categoryData.name);
         setDescription(categoryData.description);
-      } else if (type === 'income' || type === 'charge') {
-        if(chargeIncomeDate) {
-        setCategoryName(chargeIncomeData.category.name);
+      }
+    }
+  }, [categoryData.name, categoryData.description]);
+
+  useEffect(() => {
+    if (chargeIncomeData) {
+      if (type === 'incomes' || type === 'charges') {
+        setCategoryName(chargeIncomeData.category.id);
         setPayloadMoney(chargeIncomeData.money);
         setDescription(chargeIncomeData.description);
         setChargeIncomeDate(chargeIncomeData.date);
-        dispatch(loadCategories());
-        }
       }
     }
-  }, [categoryData, chargeIncomeData]);
+  }, [chargeIncomeData.category.id, chargeIncomeData.money, chargeIncomeData.description, chargeIncomeData.date]);
+
 
   const options = categories.map(category => (
-    <option key={category.id} value={category.name}>
+    <option key={category.id} value={category.id}>
       {category.name}
     </option>
   ));
   return (
     <>
-      {categoryData && (
+      {(categoryData || chargeIncomeData) && (
         <Dialog
           open={open}
           aria-labelledby="alert-dialog-title"
@@ -142,7 +148,7 @@ const EditDialog = ({
               )
               }
 
-              {(type === 'income' || type === 'charge') && (
+              {(chargeIncomeData && (type === 'incomes' || type === 'charges')) && (
                 <>
                   <div className="form__item">
                     <InputLabel htmlFor="age-native-helper">
@@ -152,8 +158,7 @@ const EditDialog = ({
                       className="form__input"
                       value={categoryName}
                       onChange={e =>
-                        setCategoryId(categories
-                          .find(item => item.name === e.target.value).id)
+                        setCategoryId(e.target.value)
                       }
                     >
                       {options}
@@ -192,13 +197,13 @@ const EditDialog = ({
           <DialogActions>
             <Button
               onClick={() => {
-                submitEditingDataHandler(collectDataForPutRequest());
-                onCancel();
+                callback1(collectDataForPutRequest());
+                cancel();
               }}
             >
               Save
             </Button>
-            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={cancel}>Cancel</Button>
           </DialogActions>
         </Dialog>
       )}
