@@ -20,9 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleSelect() {
+const SimpleSelect = ({ id }) => {
   const classes = useStyles();
-  const [icon, setIcon] = useState('');
+  const [icon, setIcon] = useState(id - 1);
   const dispatch = useDispatch();
   const iconsServer = useSelector(selectIcons).map(i => i.class);
 
@@ -30,6 +30,7 @@ export default function SimpleSelect() {
     setIcon(event.target.value);
     dispatch(setIconId(event.target.value));
   };
+  debugger
 
   useEffect(() => {
     dispatch(loadIcons());
@@ -71,4 +72,6 @@ export default function SimpleSelect() {
       </FormControl>
     </div>
   );
-}
+};
+
+export default SimpleSelect;

@@ -16,7 +16,8 @@ import {
   selectCategoriesIncomes,
 } from '../../redux/selectors/home.selectors';
 import { loadCategories } from '../../redux/actions/categories.actions';
-import { selectCategories, selectIconId } from '../../redux/selectors/categories.selectors';
+import { selectCategories,
+  selectIconId } from '../../redux/selectors/categories.selectors';
 import SimpleSelect from '../../pages/New-сategories/select';
 
 import './BtnEditModal.scss';
@@ -31,23 +32,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EditDialog = ({
-  id = 0,
+  id,
   open,
   type,
   onCancel,
   submitEditingDataHandler,
 }) => {
   const classes = useStyles();
-  const categoryData = useSelector(selectCategories).find(category => category.id === id);
-  const chargeIncomeData = useSelector(type === 'charge' ? selectCategoriesCharges : selectCategoriesIncomes).find(item => item.id === id);
+  const categoryData = useSelector(selectCategories)
+    .find(category => category.id === id);
+  const chargeIncomeData = useSelector(type === 'charge' ?
+    selectCategoriesCharges : selectCategoriesIncomes)
+    .find(item => item.id === id);
   const categories = useSelector(selectCategories);
-  const iconIdSelector = useSelector(selectIconId) + 1; // I don't know who adjust iconId data after me, but now, if there isn't+1 value , app doesn't work
+  const iconIdSelector = useSelector(selectIconId) + 1;
+  // I don't know who adjust iconId data after me, but now, if there isn't+1 value , app doesn't work
   const dispatch = useDispatch();
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setDescription] = useState('');
   const [payloadMoney, setPayloadMoney] = useState('');
   const [chargeIncomeDate, setChargeIncomeDate] = useState('');
-  const [categoryId, setCategoryId] = useState(type === 'categories' ? 0 : chargeIncomeData.category.id);
+  const [categoryId, setCategoryId] = useState(type === 'categories'
+    ? 0 : chargeIncomeData.category.id = 0);
   const changeInputState = (setFunctionHook, data) => {
     setFunctionHook(data);
   };
@@ -81,11 +87,13 @@ const EditDialog = ({
         setCategoryName(categoryData.name);
         setDescription(categoryData.description);
       } else if (type === 'income' || type === 'charge') {
+        if(chargeIncomeDate) {
         setCategoryName(chargeIncomeData.category.name);
         setPayloadMoney(chargeIncomeData.money);
         setDescription(chargeIncomeData.description);
         setChargeIncomeDate(chargeIncomeData.date);
         dispatch(loadCategories());
+        }
       }
     }
   }, [categoryData, chargeIncomeData]);
@@ -129,7 +137,7 @@ const EditDialog = ({
                     value={categoryDescription}
                     label="Category Description"
                   />
-                  <SimpleSelect />
+                  <SimpleSelect id={categoryData.icon.id} />
                 </>
               )
               }
@@ -144,7 +152,8 @@ const EditDialog = ({
                       className="form__input"
                       value={categoryName}
                       onChange={e =>
-                        setCategoryId(categories.find(item => item.name === e.target.value).id)
+                        setCategoryId(categories
+                          .find(item => item.name === e.target.value).id)
                       }
                     >
                       {options}

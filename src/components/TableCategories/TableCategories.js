@@ -59,7 +59,6 @@ const TableCategories = () => {
     dispatch(editCategory(categoryId, data));
   };
   const classes = useStyles();
-
   return (
     <>
       <TableContainer component={Paper}>
@@ -83,7 +82,9 @@ const TableCategories = () => {
                   {category.name}
                 </TableCell>
                 <TableCell >{category.description}</TableCell>
-                <TableCell >{moment(category.createdAt).format('DD/MM/YYYY')}</TableCell>
+                <TableCell >{moment(category.createdAt)
+                .format('DD/MM/YYYY')}
+                </TableCell>
                 <TableCell align="right"> {category.action}
                   <Dropdown
                     onDelete={() => deleteCategories(category.id)}
