@@ -1,5 +1,4 @@
-import React, {useCallback, useState} from 'react';
-// import { useDispatch } from 'react-redux';
+import React, { useCallback, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -19,8 +18,8 @@ export default function Dropdown({ onDelete, onEdit }) {
   }));
 
   const classes = useStyles();
-  const callback = useCallback(onEdit, [])
-  const callback1 = useCallback(onDelete, [])
+  const callback = useCallback(onEdit, []);
+  const callback1 = useCallback(onDelete, []);
 
   const BtnEdit = () => (
     <div className="btnEdit">
@@ -59,8 +58,6 @@ export default function Dropdown({ onDelete, onEdit }) {
     setAnchorEl(null);
   };
 
-  console.log(1)
-  
   return (
     <div>
       <IconButton

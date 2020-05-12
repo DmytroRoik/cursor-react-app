@@ -22,12 +22,12 @@ export default () => {
   };
 
   useEffect(() => {
-    if (name !== '' && iconId !== 0) {
+    if (name !== '' && description !== '') {
       changeButtonState(false);
     } else {
       changeButtonState(true);
     }
-  }, [name, iconId]);
+  }, [name, description]);
 
   const changeInputDescription = (e) => {
     changeDescription(e.target.value);

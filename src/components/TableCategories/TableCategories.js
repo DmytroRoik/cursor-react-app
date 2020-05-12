@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
@@ -13,8 +13,7 @@ import moment from 'moment';
 
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import {
-  editCategory, loadCategories,
-  removeCategory,
+  editCategory, removeCategory,
 } from '../../redux/actions/categories.actions';
 import EditDialog from '../BtnEditModal/BtnEditModal';
 import Dropdown from '../Dropdown/Dropdown';
@@ -48,7 +47,6 @@ const TableCategories = () => {
     dispatch(removeCategory(categoryId));
   };
   const editCategories = (id) => {
-    console.log(1)
     setIsEditOpen(true);
     setCategoryId(id);
   };
