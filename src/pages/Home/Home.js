@@ -16,7 +16,6 @@ import { getChargesFromThunk } from '../../redux/actions/home.actions';
 import { getUserDataProfile } from '../../redux/actions/profile.actions';
 import selectUserData from '../../redux/selectors/profile.selectors';
 import Toaster from '../../components/Toaster';
-
 import './Home.scss';
 
 const Home = () => {
@@ -27,7 +26,6 @@ const Home = () => {
   };
   const balance = useSelector(selectBalance);
   const userData = useSelector(selectUserData);
-
   const [startDate, setStartDate] = useState('week');
   const [showToaster, setShowToaster] = useState(false);
 
@@ -51,7 +49,7 @@ const Home = () => {
     dispatch(getTotalBalanceThunk());
     dispatch(getUserDataProfile());
     if (userData) {
-      if (balance < userData.criticalBudget) {
+      if (balance < userData.criticalBudget && userData.notify) {
         setShowToaster(true);
       }
     }

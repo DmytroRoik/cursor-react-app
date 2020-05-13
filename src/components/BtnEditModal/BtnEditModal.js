@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,18 +10,15 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import moment from 'moment';
-
 import {
   selectCategoriesCharges,
   selectCategoriesIncomes,
 } from '../../redux/selectors/home.selectors';
-import { loadCategories } from '../../redux/actions/categories.actions';
 import { selectCategories,
   selectIconId } from '../../redux/selectors/categories.selectors';
 import SimpleSelect from '../../pages/New-сategories/select';
 
 import './BtnEditModal.scss';
-import {loadCategoriesCharges} from "../../redux/actions/home.actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,7 +44,6 @@ const EditDialog = ({
     .find(item => item.id === id) || { category: {} };
   const categories = useSelector(selectCategories);
   const iconIdSelector = useSelector(selectIconId) + 1;
-  const dispatch = useDispatch();
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setDescription] = useState('');
   const [payloadMoney, setPayloadMoney] = useState('');
@@ -56,8 +52,8 @@ const EditDialog = ({
   const changeInputState = (setFunctionHook, data) => {
     setFunctionHook(data);
   };
-  const cancel = useCallback(onCancel, [])
-  const callback1 = useCallback(submitEditingDataHandler, [])
+  const cancel = useCallback(onCancel, []);
+  const callback1 = useCallback(submitEditingDataHandler, []);
 
 
   const setDate = (e) => {
@@ -101,7 +97,9 @@ const EditDialog = ({
         setChargeIncomeDate(chargeIncomeData.date);
       }
     }
-  }, [chargeIncomeData.category.id, chargeIncomeData.money, chargeIncomeData.description, chargeIncomeData.date]);
+  }, [chargeIncomeData.category.id,
+    chargeIncomeData.money,
+    chargeIncomeData.description, chargeIncomeData.date]);
 
 
   const options = categories.map(category => (

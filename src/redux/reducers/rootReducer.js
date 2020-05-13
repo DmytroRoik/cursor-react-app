@@ -28,7 +28,6 @@ const rootReducer = (state = initialState, action) => {
     }
     //TODO
     case GET_USER_DATA:
-      console.log(action)
       return {
         ...state,
         balance: action.balance.toFixed(2),
