@@ -10,18 +10,15 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import moment from 'moment';
-
 import {
   selectCategoriesCharges,
   selectCategoriesIncomes,
 } from '../../redux/selectors/home.selectors';
-
-import { selectCategories, selectIconId } from
-  '../../redux/selectors/categories.selectors';
+import { selectCategories,
+  selectIconId } from '../../redux/selectors/categories.selectors';
 import SimpleSelect from '../../pages/New-сategories/select';
 
 import './BtnEditModal.scss';
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -100,7 +97,8 @@ const EditDialog = ({
         setChargeIncomeDate(chargeIncomeData.date);
       }
     }
-  }, [chargeIncomeData.category.id, chargeIncomeData.money,
+  }, [chargeIncomeData.category.id,
+    chargeIncomeData.money,
     chargeIncomeData.description, chargeIncomeData.date]);
 
 

@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const SimpleSelect = ({ id }) => {
   const classes = useStyles();
-  const [icon, setIcon] = useState(id ? id - 1 : 0);
+  const [icon, setIcon] = useState(id ? id - 1 : 1);
   const dispatch = useDispatch();
   const iconsServer = useSelector(selectIcons).map(i => i.class);
 
@@ -37,7 +37,7 @@ const SimpleSelect = ({ id }) => {
 
   const menuItem = iconsServer.map((item, index) => (
     <MenuItem
-      value={index}
+      value={id ? index : index + 1}
       key={item}
     >
       <Icon

@@ -89,8 +89,6 @@ export default () => {
         category,
         switchValue,
       ));
-    } else {
-      console.log('Вы ввели неправильные данные');
     }
   };
 
