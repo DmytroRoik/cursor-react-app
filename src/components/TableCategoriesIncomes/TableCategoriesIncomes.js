@@ -134,7 +134,9 @@ const TableCategoriesCharges = () => {
                   {income.category.name}
                 </TableCell>
                 <TableCell >{income.description}</TableCell>
-                <TableCell >{moment(income.date).format('DD/MM/YYYY')}</TableCell>
+                <TableCell >{moment(income.date)
+                .format('DD/MM/YYYY')}
+                </TableCell>
                 <TableCell >${income.money}</TableCell>
                 <TableCell align="right"> {income.action}
                   <Dropdown
@@ -155,7 +157,7 @@ const TableCategoriesCharges = () => {
       {categoryId && <EditDialog
         open={isEditOpen}
         onCancel={cancelEdit}
-        type="incomes"
+        type="income"
         оnSubmit={editCategoriesIncome}
         submitEditingDataHandler={submitEditingDataHandler}
         id={categoryId}

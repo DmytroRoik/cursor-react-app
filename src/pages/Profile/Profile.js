@@ -10,7 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import { postUserData } from '../../redux/actions/profile.actions';
 import Avatar from '../../components/ProfileElements/Avatar/Avatar';
-import selectUserData from '../../redux/selectors/profile.selectors';
+import { selectUserData } from '../../redux/selectors/profile.selectors';
 import '../../components/ProfileElements/BtnEditProfile';
 
 

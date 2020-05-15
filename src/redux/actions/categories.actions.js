@@ -41,7 +41,10 @@ export const removeCategory = id => (dispatch) => {
   });
 };
 
-export const addCategory = (name, description, iconId, history) => (dispatch) => {
+export const addCategory = (
+  name,
+  description, iconId, history,
+) => (dispatch) => {
   api.postCategory(name, description, iconId).then((data) => {
     dispatch({
       type: ADD_NEW_CATEGORY_SUCCESS,

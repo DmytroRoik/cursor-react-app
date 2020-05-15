@@ -39,7 +39,7 @@ const EditDialog = ({
   const classes = useStyles();
   const categoryData = useSelector(selectCategories)
     .find(category => category.id === id) || { icon: {} };
-  const chargeIncomeData = useSelector(type === 'charges' ?
+  const chargeIncomeData = useSelector(type === 'charge' ?
     selectCategoriesCharges : selectCategoriesIncomes)
     .find(item => item.id === id) || { category: {} };
   const categories = useSelector(selectCategories);
@@ -90,7 +90,7 @@ const EditDialog = ({
 
   useEffect(() => {
     if (chargeIncomeData) {
-      if (type === 'incomes' || type === 'charges') {
+      if (type === 'income' || type === 'charge') {
         setCategoryName(chargeIncomeData.category.id);
         setPayloadMoney(chargeIncomeData.money);
         setDescription(chargeIncomeData.description);
@@ -146,8 +146,8 @@ const EditDialog = ({
               )
               }
 
-              {(chargeIncomeData && (type === 'incomes' ||
-               type === 'charges')) && (
+              {(chargeIncomeData && (type === 'income' ||
+               type === 'charge')) && (
                <>
                  <div className="form__item">
                    <InputLabel htmlFor="age-native-helper">
@@ -156,8 +156,11 @@ const EditDialog = ({
                    <NativeSelect
                      className="form__input"
                      value={categoryName}
-                     onChange={e =>
-                        setCategoryId(e.target.value)
+                     onChange={(e) => {
+                      setCategoryId(e.target.value);
+                      setCategoryName(e.target.value);
+                     }
+
                       }
                    >
                      {options}

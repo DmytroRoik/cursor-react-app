@@ -12,7 +12,7 @@ import Sidebar from './components/Sidebar';
 import routes from './routes';
 
 import './App.css';
-import {loadCategories} from "./redux/actions/categories.actions";
+import { loadCategories } from './redux/actions/categories.actions';
 
 function App() {
   const dispatch = useDispatch();

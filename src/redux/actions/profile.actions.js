@@ -9,6 +9,13 @@ export const POST_AVATAR_REQUEST = 'POST_AVATAR_REQUEST';
 export const POST_AVATAR_SUCCESS = 'POST_AVATAR_SUCCESS';
 export const POST_AVATAR_FAIL = 'POST_AVATAR_FAIL';
 
+export const SWITCH_TOASTER = 'SWITCH_TOASTER';
+
+export const setToaster = isToaster => ({
+  type: SWITCH_TOASTER,
+  payload: isToaster,
+});
+
 export const getUserDataProfile = () => (dispatch) => {
   api.getUserData().then((response) => {
     response.data.data.avatar =

@@ -6,7 +6,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
 import { selectBalance } from '../../redux/selectors/rootSelectors';
-import selectUserData from '../../redux/selectors/profile.selectors';
+import { selectUserData } from '../../redux/selectors/profile.selectors';
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import AddBtn from './AddBtn';
 import { postTotalDescriptionThunk } from '../../redux/actions/home.actions';

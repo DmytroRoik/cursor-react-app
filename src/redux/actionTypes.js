@@ -3,5 +3,3 @@ export const GET_STATS_SUCCESS = 'GET_STATS_SUCCESS';
 export const GET_STATS_FAIL = 'GET_STATS_FAIL';
 export const EDIT_CHARGE_FAIL = 'EDIT_CHARGE_FAIL';
 
-
-
