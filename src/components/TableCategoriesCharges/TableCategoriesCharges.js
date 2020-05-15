@@ -125,6 +125,7 @@ const TableCategoriesCharges = () => {
           <TableBody>
             {data.map(charge => (
               <TableRow key={charge.id}>
+                 <TableCell ><img className="avatar"src={`${process.env.REACT_APP_BASE_URL}/avatars/${charge.user.avatar}`} alt="avatar"/> </TableCell>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '40px' }}

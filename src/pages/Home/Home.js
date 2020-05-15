@@ -28,6 +28,8 @@ const Home = () => {
   const balance = useSelector(selectBalance);
   const userData = useSelector(selectUserData);
 
+  const [userAvatar, setUserAvatar] = useState('week');
+
   const [startDate, setStartDate] = useState('week');
   const [showToaster, setShowToaster] = useState(false);
 
