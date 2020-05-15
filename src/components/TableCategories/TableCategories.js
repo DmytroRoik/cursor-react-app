@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
@@ -13,8 +13,7 @@ import moment from 'moment';
 
 import { selectCategories } from '../../redux/selectors/categories.selectors';
 import {
-  editCategory, loadCategories,
-  removeCategory,
+  editCategory, removeCategory,
 } from '../../redux/actions/categories.actions';
 import EditDialog from '../BtnEditModal/BtnEditModal';
 import Dropdown from '../Dropdown/Dropdown';
@@ -33,10 +32,6 @@ const TableCategories = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadCategories());
-  }, []);
 
   const deleteCategories = (id) => {
     setIsOpenModal(true);
@@ -59,7 +54,6 @@ const TableCategories = () => {
     dispatch(editCategory(categoryId, data));
   };
   const classes = useStyles();
-
   return (
     <>
       <TableContainer component={Paper}>
@@ -83,7 +77,9 @@ const TableCategories = () => {
                   {category.name}
                 </TableCell>
                 <TableCell >{category.description}</TableCell>
-                <TableCell >{moment(category.createdAt).format('DD/MM/YYYY')}</TableCell>
+                <TableCell >{moment(category.createdAt)
+                .format('DD/MM/YYYY')}
+                </TableCell>
                 <TableCell align="right"> {category.action}
                   <Dropdown
                     onDelete={() => deleteCategories(category.id)}

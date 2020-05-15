@@ -23,6 +23,7 @@ export const GET_CHARGES_FROM_SUCCESS = 'GET_CHARGES_FROM_SUCCESS';
 export const GET_CHARGES_FROM_FAIL = 'GET_CHARGES_FROM_FAIL';
 export const GET_INCOMES_FROM_SUCCESS = 'GET_INCOMES_FROM_SUCCESS';
 
+
 export const loadCategoriesCharges = () => (dispatch) => {
   api.getCharges('charge').then((res) => {
     dispatch({
@@ -137,7 +138,9 @@ export const getChargesFromThunk = (date, type) => async (dispatch) => {
 
 export const editCharges =
 (id, categoryId, description, date, money, type) => (dispatch) => {
-  api.editCharges(id, categoryId, description, date, money, type).then(() => {
+  api.editCharges({
+    id, categoryId, description, date, money, type,
+  }).then(() => {
     dispatch(loadCategoriesCharges());
   }).catch((err) => {
     console.log('error');

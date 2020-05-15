@@ -12,11 +12,13 @@ import Sidebar from './components/Sidebar';
 import routes from './routes';
 
 import './App.css';
+import { loadCategories } from './redux/actions/categories.actions';
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserDataProfile());
+    dispatch(loadCategories());
   }, []);
   return (
     <Router>
@@ -40,6 +42,6 @@ function App() {
       />
     </Router>
   );
-}
+};
 
 export default App;

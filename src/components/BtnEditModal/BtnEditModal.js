@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,13 +10,12 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import moment from 'moment';
-
 import {
   selectCategoriesCharges,
   selectCategoriesIncomes,
 } from '../../redux/selectors/home.selectors';
-import { loadCategories } from '../../redux/actions/categories.actions';
-import { selectCategories, selectIconId } from '../../redux/selectors/categories.selectors';
+import { selectCategories,
+  selectIconId } from '../../redux/selectors/categories.selectors';
 import SimpleSelect from '../../pages/New-сategories/select';
 
 import './BtnEditModal.scss';
@@ -31,26 +30,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EditDialog = ({
-  id = 0,
+  id,
   open,
   type,
   onCancel,
   submitEditingDataHandler,
 }) => {
   const classes = useStyles();
-  const categoryData = useSelector(selectCategories).find(category => category.id === id);
-  const chargeIncomeData = useSelector(type === 'charge' ? selectCategoriesCharges : selectCategoriesIncomes).find(item => item.id === id);
+  const categoryData = useSelector(selectCategories)
+    .find(category => category.id === id) || { icon: {} };
+  const chargeIncomeData = useSelector(type === 'charge' ?
+    selectCategoriesCharges : selectCategoriesIncomes)
+    .find(item => item.id === id) || { category: {} };
   const categories = useSelector(selectCategories);
-  const iconIdSelector = useSelector(selectIconId) + 1; // I don't know who adjust iconId data after me, but now, if there isn't+1 value , app doesn't work
-  const dispatch = useDispatch();
+  const iconIdSelector = useSelector(selectIconId) + 1;
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setDescription] = useState('');
   const [payloadMoney, setPayloadMoney] = useState('');
   const [chargeIncomeDate, setChargeIncomeDate] = useState('');
-  const [categoryId, setCategoryId] = useState(type === 'categories' ? 0 : chargeIncomeData.category.id);
+  const [categoryId, setCategoryId] = useState(0);
   const changeInputState = (setFunctionHook, data) => {
     setFunctionHook(data);
   };
+  const cancelCallback = useCallback(onCancel, []);
+  const submitCallback = useCallback(submitEditingDataHandler, []);
+
 
   const setDate = (e) => {
     setChargeIncomeDate(e.target.value);
@@ -80,24 +84,32 @@ const EditDialog = ({
       if (type === 'categories') {
         setCategoryName(categoryData.name);
         setDescription(categoryData.description);
-      } else if (type === 'income' || type === 'charge') {
-        setCategoryName(chargeIncomeData.category.name);
+      }
+    }
+  }, [categoryData.name, categoryData.description]);
+
+  useEffect(() => {
+    if (chargeIncomeData) {
+      if (type === 'income' || type === 'charge') {
+        setCategoryName(chargeIncomeData.category.id);
         setPayloadMoney(chargeIncomeData.money);
         setDescription(chargeIncomeData.description);
         setChargeIncomeDate(chargeIncomeData.date);
-        dispatch(loadCategories());
       }
     }
-  }, [categoryData, chargeIncomeData]);
+  }, [chargeIncomeData.category.id,
+    chargeIncomeData.money,
+    chargeIncomeData.description, chargeIncomeData.date]);
+
 
   const options = categories.map(category => (
-    <option key={category.id} value={category.name}>
+    <option key={category.id} value={category.id}>
       {category.name}
     </option>
   ));
   return (
     <>
-      {categoryData && (
+      {(categoryData || chargeIncomeData) && (
         <Dialog
           open={open}
           aria-labelledby="alert-dialog-title"
@@ -129,53 +141,57 @@ const EditDialog = ({
                     value={categoryDescription}
                     label="Category Description"
                   />
-                  <SimpleSelect />
+                  <SimpleSelect id={categoryData.icon.id} />
                 </>
               )
               }
 
-              {(type === 'income' || type === 'charge') && (
-                <>
-                  <div className="form__item">
-                    <InputLabel htmlFor="age-native-helper">
-                      Select category
-                    </InputLabel>
-                    <NativeSelect
-                      className="form__input"
-                      value={categoryName}
-                      onChange={e =>
-                        setCategoryId(categories.find(item => item.name === e.target.value).id)
+              {(chargeIncomeData && (type === 'income' ||
+               type === 'charge')) && (
+               <>
+                 <div className="form__item">
+                   <InputLabel htmlFor="age-native-helper">
+                     Select category
+                   </InputLabel>
+                   <NativeSelect
+                     className="form__input"
+                     value={categoryName}
+                     onChange={(e) => {
+                      setCategoryId(e.target.value);
+                      setCategoryName(e.target.value);
+                     }
+
                       }
-                    >
-                      {options}
-                    </NativeSelect>
-                  </div>
-                  <TextField
-                    label="Description"
-                    value={categoryDescription}
-                    onChange={e =>
+                   >
+                     {options}
+                   </NativeSelect>
+                 </div>
+                 <TextField
+                   label="Description"
+                   value={categoryDescription}
+                   onChange={e =>
                       changeInputState(setDescription, e.target.value)
                     }
-                  />
-                  <TextField
-                    label="Money"
-                    value={payloadMoney}
-                    onChange={e =>
+                 />
+                 <TextField
+                   label="Money"
+                   value={payloadMoney}
+                   onChange={e =>
                       changeInputState(setPayloadMoney, e.target.value)
                     }
-                  />
-                  <TextField
-                    id="date"
-                    label="Date"
-                    type="date"
-                    className="form__input"
-                    value={moment(chargeIncomeDate).format('YYYY-MM-DD')}
-                    onChange={setDate}
-                    InputLabelProps={{
+                 />
+                 <TextField
+                   id="date"
+                   label="Date"
+                   type="date"
+                   className="form__input"
+                   value={moment(chargeIncomeDate).format('YYYY-MM-DD')}
+                   onChange={setDate}
+                   InputLabelProps={{
                       shrink: true,
                     }}
-                  />
-                </>
+                 />
+               </>
               )
               }
             </form>
@@ -183,13 +199,13 @@ const EditDialog = ({
           <DialogActions>
             <Button
               onClick={() => {
-                submitEditingDataHandler(collectDataForPutRequest());
-                onCancel();
+                submitCallback(collectDataForPutRequest());
+                cancelCallback();
               }}
             >
               Save
             </Button>
-            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={cancelCallback}>Cancel</Button>
           </DialogActions>
         </Dialog>
       )}
