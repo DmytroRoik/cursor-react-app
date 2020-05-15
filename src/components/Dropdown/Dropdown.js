@@ -18,13 +18,13 @@ export default function Dropdown({ onDelete, onEdit }) {
   }));
 
   const classes = useStyles();
-  const callback = useCallback(onEdit, []);
-  const callback1 = useCallback(onDelete, []);
+  const editCallback = useCallback(onEdit, []);
+  const deleteCallback = useCallback(onDelete, []);
 
   const BtnEdit = () => (
     <div className="btnEdit">
       <Button
-        onClick={callback}
+        onClick={editCallback}
         variant="contained"
         color="primary"
         className={classes.button}
@@ -38,7 +38,7 @@ export default function Dropdown({ onDelete, onEdit }) {
   const BtnDelete = () => (
     <div className="btnDelete">
       <Button
-        onClick={callback1}
+        onClick={deleteCallback}
         variant="contained"
         color="secondary"
         className={classes.button}

@@ -52,8 +52,8 @@ const EditDialog = ({
   const changeInputState = (setFunctionHook, data) => {
     setFunctionHook(data);
   };
-  const cancel = useCallback(onCancel, []);
-  const callback1 = useCallback(submitEditingDataHandler, []);
+  const cancelCallback = useCallback(onCancel, []);
+  const submitCallback = useCallback(submitEditingDataHandler, []);
 
 
   const setDate = (e) => {
@@ -199,13 +199,13 @@ const EditDialog = ({
           <DialogActions>
             <Button
               onClick={() => {
-                callback1(collectDataForPutRequest());
-                cancel();
+                submitCallback(collectDataForPutRequest());
+                cancelCallback();
               }}
             >
               Save
             </Button>
-            <Button onClick={cancel}>Cancel</Button>
+            <Button onClick={cancelCallback}>Cancel</Button>
           </DialogActions>
         </Dialog>
       )}
