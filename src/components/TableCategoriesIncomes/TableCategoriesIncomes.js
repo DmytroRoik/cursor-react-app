@@ -24,6 +24,7 @@ import {
 } from '../../redux/actions/home.actions';
 
 import EditDialog from '../BtnEditModal/BtnEditModal';
+import selectUserData from '../../redux/selectors/profile.selectors';
 
 const TableCategoriesCharges = () => {
   const [columToSort, setColumToSort] = useState('');
@@ -32,6 +33,9 @@ const TableCategoriesCharges = () => {
   const [categoryId, setCategoryId] = useState(null);
   const dispatch = useDispatch();
   const incomes = useSelector(selectCategoriesIncomes);
+  const userData = useSelector(selectUserData);
+  const [userAvatar, setUserAvatar] = useState(null);
+
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   const invertdirection = {
@@ -48,6 +52,12 @@ const TableCategoriesCharges = () => {
   useEffect(() => {
     dispatch(loadCategoriesIncomes());
   }, []);
+
+  useEffect(() => {
+    if (userData) {
+      setUserAvatar(userData.avatar)
+    }
+  }, [userData])
 
   const deleteCategoriesIncomes = (id) => {
     setIsOpenModal(true);
@@ -81,6 +91,7 @@ const TableCategoriesCharges = () => {
   const classes = useStyles();
 
   const labels = [
+    { label: 'Owner', name: 'image' },
     { label: 'Category', name: 'name' },
     { label: 'Description', name: 'description' },
     { label: 'Date', name: 'date' },
@@ -126,6 +137,9 @@ const TableCategoriesCharges = () => {
           <TableBody>
             {data.map(income => (
               <TableRow key={income.id}>
+                <TableCell>
+                  <img src={userAvatar} alt='Users avatar' style={{ width: '70px', height: "auto"} } />
+                </TableCell>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '40px' }}
