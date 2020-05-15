@@ -100,7 +100,6 @@ const TableCategoriesCharges = () => {
     : <ArrowDropUpIcon />;
 
   const data = orderBy(incomes, columToSort, sortDirection);
-  console.log(data);
   return (
     <>
       <TableContainer component={Paper}>
