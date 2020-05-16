@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
@@ -19,7 +19,6 @@ import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
 import { selectCategoriesCharges } from '../../redux/selectors/home.selectors';
 import {
   editCharges,
-  loadCategoriesCharges,
   removeCategoryCharges,
 } from '../../redux/actions/home.actions';
 import EditDialog from '../BtnEditModal/BtnEditModal';
@@ -43,10 +42,6 @@ const TableCategoriesCharges = () => {
       minWidth: 600,
     },
   });
-
-  useEffect(() => {
-    dispatch(loadCategoriesCharges());
-  }, []);
 
   const deleteCategoriesCharges = (id) => {
     setIsOpenModal(true);
@@ -98,7 +93,6 @@ const TableCategoriesCharges = () => {
     : <ArrowDropUpIcon />;
 
   const data = orderBy(charges, columToSort, sortDirection);
-
   return (
     <>
       <TableContainer component={Paper}>
@@ -134,7 +128,9 @@ const TableCategoriesCharges = () => {
                   {charge.category.name}
                 </TableCell>
                 <TableCell >{charge.description}</TableCell>
-                <TableCell >{moment(charge.date).format('DD/MM/YYYY')}</TableCell>
+                <TableCell >{moment(charge.date)
+                 .format('DD/MM/YYYY')}
+                </TableCell>
                 <TableCell >${charge.money}</TableCell>
                 <TableCell align="right"> {charge.action}
                   <Dropdown
@@ -152,15 +148,17 @@ const TableCategoriesCharges = () => {
         onCancel={cancelDelete}
         onSubmit={removeItemById}
       />
-
-      {categoryId && <EditDialog
-        open={isEditOpen}
-        onCancel={cancelEdit}
-        type="charge"
-        оnSubmit={editCategoriesCharges}
-        submitEditingDataHandler={submitEditingDataHandler}
-        id={categoryId}
-      />}
+      {categoryId && (
+        <EditDialog
+          open={isEditOpen}
+          onCancel={cancelEdit}
+          type="charge"
+          оnSubmit={editCategoriesCharges}
+          submitEditingDataHandler={submitEditingDataHandler}
+          id={categoryId}
+        />
+      )
+      }
     </>
   );
 };

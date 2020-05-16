@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-import selectUserData from '../../../redux/selectors/profile.selectors';
+import { selectUserData } from '../../../redux/selectors/profile.selectors';
 import BtnEditProfile from '../BtnEditProfile/BtnEditProfile';
 import './Avatar.scss';
 

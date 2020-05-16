@@ -13,14 +13,16 @@ import Balance from '../../components/Balance';
 import TableCategoriesCharges from '../../components/TableCategoriesCharges';
 import TableCategoriesIncomes from '../../components/TableCategoriesIncomes';
 import { getChargesFromThunk } from '../../redux/actions/home.actions';
-import { getUserDataProfile } from '../../redux/actions/profile.actions';
-import selectUserData from '../../redux/selectors/profile.selectors';
+import { getUserDataProfile,
+  setToaster } from '../../redux/actions/profile.actions';
+import { selectUserData,
+  selectShowToaster } from '../../redux/selectors/profile.selectors';
 import Toaster from '../../components/Toaster';
-
 import './Home.scss';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const showToaster = useSelector(selectShowToaster);
   const [value, setValue] = useState('charge');
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,7 +33,6 @@ const Home = () => {
   const [userAvatar, setUserAvatar] = useState('week');
 
   const [startDate, setStartDate] = useState('week');
-  const [showToaster, setShowToaster] = useState(false);
 
   const handleWeek = (event) => {
     const { value: startDateValue } = event.target;
@@ -52,18 +53,13 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTotalBalanceThunk());
     dispatch(getUserDataProfile());
-    if (userData) {
-      if (balance < userData.criticalBudget) {
-        setShowToaster(true);
-      }
-    }
   }, [balance]);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setShowToaster(false);
+    dispatch(setToaster(false));
   };
 
   return (

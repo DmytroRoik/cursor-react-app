@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './NewCategories.scss';
 import SimpleSelect from './select';
 import { selectIconId } from '../../redux/selectors/categories.selectors';
-import { postCategory } from '../../redux/actions/categories.actions';
+import { addCategory } from '../../redux/actions/categories.actions';
 
 export default () => {
   const dispatch = useDispatch();
@@ -21,22 +21,22 @@ export default () => {
     changeName(e.target.value);
   };
 
-  useEffect(() => {
-    if (name !== '' && iconId !== 0) {
-      changeButtonState(false);
-    } else {
-      changeButtonState(true);
-    }
-  }, [name, iconId]);
-
   const changeInputDescription = (e) => {
     changeDescription(e.target.value);
   };
 
   const onButtonSubmit = (e) => {
     e.preventDefault();
-    dispatch(postCategory(name, description, iconId, history));
+    dispatch(addCategory(name, description, iconId, history));
   };
+
+  useEffect(() => {
+    if (name !== '' && description !== '') {
+      changeButtonState(false);
+    } else {
+      changeButtonState(true);
+    }
+  }, [name, description]);
 
   return (
     <form className="form" onSubmit={onButtonSubmit}>

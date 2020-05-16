@@ -20,9 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleSelect() {
+const SimpleSelect = ({ id }) => {
   const classes = useStyles();
-  const [icon, setIcon] = useState('');
+  const [icon, setIcon] = useState(id ? id - 1 : 1);
   const dispatch = useDispatch();
   const iconsServer = useSelector(selectIcons).map(i => i.class);
 
@@ -37,7 +37,7 @@ export default function SimpleSelect() {
 
   const menuItem = iconsServer.map((item, index) => (
     <MenuItem
-      value={index}
+      value={id ? index : index + 1}
       key={item}
     >
       <Icon
@@ -71,4 +71,6 @@ export default function SimpleSelect() {
       </FormControl>
     </div>
   );
-}
+};
+
+export default SimpleSelect;

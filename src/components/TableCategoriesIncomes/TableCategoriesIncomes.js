@@ -135,7 +135,9 @@ const TableCategoriesCharges = () => {
                   {income.category.name}
                 </TableCell>
                 <TableCell >{income.description}</TableCell>
-                <TableCell >{moment(income.date).format('DD/MM/YYYY')}</TableCell>
+                <TableCell >{moment(income.date)
+                .format('DD/MM/YYYY')}
+                </TableCell>
                 <TableCell >${income.money}</TableCell>
                 <TableCell align="right"> {income.action}
                   <Dropdown
