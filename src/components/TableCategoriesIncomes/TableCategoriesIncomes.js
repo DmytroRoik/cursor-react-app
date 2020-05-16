@@ -81,6 +81,7 @@ const TableCategoriesCharges = () => {
   const classes = useStyles();
 
   const labels = [
+    { label: 'Owner', name: 'owner' },
     { label: 'Category', name: 'name' },
     { label: 'Description', name: 'description' },
     { label: 'Date', name: 'date' },
@@ -99,7 +100,6 @@ const TableCategoriesCharges = () => {
     : <ArrowDropUpIcon />;
 
   const data = orderBy(incomes, columToSort, sortDirection);
-
   return (
     <>
       <TableContainer component={Paper}>
@@ -126,6 +126,7 @@ const TableCategoriesCharges = () => {
           <TableBody>
             {data.map(income => (
               <TableRow key={income.id}>
+                <TableCell ><img className="avatar"src={`${process.env.REACT_APP_BASE_URL}/avatars/${income.user.avatar}`} alt="avatar" /> </TableCell>
                 <TableCell component="th" scope="row" >
                   <Icon
                     style={{ width: '40px' }}
