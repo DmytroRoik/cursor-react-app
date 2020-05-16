@@ -14,8 +14,7 @@ import {
   selectCategoriesCharges,
   selectCategoriesIncomes,
 } from '../../redux/selectors/home.selectors';
-import { selectCategories,
-  selectIconId } from '../../redux/selectors/categories.selectors';
+import { selectCategories } from '../../redux/selectors/categories.selectors';
 import SimpleSelect from '../../pages/New-сategories/select';
 
 import './BtnEditModal.scss';
@@ -43,7 +42,9 @@ const EditDialog = ({
     selectCategoriesCharges : selectCategoriesIncomes)
     .find(item => item.id === id) || { category: {} };
   const categories = useSelector(selectCategories);
-  const iconIdSelector = useSelector(selectIconId) + 1;
+
+  const [iconId, setIconId] = useState(categoryData.icon.id || 1);
+
   const [categoryName, setCategoryName] = useState('');
   const [categoryDescription, setDescription] = useState('');
   const [payloadMoney, setPayloadMoney] = useState('');
@@ -65,7 +66,7 @@ const EditDialog = ({
         id,
         name: categoryName,
         description: categoryDescription,
-        iconId: iconIdSelector,
+        iconId,
       };
       return data;
     }
@@ -80,23 +81,19 @@ const EditDialog = ({
   };
 
   useEffect(() => {
-    if (categoryData) {
       if (type === 'categories') {
         setCategoryName(categoryData.name);
         setDescription(categoryData.description);
       }
-    }
   }, [categoryData.name, categoryData.description]);
 
   useEffect(() => {
-    if (chargeIncomeData) {
       if (type === 'income' || type === 'charge') {
-        setCategoryName(chargeIncomeData.category.id);
+        setCategoryId(chargeIncomeData.category.id);
         setPayloadMoney(chargeIncomeData.money);
         setDescription(chargeIncomeData.description);
         setChargeIncomeDate(chargeIncomeData.date);
       }
-    }
   }, [chargeIncomeData.category.id,
     chargeIncomeData.money,
     chargeIncomeData.description, chargeIncomeData.date]);
@@ -141,7 +138,10 @@ const EditDialog = ({
                     value={categoryDescription}
                     label="Category Description"
                   />
-                  <SimpleSelect id={categoryData.icon.id} />
+                  <SimpleSelect
+                    id={categoryData.icon.id}
+                    onChange={setIconId}
+                  />
                 </>
               )
               }

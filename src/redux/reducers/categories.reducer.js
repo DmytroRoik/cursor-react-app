@@ -1,13 +1,11 @@
 import { LOAD_CATEGORIES_SUCCESS,
   REMOVE_CATEGORY_SUCCESS,
-  ADD_NEW_CATEGORY_SUCCESS,
-  SET_ICON_ID, EDIT_CATEGORY_SUCCESS } from '../actions/categories.actions';
+  ADD_NEW_CATEGORY_SUCCESS, EDIT_CATEGORY_SUCCESS } from '../actions/categories.actions';
 
 const initialState = {
   categories: [],
   name: '',
-  description: '',
-  iconId: 0,
+  description: ''
 };
 
 const categoriesReducer = (state = initialState, action) => {
@@ -32,12 +30,6 @@ const categoriesReducer = (state = initialState, action) => {
       };
     }
 
-    case SET_ICON_ID: {
-      return {
-        ...state,
-        iconId: action.value,
-      };
-    }
     case EDIT_CATEGORY_SUCCESS: {
       return {
         ...state,

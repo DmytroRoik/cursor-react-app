@@ -30,9 +30,7 @@ const Home = () => {
   const balance = useSelector(selectBalance);
   const userData = useSelector(selectUserData);
 
-  const [userAvatar, setUserAvatar] = useState('week');
-
-  const [startDate, setStartDate] = useState('week');
+  const [startDate, setStartDate] = useState('month');
 
   const handleWeek = (event) => {
     const { value: startDateValue } = event.target;

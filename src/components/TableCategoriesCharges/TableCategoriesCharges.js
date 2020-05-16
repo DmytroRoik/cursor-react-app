@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper }  from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import moment from 'moment';
 import { orderBy } from 'lodash';
 import Icon from '@material-ui/core/Icon';
-import './TableCategoriesCharges.scss';
 import Dropdown from '../Dropdown/Dropdown';
 import AlertDialogSlide from '../HomeBtnDeleteModal/HomeBtnDeleteModal';
 import { selectCategoriesCharges } from '../../redux/selectors/home.selectors';
@@ -22,6 +15,7 @@ import {
   removeCategoryCharges,
 } from '../../redux/actions/home.actions';
 import EditDialog from '../BtnEditModal/BtnEditModal';
+import './TableCategoriesCharges.scss';
 
 const TableCategoriesCharges = () => {
   const [columToSort, setColumToSort] = useState('');
@@ -54,6 +48,7 @@ const TableCategoriesCharges = () => {
   };
 
   const labels = [
+    { label: 'Owner', name: 'owner' },
     { label: 'Category', name: 'name' },
     { label: 'Description', name: 'description' },
     { label: 'Date', name: 'date' },

@@ -29,6 +29,7 @@ export const loadCategoriesCharges = () => (dispatch) => {
     dispatch({
       type: LOAD_CATEGORIES_CHARGES_SUCCESS,
       payload: res.data.data,
+      balance: res.data.totalBalance
     });
   }).catch((err) => {
     console.log('error');
@@ -46,7 +47,7 @@ export const removeCategoryCharges = id => (dispatch) => {
     dispatch({
       type: REMOVE_CATEGORY_CHARGES_SUCCESS,
       payload: id,
-
+      balance: res.data.totalBalance.totalBalance
     });
   }).catch((err) => {
     console.log('error');
@@ -62,6 +63,7 @@ export const loadCategoriesIncomes = () => (dispatch) => {
     dispatch({
       type: LOAD_CATEGORIES_INCOMES_SUCCESS,
       payload: res.data.data,
+      balance: res.data.totalBalance
     });
   }).catch((err) => {
     console.log('error');
@@ -78,7 +80,7 @@ export const removeCategoryIncomes = id => (dispatch) => {
     dispatch({
       type: REMOVE_CATEGORY_INCOMES_SUCCESS,
       payload: id,
-
+      balance: res.data.totalBalance.totalBalance
     });
   }).catch((err) => {
     console.log('error');
@@ -153,7 +155,7 @@ export const editCharges =
 
 export const editIncomes =
 (id, categoryId, description, date, money, type) => (dispatch) => {
-  api.editCharges(id, categoryId, description, date, money, type).then(() => {
+  api.editCharges({ id, categoryId, description, date, money, type }).then(() => {
     dispatch(loadCategoriesIncomes());
   }).catch((err) => {
     console.log('error');

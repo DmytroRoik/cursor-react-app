@@ -1,6 +1,11 @@
 import { ADD_CHARGE_DATA_SUCCESS,
-  ADD_INCOME_DATA_SUCCESS } from '../actions/home.actions';
-
+  ADD_INCOME_DATA_SUCCESS,
+  LOAD_CATEGORIES_CHARGES_SUCCESS,
+  LOAD_CATEGORIES_INCOMES_SUCCESS,
+  REMOVE_CATEGORY_CHARGES_SUCCESS,
+  REMOVE_CATEGORY_INCOMES_SUCCESS
+ } from '../actions/home.actions';
+  
 import {
   LOAD_ICONS_SUCCESS,
   GET_USER_DATA,
@@ -62,6 +67,14 @@ const rootReducer = (state = initialState, action) => {
         balance: action.payload.toFixed(2),
       };
     }
+    case LOAD_CATEGORIES_CHARGES_SUCCESS:
+    case LOAD_CATEGORIES_INCOMES_SUCCESS:
+    case REMOVE_CATEGORY_CHARGES_SUCCESS:
+    case REMOVE_CATEGORY_INCOMES_SUCCESS:
+      return {
+        ...state,
+        balance: action.balance.toFixed(2)
+      }
     default:
       return state;
   }
