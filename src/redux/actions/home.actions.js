@@ -153,7 +153,7 @@ export const editCharges =
 
 export const editIncomes =
 (id, categoryId, description, date, money, type) => (dispatch) => {
-  api.editCharges(id, categoryId, description, date, money, type).then(() => {
+  api.editCharges({ id, categoryId, description, date, money, type }).then(() => {
     dispatch(loadCategoriesIncomes());
   }).catch((err) => {
     console.log('error');

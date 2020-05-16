@@ -8,7 +8,6 @@ import Select from '@material-ui/core/Select';
 import Icon from '@material-ui/core/Icon';
 import { selectIcons } from '../../redux/selectors/rootSelectors';
 import { loadIcons } from '../../redux/actions/root.actions';
-import { setIconId } from '../../redux/actions/categories.actions';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -20,29 +19,30 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SimpleSelect = ({ id }) => {
+const SimpleSelect = ({ id, onChange }) => {
   const classes = useStyles();
-  const [icon, setIcon] = useState(id ? id - 1 : 1);
+  const [icon, setIcon] = useState(id);
   const dispatch = useDispatch();
-  const iconsServer = useSelector(selectIcons).map(i => i.class);
+  const iconsServer = useSelector(selectIcons);
 
   const handleChange = (event) => {
     setIcon(event.target.value);
-    dispatch(setIconId(event.target.value));
+    onChange(event.target.value);
   };
 
   useEffect(() => {
     dispatch(loadIcons());
   }, [dispatch]);
 
+  console.log(iconsServer);
   const menuItem = iconsServer.map((item, index) => (
     <MenuItem
-      value={id ? index : index + 1}
-      key={item}
+      value={item.id}
+      key={item.id}
     >
       <Icon
         style={{ width: '30px', fontSize: '20px' }}
-        className={`fas ${item}`}
+        className={`fas ${item.class}`}
         id={index}
       />
     </MenuItem>));
@@ -63,8 +63,11 @@ const SimpleSelect = ({ id }) => {
           value={icon}
           onChange={handleChange}
           style={{
- width: 360, border: '1px solid #65656550', borderRadius: 5, padding: 5,
-}}
+            width: 360,
+            border: '1px solid #65656550',
+            borderRadius: 5,
+            padding: 5,
+          }}
         >
           {menuItem}
         </Select>

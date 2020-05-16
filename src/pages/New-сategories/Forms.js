@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 
 import './NewCategories.scss';
 import SimpleSelect from './select';
-import { selectIconId } from '../../redux/selectors/categories.selectors';
 import { addCategory } from '../../redux/actions/categories.actions';
 
 export default () => {
@@ -14,8 +12,7 @@ export default () => {
   const [buttonState, changeButtonState] = useState(true);
   const [name, changeName] = useState('');
   const [description, changeDescription] = useState('');
-
-  const iconId = useSelector(selectIconId);
+  const [iconId, setIconId] = useState(1);
 
   const changeInputName = (e) => {
     changeName(e.target.value);
@@ -31,11 +28,7 @@ export default () => {
   };
 
   useEffect(() => {
-    if (name !== '' && description !== '') {
-      changeButtonState(false);
-    } else {
-      changeButtonState(true);
-    }
+    changeButtonState(!(name !== '' && description !== ''))
   }, [name, description]);
 
   return (
@@ -60,7 +53,7 @@ export default () => {
           id="description"
         />
       </label>
-      <SimpleSelect />
+      <SimpleSelect id={iconId} onChange={setIconId} />
       <button
         className="form__button"
         type="submit"
